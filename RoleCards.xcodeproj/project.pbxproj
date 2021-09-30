@@ -3,13 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3E0491FE26F20182000F725D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0491FD26F20182000F725D /* AppDelegate.swift */; };
 		3E04920726F20184000F725D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E04920626F20184000F725D /* Assets.xcassets */; };
 		3E04920A26F20184000F725D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E04920826F20184000F725D /* LaunchScreen.storyboard */; };
+		3E4CCF57270596670062943C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CCF56270596670062943C /* API.swift */; };
+		3E8355FE270597450046AE83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E8355FD270597450046AE83 /* GoogleService-Info.plist */; };
+		3E8356002705A3100046AE83 /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8355FF2705A3100046AE83 /* MultiplayerViewController.swift */; };
+		AAFBB2552AC390B8452CD252 /* Pods_RoleCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACFE689B6BE5778D6E1057A /* Pods_RoleCards.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +22,12 @@
 		3E04920626F20184000F725D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E04920926F20184000F725D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E04920B26F20184000F725D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E4CCF56270596670062943C /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		3E8355FD270597450046AE83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3E8355FF2705A3100046AE83 /* MultiplayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
+		AACFE689B6BE5778D6E1057A /* Pods_RoleCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoleCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD12698998361BB982F6E4E3 /* Pods-RoleCards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoleCards.release.xcconfig"; path = "Target Support Files/Pods-RoleCards/Pods-RoleCards.release.xcconfig"; sourceTree = "<group>"; };
+		F680F93E18B308DB67611330 /* Pods-RoleCards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoleCards.debug.xcconfig"; path = "Target Support Files/Pods-RoleCards/Pods-RoleCards.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,17 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAFBB2552AC390B8452CD252 /* Pods_RoleCards.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		367E3D866CDE04B854DAB3EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F680F93E18B308DB67611330 /* Pods-RoleCards.debug.xcconfig */,
+				AD12698998361BB982F6E4E3 /* Pods-RoleCards.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3E0491F126F20182000F725D = {
 			isa = PBXGroup;
 			children = (
 				3E0491FC26F20182000F725D /* RoleCards */,
 				3E0491FB26F20182000F725D /* Products */,
+				367E3D866CDE04B854DAB3EA /* Pods */,
+				8D457196B1605BFEF9EA4EDD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -50,12 +72,39 @@
 		3E0491FC26F20182000F725D /* RoleCards */ = {
 			isa = PBXGroup;
 			children = (
+				3E4CCF55270596410062943C /* ViewControllers */,
+				3E4CCF542705961F0062943C /* Networing */,
 				3E0491FD26F20182000F725D /* AppDelegate.swift */,
 				3E04920626F20184000F725D /* Assets.xcassets */,
 				3E04920826F20184000F725D /* LaunchScreen.storyboard */,
+				3E8355FD270597450046AE83 /* GoogleService-Info.plist */,
 				3E04920B26F20184000F725D /* Info.plist */,
 			);
 			path = RoleCards;
+			sourceTree = "<group>";
+		};
+		3E4CCF542705961F0062943C /* Networing */ = {
+			isa = PBXGroup;
+			children = (
+				3E4CCF56270596670062943C /* API.swift */,
+			);
+			path = Networing;
+			sourceTree = "<group>";
+		};
+		3E4CCF55270596410062943C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3E8355FF2705A3100046AE83 /* MultiplayerViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8D457196B1605BFEF9EA4EDD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AACFE689B6BE5778D6E1057A /* Pods_RoleCards.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,9 +114,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E04920E26F20184000F725D /* Build configuration list for PBXNativeTarget "RoleCards" */;
 			buildPhases = (
+				5A609CC9FE7245C3616DA90E /* [CP] Check Pods Manifest.lock */,
 				3E0491F626F20182000F725D /* Sources */,
 				3E0491F726F20182000F725D /* Frameworks */,
 				3E0491F826F20182000F725D /* Resources */,
+				3560F2ABC3369ED3D6153E21 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -117,16 +168,61 @@
 			files = (
 				3E04920A26F20184000F725D /* LaunchScreen.storyboard in Resources */,
 				3E04920726F20184000F725D /* Assets.xcassets in Resources */,
+				3E8355FE270597450046AE83 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3560F2ABC3369ED3D6153E21 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RoleCards/Pods-RoleCards-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RoleCards/Pods-RoleCards-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RoleCards/Pods-RoleCards-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A609CC9FE7245C3616DA90E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RoleCards-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3E0491F626F20182000F725D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E4CCF57270596670062943C /* API.swift in Sources */,
+				3E8356002705A3100046AE83 /* MultiplayerViewController.swift in Sources */,
 				3E0491FE26F20182000F725D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,39 +359,45 @@
 		};
 		3E04920F26F20184000F725D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F680F93E18B308DB67611330 /* Pods-RoleCards.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R24W57U338;
 				INFOPLIST_FILE = RoleCards/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Epsillent.RoleCards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		3E04921026F20184000F725D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD12698998361BB982F6E4E3 /* Pods-RoleCards.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R24W57U338;
 				INFOPLIST_FILE = RoleCards/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Epsillent.RoleCards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
