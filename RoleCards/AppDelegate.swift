@@ -19,9 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         -> Bool
     {
         FirebaseApp.configure()
-        
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = MultiplayersViewController()
+        window?.rootViewController = MultiplayerViewController()
         window?.makeKeyAndVisible()
         return true
     }

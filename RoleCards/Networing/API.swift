@@ -5,6 +5,15 @@
 //  Created by Jeytery on 30.09.2021.
 //
 
-class API {
+
+func checkIsValidUser(userId: String) {
+    
+}
+
+func getUser() {
+    
+}
+
+func setUser(_ user: User) {
     
 }
