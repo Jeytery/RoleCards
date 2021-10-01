@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = MultiplayerViewController()
+        window?.rootViewController = UINavigationController(rootViewController: AutorizationViewContoller(option: .signIn))
         window?.makeKeyAndVisible()
         return true
     }

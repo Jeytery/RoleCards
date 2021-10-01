@@ -11,6 +11,7 @@
 		3E04920726F20184000F725D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E04920626F20184000F725D /* Assets.xcassets */; };
 		3E04920A26F20184000F725D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E04920826F20184000F725D /* LaunchScreen.storyboard */; };
 		3E4CCF57270596670062943C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CCF56270596670062943C /* API.swift */; };
+		3E5B087427072FA900265422 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B087327072FA800265422 /* UserManager.swift */; };
 		3E8356002705A3100046AE83 /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8355FF2705A3100046AE83 /* MultiplayerViewController.swift */; };
 		3E8356022705A7A30046AE83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E8356012705A7A30046AE83 /* GoogleService-Info.plist */; };
 		3E8356062705A9BB0046AE83 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8356052705A9BB0046AE83 /* User.swift */; };
@@ -18,6 +19,11 @@
 		3E83560E2705B9EA0046AE83 /* AutorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E83560D2705B9EA0046AE83 /* AutorizationViewController.swift */; };
 		3E8356102705C1F20046AE83 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E83560F2705C1F20046AE83 /* Room.swift */; };
 		3E8356122705C2050046AE83 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8356112705C2040046AE83 /* Event.swift */; };
+		3E8356152705C69D0046AE83 /* DescTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8356142705C69D0046AE83 /* DescTextFieldView.swift */; };
+		3E8356172705CACE0046AE83 /* StackListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8356162705CACE0046AE83 /* StackListView.swift */; };
+		3E8356192705CBE90046AE83 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8356182705CBE90046AE83 /* Colors.swift */; };
+		3E83561C2705CD1C0046AE83 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E83561B2705CD1C0046AE83 /* Extension.swift */; };
+		3E83561E2705CE9F0046AE83 /* StateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E83561D2705CE9F0046AE83 /* StateTextField.swift */; };
 		AAFBB2552AC390B8452CD252 /* Pods_RoleCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACFE689B6BE5778D6E1057A /* Pods_RoleCards.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +34,7 @@
 		3E04920926F20184000F725D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E04920B26F20184000F725D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E4CCF56270596670062943C /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		3E5B087327072FA800265422 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		3E8355FF2705A3100046AE83 /* MultiplayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
 		3E8356012705A7A30046AE83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E8356052705A9BB0046AE83 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -35,6 +42,11 @@
 		3E83560D2705B9EA0046AE83 /* AutorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorizationViewController.swift; sourceTree = "<group>"; };
 		3E83560F2705C1F20046AE83 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		3E8356112705C2040046AE83 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		3E8356142705C69D0046AE83 /* DescTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescTextFieldView.swift; sourceTree = "<group>"; };
+		3E8356162705CACE0046AE83 /* StackListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackListView.swift; sourceTree = "<group>"; };
+		3E8356182705CBE90046AE83 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		3E83561B2705CD1C0046AE83 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		3E83561D2705CE9F0046AE83 /* StateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTextField.swift; sourceTree = "<group>"; };
 		AACFE689B6BE5778D6E1057A /* Pods_RoleCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoleCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD12698998361BB982F6E4E3 /* Pods-RoleCards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoleCards.release.xcconfig"; path = "Target Support Files/Pods-RoleCards/Pods-RoleCards.release.xcconfig"; sourceTree = "<group>"; };
 		F680F93E18B308DB67611330 /* Pods-RoleCards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoleCards.debug.xcconfig"; path = "Target Support Files/Pods-RoleCards/Pods-RoleCards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -82,11 +94,12 @@
 		3E0491FC26F20182000F725D /* RoleCards */ = {
 			isa = PBXGroup;
 			children = (
-				3E8356072705ABCC0046AE83 /* View */,
+				3E8356072705ABCC0046AE83 /* Interface */,
 				3E4CCF55270596410062943C /* ViewControllers */,
 				3E4CCF542705961F0062943C /* Networing */,
 				3E8356042705A9A30046AE83 /* Model */,
 				3E83560A2705AE2A0046AE83 /* AppUtils */,
+				3E83561A2705CD0E0046AE83 /* Tools */,
 				3E0491FD26F20182000F725D /* AppDelegate.swift */,
 				3E04920626F20184000F725D /* Assets.xcassets */,
 				3E04920826F20184000F725D /* LaunchScreen.storyboard */,
@@ -119,16 +132,20 @@
 				3E8356052705A9BB0046AE83 /* User.swift */,
 				3E83560F2705C1F20046AE83 /* Room.swift */,
 				3E8356112705C2040046AE83 /* Event.swift */,
+				3E5B087327072FA800265422 /* UserManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3E8356072705ABCC0046AE83 /* View */ = {
+		3E8356072705ABCC0046AE83 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				3E8356132705C67B0046AE83 /* View */,
+				3E83561D2705CE9F0046AE83 /* StateTextField.swift */,
 				3E8356082705ABDC0046AE83 /* Design.swift */,
+				3E8356182705CBE90046AE83 /* Colors.swift */,
 			);
-			path = View;
+			path = Interface;
 			sourceTree = "<group>";
 		};
 		3E83560A2705AE2A0046AE83 /* AppUtils */ = {
@@ -136,6 +153,23 @@
 			children = (
 			);
 			path = AppUtils;
+			sourceTree = "<group>";
+		};
+		3E8356132705C67B0046AE83 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E8356142705C69D0046AE83 /* DescTextFieldView.swift */,
+				3E8356162705CACE0046AE83 /* StackListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3E83561A2705CD0E0046AE83 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				3E83561B2705CD1C0046AE83 /* Extension.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		8D457196B1605BFEF9EA4EDD /* Frameworks */ = {
@@ -260,12 +294,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E8356152705C69D0046AE83 /* DescTextFieldView.swift in Sources */,
+				3E8356192705CBE90046AE83 /* Colors.swift in Sources */,
+				3E5B087427072FA900265422 /* UserManager.swift in Sources */,
 				3E8356122705C2050046AE83 /* Event.swift in Sources */,
+				3E83561E2705CE9F0046AE83 /* StateTextField.swift in Sources */,
+				3E83561C2705CD1C0046AE83 /* Extension.swift in Sources */,
 				3E83560E2705B9EA0046AE83 /* AutorizationViewController.swift in Sources */,
 				3E8356062705A9BB0046AE83 /* User.swift in Sources */,
 				3E8356102705C1F20046AE83 /* Room.swift in Sources */,
 				3E4CCF57270596670062943C /* API.swift in Sources */,
 				3E8356002705A3100046AE83 /* MultiplayerViewController.swift in Sources */,
+				3E8356172705CACE0046AE83 /* StackListView.swift in Sources */,
 				3E0491FE26F20182000F725D /* AppDelegate.swift in Sources */,
 				3E8356092705ABDC0046AE83 /* Design.swift in Sources */,
 			);

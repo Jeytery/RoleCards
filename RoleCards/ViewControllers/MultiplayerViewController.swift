@@ -12,6 +12,8 @@ class MultiplayerViewController: UIViewController {
     
     private let database = Database.database().reference()
     
+    private var autorizationVC: AutorizationViewContoller!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .cyan
