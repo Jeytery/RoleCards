@@ -79,17 +79,13 @@ extension AutorizationViewContoller {
 
 //MARK: - autorization
 extension AutorizationViewContoller {
-    private func addUser(_ user: User) {
-        database.child("users").childByAutoId().setValue(user.dictionary)
-    }
-    
     private func addUser(username: String, password: String, token: String) {
         DispatchQueue.main.async {
             [weak self] in
             let user = User(username: username,
             password: password,
             token: token)
-            self?.addUser(user)
+            self?.database.child("users").childByAutoId().setValue(user.dictionary)
         }
     }
     
@@ -105,14 +101,7 @@ extension AutorizationViewContoller {
             nameTextField.setError(text: "This username is taken. Try another")
         }
     }
-    
-    private func findUserByName(username: String, users: Users) -> User? {
-        for user in users {
-            if username == user.username { return user }
-        }
-        return nil
-    }
- 
+
     private func checkAccountPassword(_ password: String) {
         DispatchQueue.main.async {
             [unowned self] in
@@ -126,36 +115,12 @@ extension AutorizationViewContoller {
         }
     }
     
-//    @objc func nextButtonAction() {
-//        if checkTextFieldReadness() { return }
-//        nextButton.isEnabled = false
-//        let username = nameTextField.text
-//        let password = passwordTextField.text
-//        getUsers(completion: {
-//            [unowned self] result in
-//            DispatchQueue.main.async { nextButton.isEnabled = true }
-//            switch result {
-//            case .success(let users):
-//                guard let user = findUserByName(username: username, users: users) else {
-//                    addUser(username: username,
-//                            password: password,
-//                            token: UUID().uuidString)
-//                    return
-//                }
-//                checkAccountPassword(user.password)
-//                break
-//            case .failure(let error):
-//                print(error);
-//                break
-//            }
-//        })
-//    }
-    
     @objc func nextButtonAction() {
         if checkTextFieldReadness() { return }
         nextButton.isEnabled = false
         let username = nameTextField.text
         let password = passwordTextField.text
+        
         findUserByUsername(username, completion: {
             [unowned self] result in
             DispatchQueue.main.async { nextButton.isEnabled = true }
@@ -164,7 +129,7 @@ extension AutorizationViewContoller {
                 checkAccountPassword(user.password)
                 break
             case .failure(let error):
-                print(error)
+                print("findUserByUsername: \(error)")
                 addUser(username: username,
                         password: password,
                         token: UUID().uuidString)
