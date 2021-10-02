@@ -14,21 +14,15 @@ protocol AutorizationViewControllerDelegate: AnyObject {
 
 class AutorizationViewContoller: UIViewController {
     
-    enum Option {
-        case registration
-        case signIn
-    }
-    
     weak var delegate: AutorizationViewControllerDelegate?
 
     private let database = Database.database().reference()
-    private let option: Option
     
     private let nameTextField = DescTextFieldView(title: "Name", placeholder: "For Example: Jeytery")
     private let passwordTextField = DescTextFieldView(title: "Password", placeholder: "No 12345, please")
+    private let nextButton = UIButton()
     
-    init(option: Option) {
-        self.option = option
+    init() {
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = .white
         configureUI()
@@ -57,7 +51,6 @@ extension AutorizationViewContoller {
     }
     
     private func configureNextButton() {
-        let nextButton = UIButton()
         view.addSubview(nextButton)
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
@@ -113,51 +106,48 @@ extension AutorizationViewContoller {
         }
     }
     
-    private func signInAction() {
+    private func findUserByName(username: String, users: Users) -> User? {
+        for user in users {
+            if username == user.username { return user }
+        }
+        return nil
+    }
+ 
+    private func checkAccountPassword(_ password: String) {
+        DispatchQueue.main.async {
+            [unowned self] in
+            if password == passwordTextField.text {
+                print("Success!")
+                delegate?.autorizationViewControllerDidAutorized()
+            }
+            else {
+                passwordTextField.setError(text: "Password for this use is incorrect, try again")
+            }
+        }
+    }
+    
+    @objc func nextButtonAction() {
         if checkTextFieldReadness() { return }
-        findUser(username: nameTextField.text, completion: {
+        nextButton.isEnabled = false
+        let username = nameTextField.text
+        let password = passwordTextField.text
+        getUsers(completion: {
             [unowned self] result in
+            DispatchQueue.main.async { nextButton.isEnabled = true }
             switch result {
-            case .success(let user):
-                DispatchQueue.main.async {
-                    if user.password == passwordTextField.text {
-                        print("Success! Password is correct")
-                        delegate?.autorizationViewControllerDidAutorized()
-                    }
-                    else {
-                        passwordTextField.setError(text: "Password is incorrect")
-                    }
+            case .success(let users):
+                guard let user = findUserByName(username: username, users: users) else {
+                    addUser(username: username,
+                            password: password,
+                            token: UUID().uuidString)
+                    return
                 }
+                checkAccountPassword(user.password)
                 break
             case .failure(let error):
-                DispatchQueue.main.async {
-                    nameTextField.setError(text: "Can't find user with such username \(error)")
-                }
+                print(error);
                 break
             }
         })
-        addUser(username: nameTextField.text,
-                password: passwordTextField.text,
-                token: UUID().uuidString)
     }
-    
-    private func registrationAction() {
-        if checkTextFieldReadness() { return }
-        checkIsUsernameFree(nameTextField.text, completion: {
-            [unowned self] result in
-            switch result {
-            case .success(let status):
-                guard status == true else { setNickExistingError(); return }
-                addUser(username: nameTextField.text,
-                        password: passwordTextField.text,
-                        token: UUID().uuidString)
-                break
-            case .failure(let error):
-                print("Failed to checkIsUsernameFree: \(error)")
-                break
-            }
-        })
-    }
-    
-    @objc func nextButtonAction() { signInAction() }
 }
