@@ -126,26 +126,48 @@ extension AutorizationViewContoller {
         }
     }
     
+//    @objc func nextButtonAction() {
+//        if checkTextFieldReadness() { return }
+//        nextButton.isEnabled = false
+//        let username = nameTextField.text
+//        let password = passwordTextField.text
+//        getUsers(completion: {
+//            [unowned self] result in
+//            DispatchQueue.main.async { nextButton.isEnabled = true }
+//            switch result {
+//            case .success(let users):
+//                guard let user = findUserByName(username: username, users: users) else {
+//                    addUser(username: username,
+//                            password: password,
+//                            token: UUID().uuidString)
+//                    return
+//                }
+//                checkAccountPassword(user.password)
+//                break
+//            case .failure(let error):
+//                print(error);
+//                break
+//            }
+//        })
+//    }
+    
     @objc func nextButtonAction() {
         if checkTextFieldReadness() { return }
         nextButton.isEnabled = false
         let username = nameTextField.text
         let password = passwordTextField.text
-        getUsers(completion: {
+        findUserByUsername(username, completion: {
             [unowned self] result in
             DispatchQueue.main.async { nextButton.isEnabled = true }
             switch result {
-            case .success(let users):
-                guard let user = findUserByName(username: username, users: users) else {
-                    addUser(username: username,
-                            password: password,
-                            token: UUID().uuidString)
-                    return
-                }
+            case .success(let user):
                 checkAccountPassword(user.password)
                 break
             case .failure(let error):
-                print(error);
+                print(error)
+                addUser(username: username,
+                        password: password,
+                        token: UUID().uuidString)
                 break
             }
         })
