@@ -8,7 +8,7 @@
 import UIKit
 
 class Colors {
-    static let lightGray = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
+    static let lightGray = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
     static let green = UIColor(red: 61/255, green: 227/255, blue: 105/255, alpha: 1)
     static let red = UIColor(red: 242/255, green: 97/255, blue: 75/255, alpha: 1)
     static let blue = UIColor(red: 68/255, green: 119/255, blue: 249/255, alpha: 1)

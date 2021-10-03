@@ -28,7 +28,16 @@ extension UIButton {
     func setPrimaryStyle(icon: UIImage, color: UIColor) {
         layer.cornerRadius = DesignProperties.cornerRadius
         backgroundColor = color
-        
+        let imageView = UIImageView()
+        imageView.image = icon
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(imageView)
+        imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 25    ).isActive = true
+        imageView.contentMode = .scaleAspectFit
+        tintColor = .white
     }
 }
 
