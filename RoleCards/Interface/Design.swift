@@ -10,31 +10,29 @@ import UIKit
 extension UITextField {
     func setStandsrtStyle() {
         layer.masksToBounds = true
-        let lightGrey = Colors.lightGray
-        backgroundColor = lightGrey
-        textColor = .black
+        backgroundColor = Colors.interface
+        textColor = Colors.text
         borderStyle = .roundedRect
         layer.cornerRadius = DesignProperties.cornerRadius
         clearButtonMode = .whileEditing
         layer.borderWidth = 1
-        layer.borderColor = lightGrey.cgColor
+        layer.borderColor = Colors.interface.cgColor
     }
 }
 
 extension UIButton {
-    func setStandartStyle(icon: UIImage, color: UIColor) {
-        layer.cornerRadius = DesignProperties.cornerRadius
-        backgroundColor = color
+    func setPrimaryStyle() {
+        
     }
     
-    func setStandartStyle() {
+    func setPrimaryStyle(icon: UIImage, color: UIColor) {
+        layer.cornerRadius = DesignProperties.cornerRadius
+        backgroundColor = color
         
     }
 }
 
 class DesignProperties {
-    static let primaryColor: UIColor = .blue
-    static let secondaryColor: UIColor = .gray
     static let cornerRadius: CGFloat = 10
 }
 
