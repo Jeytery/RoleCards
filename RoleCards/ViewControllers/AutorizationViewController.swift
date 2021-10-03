@@ -15,6 +15,12 @@ protocol AutorizationViewControllerDelegate: AnyObject {
 class AutorizationViewContoller: UIViewController {
     
     weak var delegate: AutorizationViewControllerDelegate?
+    
+    var isTextFieldsReady: Bool {
+        setErrors()
+        if nameTextField.text == "" || passwordTextField.text == "" { return false }
+        return true
+    }
 
     private let database = Database.database().reference()
     
@@ -23,12 +29,6 @@ class AutorizationViewContoller: UIViewController {
     private let nextButton = UIButton()
     private let list = StackListView(axis: .vertical)
     private var listBottomConstraint: NSLayoutConstraint!
-    
-    private var isTextFieldsReady: Bool {
-        setErrors()
-        if nameTextField.text == "" || passwordTextField.text == "" { return false }
-        return true
-    }
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -47,10 +47,6 @@ class AutorizationViewContoller: UIViewController {
             selector: #selector(keyboardDidHide),
             name: UIResponder.keyboardDidHideNotification,
             object: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -131,9 +127,10 @@ extension AutorizationViewContoller {
             password: password,
             token: token)
             self?.database.child("users").childByAutoId().setValue(user.dictionary)
+            UserManager.shared.saveUser(user)
         }
     }
- 
+
     private func setNickExistingError() {
         DispatchQueue.main.async {
             [nameTextField] in
@@ -141,11 +138,12 @@ extension AutorizationViewContoller {
         }
     }
 
-    private func checkAccountPassword(_ password: String) {
+    private func checkAccountPassword(_ user: User) {
         DispatchQueue.main.async {
             [unowned self] in
-            if password == passwordTextField.text {
+            if user.password == passwordTextField.text {
                 print("Success!")
+                if UserManager.shared.getUser() == nil { UserManager.shared.saveUser(user) }
                 delegate?.autorizationViewControllerDidAutorized()
             }
             else {
@@ -156,23 +154,23 @@ extension AutorizationViewContoller {
     
     @objc func nextButtonAction() {
         guard isTextFieldsReady else { return }
-        
         nextButton.isEnabled = false
         let username = nameTextField.text
         let password = passwordTextField.text
 
-        findUserByUsername(username, completion: {
+        findUser(username: username, completion: {
             [unowned self] result in
             DispatchQueue.main.async { nextButton.isEnabled = true }
             switch result {
             case .success(let user):
-                checkAccountPassword(user.password)
+                checkAccountPassword(user)
                 break
             case .failure(let error):
                 print("findUserByUsername: \(error)")
                 addUser(username: username,
                         password: password,
                         token: UUID().uuidString)
+                delegate?.autorizationViewControllerDidAutorized()
                 break
             }
         })
