@@ -32,5 +32,15 @@ class Colors {
         guard #available(iOS 11.0, *) else { return .black }
         return UIColor(named: "TextColor")!
     }
+    
+    static var secondaryInterface: UIColor {
+        guard #available(iOS 11.0, *) else { return .black }
+        return UIColor(named: "SecondaryInterfaceColor")!
+    }
+    
+    static var navigation: UIColor {
+        guard #available(iOS 11.0, *) else { return Colors.lightGray }
+        return UIColor(named: "NavigationColor")!
+    }
 }
 

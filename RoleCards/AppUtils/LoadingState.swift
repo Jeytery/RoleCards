@@ -28,21 +28,25 @@ class LoadingState {
 //MARK: - public
 extension LoadingState {
     static func start() {
-        LoadingState.shared.window?.addSubview(LoadingState.shared.loadingView)
-        LoadingState.shared.loadingView.alpha = 0
-        UIView.animate(withDuration: 0.3, animations: {
-            LoadingState.shared.loadingView.alpha = 0.6
-        })
-        LoadingState.shared.loadingView.showSpinner()
+        DispatchQueue.main.async {
+            LoadingState.shared.window?.addSubview(LoadingState.shared.loadingView)
+            LoadingState.shared.loadingView.alpha = 0
+            UIView.animate(withDuration: 0.3, animations: {
+                LoadingState.shared.loadingView.alpha = 0.6
+            })
+            LoadingState.shared.loadingView.showSpinner()
+        }
     }
     
     static func stop() {
-        UIView.animate(withDuration: 0.3, animations: {
-            LoadingState.shared.loadingView.alpha = 0
-        }, completion: {
-            _ in
-            LoadingState.shared.transparentView.removeFromSuperview()
-        })
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3, animations: {
+                LoadingState.shared.loadingView.alpha = 0
+            }, completion: {
+                _ in
+                LoadingState.shared.transparentView.removeFromSuperview()
+            })
+        }
     }
 }
 

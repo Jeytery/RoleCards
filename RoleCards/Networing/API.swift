@@ -39,18 +39,18 @@ func getUsers(completion: @escaping (Result<Users, Error>) -> Void) {
     })
 }
 
-func checkIsUsernameFree(_ username: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+func checkIsUserValid(token: String, completion: @escaping (Result<Bool, Error>) -> Void) {
     getUsers(completion: {
         result in
         switch result {
         case .success(let users):
-            for user in users {
-                if user.username == username {
-                    completion(.success(false))
+            for _user in users {
+                if _user.token == token {
+                    completion(.success(true))
                     return
                 }
             }
-            completion(.success(true))
+            completion(.success(false))
             break
         case .failure(let error):
             completion(.failure(error))
@@ -59,21 +59,21 @@ func checkIsUsernameFree(_ username: String, completion: @escaping (Result<Bool,
     })
 }
 
-func checkIsUserValid(token: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+func findUser(token: String, completion: @escaping (Result<User, Error>) -> Void) {
     getUsers(completion: {
         result in
         switch result {
         case .success(let users):
-            for _user in users {
-                if _user.token == token {
-                    completion(.success(false))
+            for user in users {
+                if user.token == token {
+                    completion(.success(user))
                     return
                 }
             }
-            completion(.success(true))
+            completion(.failure(UsersError.userNotFound))
             break
         case .failure(let error):
-            completion(.failure(error))
+            print("findUser: error \(error)")
             break
         }
     })
@@ -98,4 +98,40 @@ func findUser(username: String, completion: @escaping (Result<User, Error>) -> V
         }
     })
 }
+
+//MARK: - room
+
+typealias Rooms = Array<Room>
+
+enum RoomError: Error {
+    case dictionaryCast
+    case roomNotFound
+}
+
+func getRooms(completion: @escaping (Result<Rooms, Error>) -> Void) {
+    let database = Database.database().reference()
+    database.child("rooms").getData(completion: {
+        error, dataSnapshot in
+        guard let dict = dataSnapshot.value as? [String: Any] else {
+            completion(.failure(RoomError.dictionaryCast))
+            return
+        }
+        var rooms = Rooms()
+        for (_, _value) in dict { }
+        completion(.success(rooms))
+    })
+}
+
+func pushRoom(_ room: Room) {
+    
+}
+
+func updateRoom(_ room: Room) {
+    
+}
+
+func deleteRoom(_ room: Room) {
+    
+}
+
 

@@ -28,7 +28,7 @@ class StateTextField: UITextField {
 extension StateTextField {
     func setErrorState() {
         layer.masksToBounds = true
-        backgroundColor = Colors.lightGray
+        backgroundColor = Colors.interface
         textColor = Colors.red
         borderStyle = .roundedRect
         layer.cornerRadius = DesignProperties.cornerRadius
@@ -39,7 +39,7 @@ extension StateTextField {
     
     func setSuccessState() {
         layer.masksToBounds = true
-        let lightGrey = Colors.lightGray
+        let lightGrey = Colors.interface
         backgroundColor = lightGrey
         textColor = Colors.green
         borderStyle = .roundedRect

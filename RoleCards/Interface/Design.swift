@@ -22,7 +22,8 @@ extension UITextField {
 
 extension UIButton {
     func setPrimaryStyle() {
-        
+        backgroundColor = Colors.primary
+        layer.cornerRadius = DesignProperties.cornerRadius
     }
     
     func setPrimaryStyle(icon: UIImage, color: UIColor) {
