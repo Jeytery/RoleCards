@@ -100,7 +100,7 @@ extension RolesViewController {
     
     private func showRoleVC(role: Role = Role(
         name: "",
-        color: RoleColor(red: 1, blue: 1, green: 1),
+        color: Colors.red.roleColor,
         description: ""))
     {
         let roleVC = RoleViewController(role: role)
