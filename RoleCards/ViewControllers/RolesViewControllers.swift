@@ -13,75 +13,89 @@ protocol RolesViewControllerDelegate: AnyObject {
 
 class RolesViewController: UIViewController {
     
+    enum RoleActionType {
+        case edit
+        case add
+    }
+    
     weak var delegate: RolesViewControllerDelegate?
     
-    private let roles: Roles
+    private var roleActionType: RoleActionType = .add
     
     private let list = StateCollectionView()
     private let addRoleButton = UIButton()
+    private var isListEditing = false
+    private var currentEditingCell: Int = 0
     
     init() {
-        self.roles = RoleManager.shared.roles
+        self.viewModel = RolesViewModel()
         super.init(nibName: nil, bundle: nil)
         configureList()
         configureAddRoleButton()
         configureUI()
     }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
-                                                            target: nil,
-                                                            action: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        setCellEdit(isEditing: editing)
     }
 }
 
-//MARK: - internal funcs
+//MARK: - ui
 extension RolesViewController {
     private func configureUI() {
         title = "Roles"
         view.backgroundColor = Colors.background
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit",
-//                                                            style: .plain,
-//                                                            target: self,
-//                                                            action: #selector(addTapped))
-    }
-        
-    @objc func addTapped() {
-        print("add")
+        navigationItem.rightBarButtonItem = editButtonItem
     }
     
     private func configureList() {
         view.addSubview(list)
-        
         list.delegate = self
         list.dataSource = self
-        
         list.translatesAutoresizingMaskIntoConstraints = false
+        
         list.setTopConstraint(self)
         list.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         list.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        list.registerView(RoleView.self)
+        list.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        list.register(RoleCell.self, forCellWithReuseIdentifier: "cell")
     }
     
     private func configureAddRoleButton() {
         view.addSubview(addRoleButton)
         addRoleButton.translatesAutoresizingMaskIntoConstraints = false
         addRoleButton.setBottomConstraint(self, constant: -10)
-        addRoleButton.topAnchor.constraint(equalTo: list.bottomAnchor).isActive = true
         addRoleButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         addRoleButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
         addRoleButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         addRoleButton.addTarget(self, action: #selector(addRoleButtonAction), for: .touchDown)
         addRoleButton.setPrimaryStyle(icon: Icons.plus, color: Colors.primary)
     }
-    
+}
+
+//MARK: - internal funcs
+extension RolesViewController {
     @objc func addRoleButtonAction() {
-        let roleVC = RoleViewController()
+        setEditing(false, animated: false)
+        showRoleVC()
+    }
+    
+    private func setCellEdit(isEditing: Bool) {
+        isListEditing = isEditing
+        roleActionType = isEditing ? .edit : .add
+        for i in 0..<RoleManager.shared.roles.count {
+            guard let cell = list.cellForItem(at: IndexPath(row: i, section: 0)) as? RoleCell else { return }
+            cell.roleView.isEditing = isEditing
+        }
+    }
+    
+    private func showRoleVC(role: Role = Role(name: "", color: RoleColor(red: 1, blue: 1, green: 1), description: "")) {
+        let roleVC = RoleViewController(role: role)
+        roleVC.delegate = self
         let nvc = BaseNavigationController(rootViewController: roleVC)
         present(nvc, animated: true, completion: nil)
     }
@@ -96,7 +110,7 @@ extension RolesViewController:
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int
     {
-        return roles.count
+        return RoleManager.shared.roles.count
     }
     
     func collectionView(
@@ -104,9 +118,11 @@ extension RolesViewController:
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell",
-                                                      for: indexPath) as! BaseCell<RoleView>
-        let v = cell.baseView as! RoleView
-        v.setRole(roles[indexPath.row])
+                                                      for: indexPath) as! RoleCell
+        cell.delegate = self
+        let _roles = RoleManager.shared.roles
+        cell.roleView.isEditing = isListEditing
+        cell.setRole(_roles[indexPath.row])
         return cell
     }
     
@@ -116,5 +132,74 @@ extension RolesViewController:
         sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         return CGSize(width: UIScreen.main.bounds.width - 40, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20, left: 20, bottom: 100, right: 20)
+    }
+}
+
+//MARK: - [d] roleVC
+extension RolesViewController: RoleViewControllerDelegate {
+    func roleViewController(didReturn role: Role) {
+        if roleActionType == .add {
+            RoleManager.shared.saveRole(role)
+        }
+        else if roleActionType == .edit {
+            RoleManager.shared.updateRole(role, at: currentEditingCell)
+        }
+        list.reloadData()
+    }
+}
+
+//MARK: - [d] roleCell
+extension RolesViewController: RoleCellDelegate {
+    func roleCell(didTapEditWith view: UIView, cell: UICollectionViewCell) {
+        guard let indexPath = list.indexPath(for: cell) else { return }
+        currentEditingCell = indexPath.row
+        showRoleVC(role: RoleManager.shared.roles[indexPath.row])
+    }
+    
+    func roleCell(didTapDeleteWith view: UIView, cell: UICollectionViewCell) {
+        guard let indexPath = list.indexPath(for: cell) else { return }
+        RoleManager.shared.deleteRole(at: indexPath.row)
+        list.reloadData()
+    }
+}
+
+protocol RoleCellDelegate: AnyObject {
+    func roleCell(didTapEditWith view: UIView, cell: UICollectionViewCell)
+    func roleCell(didTapDeleteWith view: UIView, cell: UICollectionViewCell)
+}
+
+class RoleCell: UICollectionViewCell, RoleViewDelegate {
+   
+    weak var delegate: RoleCellDelegate?
+    
+    private(set) var roleView = RoleView()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(roleView)
+        roleView.translatesAutoresizingMaskIntoConstraints = false
+        roleView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        roleView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        roleView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        roleView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        roleView.delegate = self
+    }
+    
+    func setRole(_ role: Role) {
+        roleView.setRole(role)
+    }
+    
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
+    func roleView(didTapDeleteWith view: UIView) {
+        delegate?.roleCell(didTapDeleteWith: roleView, cell: self)
+    }
+    
+    func roleView(didTapEdit view: UIView) {
+        delegate?.roleCell(didTapEditWith: roleView, cell: self)
     }
 }
