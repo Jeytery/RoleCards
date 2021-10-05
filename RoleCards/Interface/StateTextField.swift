@@ -11,11 +11,16 @@ class StateTextField: UITextField {
     
     var didTap: (() -> Void)?
     
+    var didEnter: (() -> Void)?
+    
     init() {
         super.init(frame: .zero)
         delegate = self
         setStandsrtStyle()
+        addTarget(self, action: #selector(didEnterValue), for: .editingChanged)
     }
+    
+    @objc func didEnterValue(_ sender: UITextField) { didEnter?() }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
@@ -56,4 +61,6 @@ extension StateTextField: UITextFieldDelegate {
         popState()
         didTap?()
     }
+    
+    
 }

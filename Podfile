@@ -4,4 +4,5 @@ target 'RoleCards' do
 	use_frameworks!
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
+	pod 'Pikko'
 end

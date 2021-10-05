@@ -10,11 +10,12 @@
 		3E0491FE26F20182000F725D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0491FD26F20182000F725D /* AppDelegate.swift */; };
 		3E04920726F20184000F725D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E04920626F20184000F725D /* Assets.xcassets */; };
 		3E04920A26F20184000F725D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E04920826F20184000F725D /* LaunchScreen.storyboard */; };
+		3E1742DF270CACDD0051DE24 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1742DE270CACDD0051DE24 /* ColorPickerViewController.swift */; };
 		3E329893270A2331002DD185 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E329892270A2330002DD185 /* Role.swift */; };
-		3E329895270A23D2002DD185 /* RoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E329894270A23D2002DD185 /* RoleManager.swift */; };
 		3E329897270A2E0D002DD185 /* RolesViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E329896270A2E0D002DD185 /* RolesViewControllers.swift */; };
 		3E496AD1270AF7C3003D915C /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD0270AF7C3003D915C /* RoleView.swift */; };
 		3E496AD3270B4917003D915C /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD2270B4917003D915C /* RoleViewController.swift */; };
+		3E496AD5270C856B003D915C /* RolesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD4270C856B003D915C /* RolesViewModel.swift */; };
 		3E4CCF57270596670062943C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CCF56270596670062943C /* API.swift */; };
 		3E5B087427072FA900265422 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B087327072FA800265422 /* UserManager.swift */; };
 		3E5B0876270731FB00265422 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B0875270731FB00265422 /* LoadingState.swift */; };
@@ -43,11 +44,12 @@
 		3E04920626F20184000F725D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E04920926F20184000F725D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E04920B26F20184000F725D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E1742DE270CACDD0051DE24 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		3E329892270A2330002DD185 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
-		3E329894270A23D2002DD185 /* RoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleManager.swift; sourceTree = "<group>"; };
 		3E329896270A2E0D002DD185 /* RolesViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesViewControllers.swift; sourceTree = "<group>"; };
 		3E496AD0270AF7C3003D915C /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		3E496AD2270B4917003D915C /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
+		3E496AD4270C856B003D915C /* RolesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesViewModel.swift; sourceTree = "<group>"; };
 		3E4CCF56270596670062943C /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		3E5B087327072FA800265422 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		3E5B0875270731FB00265422 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				3E83560D2705B9EA0046AE83 /* AutorizationViewController.swift */,
 				3E329896270A2E0D002DD185 /* RolesViewControllers.swift */,
 				3E496AD2270B4917003D915C /* RoleViewController.swift */,
+				3E1742DE270CACDD0051DE24 /* ColorPickerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -152,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				3E5B087327072FA800265422 /* UserManager.swift */,
-				3E329894270A23D2002DD185 /* RoleManager.swift */,
+				3E496AD4270C856B003D915C /* RolesViewModel.swift */,
 				3E8356052705A9BB0046AE83 /* User.swift */,
 				3E83560F2705C1F20046AE83 /* Room.swift */,
 				3E8356112705C2040046AE83 /* Event.swift */,
@@ -324,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E1742DF270CACDD0051DE24 /* ColorPickerViewController.swift in Sources */,
 				3E5B0878270744BF00265422 /* Observable.swift in Sources */,
 				3E496AD1270AF7C3003D915C /* RoleView.swift in Sources */,
 				3E8356152705C69D0046AE83 /* DescTextFieldView.swift in Sources */,
@@ -339,12 +343,12 @@
 				3E8356102705C1F20046AE83 /* Room.swift in Sources */,
 				3E329897270A2E0D002DD185 /* RolesViewControllers.swift in Sources */,
 				3E4CCF57270596670062943C /* API.swift in Sources */,
-				3E329895270A23D2002DD185 /* RoleManager.swift in Sources */,
 				3E8356002705A3100046AE83 /* MultiplayerViewController.swift in Sources */,
 				3E8356172705CACE0046AE83 /* StackListView.swift in Sources */,
 				3E5B087E2709E0B000265422 /* StateCollectionView.swift in Sources */,
 				3E5B0876270731FB00265422 /* LoadingState.swift in Sources */,
 				3E496AD3270B4917003D915C /* RoleViewController.swift in Sources */,
+				3E496AD5270C856B003D915C /* RolesViewModel.swift in Sources */,
 				3E0491FE26F20182000F725D /* AppDelegate.swift in Sources */,
 				3E8356092705ABDC0046AE83 /* Design.swift in Sources */,
 				3E329893270A2331002DD185 /* Role.swift in Sources */,

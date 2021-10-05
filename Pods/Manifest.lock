@@ -93,11 +93,13 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - Pikko (1.0.4)
   - PromisesObjC (1.2.12)
 
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
+  - Pikko
 
 SPEC REPOS:
   trunk:
@@ -112,6 +114,7 @@ SPEC REPOS:
     - GoogleUtilities
     - leveldb-library
     - nanopb
+    - Pikko
     - PromisesObjC
 
 SPEC CHECKSUMS:
@@ -126,8 +129,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  Pikko: b2883c3b39752c04a1953f8995f8edafcbc3ee90
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: c5e37a1110ca813bdf36fa68cae585377673d548
+PODFILE CHECKSUM: ec47f842e766ace24c80c03159f609fc1c63b695
 
 COCOAPODS: 1.10.1

@@ -6,16 +6,19 @@
 //
 
 import CoreGraphics
+import UIKit
 
 struct RoleColor: Codable {
     let red: CGFloat
     let blue: CGFloat
     let green: CGFloat
+    
+    var uiColor: UIColor { return UIColor(red: red, green: green, blue: blue, alpha: 1) }
 }
 
 struct Role: Codable {
-    let name: String
-    let color: RoleColor
-    let description: String
+    var name: String
+    var color: RoleColor
+    var description: String
 }
 

@@ -21,12 +21,13 @@ extension UITextField {
 }
 
 extension UIButton {
-    func setPrimaryStyle() {
+    func setPrimaryStyle(title: String = "") {
         backgroundColor = Colors.primary
         layer.cornerRadius = DesignProperties.cornerRadius
+        setTitle(title, for: .normal)
     }
     
-    func setPrimaryStyle(icon: UIImage, color: UIColor) {
+    func setPrimaryStyle(icon: UIImage, color: UIColor, constant: CGFloat = 25) {
         layer.cornerRadius = DesignProperties.cornerRadius
         backgroundColor = color
         let imageView = UIImageView()
@@ -35,8 +36,8 @@ extension UIButton {
         addSubview(imageView)
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 25    ).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: constant).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: constant).isActive = true
         imageView.contentMode = .scaleAspectFit
         tintColor = .white
     }

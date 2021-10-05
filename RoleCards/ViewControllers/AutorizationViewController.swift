@@ -76,7 +76,7 @@ extension AutorizationViewContoller {
         view.addSubview(list)
         list.translatesAutoresizingMaskIntoConstraints = false
         list.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
-        listBottomConstraint = list.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        listBottomConstraint = list.getBottomConstraint(self)
         listBottomConstraint.isActive = true
         list.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         list.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true

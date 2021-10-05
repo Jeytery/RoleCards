@@ -8,33 +8,17 @@
 import UIKit
 
 class StateCollectionView: UICollectionView {
-//    private lazy var imageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = Icons.noResults
-//        addSubview(imageView)
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-//        imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
-//        imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-//        imageView.contentMode = .scaleAspectFit
-//        return imageView
-//    }()
-    
+
     private let imageView = UIImageView()
     
     private let titleLabel = UILabel()
     
     override func reloadData() {
         super.reloadData()
-        print("reload data")
-        print(numberOfItems(inSection: 0))
         if numberOfItems(inSection: 0) == 0 {
-            print("setState()")
             setState()
         }
         else {
-            print("popState()")
             popState()
         }
     }
@@ -46,7 +30,7 @@ class StateCollectionView: UICollectionView {
         addSubview(imageView)
         imageView.image = Icons.noResults
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -120).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bottomIndentValue - 20).isActive = true
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 240).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 145).isActive = true
