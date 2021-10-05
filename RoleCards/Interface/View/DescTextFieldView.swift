@@ -33,7 +33,7 @@ extension DescTextFieldView {
     private func configureTextField(title: String) {
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = .systemFont(ofSize: 18, weight: .regular)
+        titleLabel.font = .systemFont(ofSize: 18, weight: .semibold)
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -51,6 +51,7 @@ extension DescTextFieldView {
         textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
         textField.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         textField.didTap = { [weak self] in self?.popErrorState() }
+        textField.didEnter = { [weak self] in self?.popErrorState() }
     }
     
     private func popErrorState() {
