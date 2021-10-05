@@ -28,7 +28,6 @@ class RolesViewController: UIViewController {
     private var currentEditingCell: Int = 0
     
     init() {
-        self.viewModel = RolesViewModel()
         super.init(nibName: nil, bundle: nil)
         configureList()
         configureAddRoleButton()
