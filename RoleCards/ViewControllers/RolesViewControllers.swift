@@ -169,7 +169,7 @@ extension RolesViewController: RoleCellDelegate {
     func roleCell(didTapEditWith view: UIView, cell: UICollectionViewCell) {
         guard let indexPath = list.indexPath(for: cell) else { return }
         currentEditingCell = indexPath.row
-        showRoleVC(role: RoleManager.shared.roles[indexPath.row])
+        showRoleVC(role: viewModel.roles[indexPath.row])
     }
     
     func roleCell(didTapDeleteWith view: UIView, cell: UICollectionViewCell) {
