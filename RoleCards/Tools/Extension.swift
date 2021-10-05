@@ -18,6 +18,27 @@ extension UIViewController {
 }
 
 extension UIView {
+    var bottomIndentValue: CGFloat {
+        let window = UIApplication.shared.windows.first
+        if #available(iOS 11.0, *) {
+            let bottomPadding = window!.safeAreaInsets.bottom
+            return bottomPadding
+        }
+        else {
+            return 0
+        }
+    }
+    
+    var topIndentValue: CGFloat {
+        if #available(iOS 11.0, *) {
+            let bottomPadding = window!.safeAreaInsets.top
+            return bottomPadding
+        }
+        else {
+            return UIApplication.shared.statusBarFrame.height
+        }
+    }
+    
     func setTopConstraint(_ viewController: UIViewController, constant: CGFloat = 0) {
         if #available(iOS 11.0, *) {
             topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor, constant: constant).isActive = true
@@ -33,6 +54,22 @@ extension UIView {
         }
         else {
             bottomAnchor.constraint(equalTo: viewController.bottomLayoutGuide.topAnchor, constant: constant).isActive = true
+        }
+    }
+    
+    func getBottomConstraint(
+        _ viewController: UIViewController,
+        constant: CGFloat = 0) -> NSLayoutConstraint
+    {
+        if #available(iOS 11.0, *) {
+            let constraint = bottomAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.bottomAnchor, constant: constant)
+            constraint.isActive = true
+            return constraint
+        }
+        else {
+            let constraint = bottomAnchor.constraint(equalTo: viewController.bottomLayoutGuide.topAnchor, constant: constant)
+            constraint.isActive = true
+            return constraint
         }
     }
     
@@ -83,8 +120,8 @@ extension UICollectionView {
 extension UIColor {
     var roleColor: RoleColor {
         return RoleColor(red: CIColor(color: self).red,
-                         blue: CIColor(color: self).green,
-                         green:  CIColor(color: self).blue)
+                         blue: CIColor(color: self).blue,
+                         green:  CIColor(color: self).green)
     }
 }
 
@@ -92,7 +129,7 @@ extension UIColor {
 
 class BaseCell<T: UIView>: UICollectionViewCell {
     
-    var baseView: UIView!
+    var baseView: T!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -103,7 +140,7 @@ class BaseCell<T: UIView>: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setView(_ _view: UIView) {
+    private func setView(_ _view: T) {
         self.baseView = _view
         addSubview(baseView)
         baseView.translatesAutoresizingMaskIntoConstraints = false
