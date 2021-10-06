@@ -50,10 +50,13 @@ class RolesViewController: UIViewController {
 
 //MARK: - ui
 extension RolesViewController {
+    @objc func crossButtonAction() {
+        dismiss(animated: true, completion: nil)
+    }
     private func configureUI() {
         title = "Roles"
         view.backgroundColor = Colors.background
-        navigationItem.rightBarButtonItem = editButtonItem
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     private func configureList() {
@@ -149,6 +152,15 @@ extension RolesViewController:
         insetForSectionAt section: Int) -> UIEdgeInsets
     {
         return UIEdgeInsets(top: 20, left: 20, bottom: 100, right: 20)
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath)
+    {
+        let role = viewModel.roles[indexPath.row]
+        delegate?.rolesViewController(didSelect: role)
+        dismiss(animated: true, completion: nil)
     }
 }
 

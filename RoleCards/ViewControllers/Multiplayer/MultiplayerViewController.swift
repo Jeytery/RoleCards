@@ -13,20 +13,9 @@ class MultiplayerViewController: UIViewController {
     private let database = Database.database().reference().child("rooms")
     
     private var autorizationVC: AutorizationViewContoller!
-    
     private let addRoomButton = UIButton()
     private let list = StateCollectionView()
-    
-//    private let rooms: [Room] = [
-//        Room(name: "111", token: "111", users: [], password: "123"),
-//        Room(name: "ff", token: "111", users: [], password: "123"),
-//        Room(name: "11ee1", token: "111", users: [], password: ""),
-//        Room(name: "111", token: "111", users: [], password: "123"),
-//        Room(name: "1ee11", token: "111", users: [], password: ""),
-//        Room(name: "1ee11", token: "111", users: [], password: "123"),
-//        Room(name: "111", token: "111", users: [], password: "123"),
-//        Room(name: "12211", token: "111", users: [], password: "")
-//    ]
+
     private let rooms: [Room] = []
     
     override func viewDidLoad() {
@@ -67,6 +56,21 @@ extension MultiplayerViewController {
         addRoomButton.topAnchor.constraint(equalTo: list.bottomAnchor, constant: 20).isActive = true
         addRoomButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         addRoomButton.setTitle("Add room", for: .normal)
+        addRoomButton.addTarget(self, action: #selector(addRoomButtonAction), for: .touchDown)
+    }
+    
+    @objc func addRoomButtonAction() {
+        let deckNC = DeckNavigationController()
+        deckNC.deckDelegate = self
+        present(deckNC, animated: true, completion: nil)
+    }
+}
+
+//MARK: - [d] deckNC
+extension MultiplayerViewController: DeckNavigationControllerDelegate {
+    func deckNavigationContoller(_ viewController: UIViewController, roles: Roles) {
+        
+    //navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
     }
 }
 
