@@ -24,6 +24,15 @@ class RolesViewModel {
     init() {
         rolesObservable.value = getRoles() ?? []
     }
+    
+    static func getFirstRole() -> Role? {
+        let userDefaults = UserDefaults.standard
+        guard let data = userDefaults.data(forKey: "RoleManager.roles.id"),
+              let roles = try? JSONDecoder().decode(Roles.self, from: data)
+        else { return nil }
+        if roles.isEmpty { return nil}
+        return roles[0]
+    }
 }
 
 extension RolesViewModel {
