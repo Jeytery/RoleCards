@@ -14,6 +14,7 @@ class RoomView: UIView {
             nameLabel.text = room.name
             countLabel.text = String(room.users.count) + "/10"
             if room.password == "" { lockImageView.isHidden = true }
+            else { lockImageView.isHidden = false }
         }
     }
     

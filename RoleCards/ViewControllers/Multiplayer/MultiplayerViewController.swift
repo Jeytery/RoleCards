@@ -16,7 +16,11 @@ class MultiplayerViewController: UIViewController {
     private let addRoomButton = UIButton()
     private let list = StateCollectionView()
 
-    private let rooms: [Room] = []
+    private var rooms: [Room] = [] {
+        didSet {
+            DispatchQueue.main.async { [list] in list.reloadData() }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -24,6 +28,18 @@ class MultiplayerViewController: UIViewController {
         configureUserManager()
         configureList()
         configureAddRoomButton()
+        configureObserver()
+        getRooms(completion: {
+            [weak self] result in
+            switch result {
+            case .success(let rooms):
+                self?.rooms = rooms
+                break
+            case .failure(let error):
+                print("getRooms: \(error)")
+                break
+            }
+        })
     }
 }
 
@@ -59,7 +75,7 @@ extension MultiplayerViewController {
         addRoomButton.addTarget(self, action: #selector(addRoomButtonAction), for: .touchDown)
     }
     
-    @objc func addRoomButtonAction() {
+    @objc func addRoomButtonAction() {        
         let deckNC = DeckNavigationController()
         deckNC.deckDelegate = self
         present(deckNC, animated: true, completion: nil)
@@ -68,9 +84,9 @@ extension MultiplayerViewController {
 
 //MARK: - [d] deckNC
 extension MultiplayerViewController: DeckNavigationControllerDelegate {
-    func deckNavigationContoller(_ viewController: UIViewController, roles: Roles) {
-        
-    //navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
+    func deckNavigationContoller(_ viewController: UIViewController, roles: Roles, room: Room) {
+        viewController.dismiss(animated: true, completion: nil)
+        present(RoomViewController(room: room, roles: roles), animated: true, completion: nil)
     }
 }
 
@@ -80,6 +96,16 @@ extension MultiplayerViewController {
         LoadingState.start()
         UserManager.shared.delegate = self
         UserManager.shared.configure()
+    }
+    
+    private func configureObserver() {
+        database.observe(.value, with: {
+            [weak self] datasnapshot in
+            print("rooms changed")
+            guard let dict = datasnapshot.value as? [String: Any] else { return }
+            let rooms = parseJsonToRooms(dict)
+            self?.rooms = rooms
+        })
     }
 }
 

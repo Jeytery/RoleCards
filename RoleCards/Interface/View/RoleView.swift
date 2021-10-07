@@ -44,21 +44,7 @@ class RoleView: UIView {
 //MARK: - ui
 extension RoleView {
     private func configureIconLabelColor(_ color: RoleColor) {
-        let luma = getLuma(color.uiColor)
-        if luma > 0.6 {
-            iconLabel.textColor = .black
-        }
-        else {
-            iconLabel.textColor = .white
-        }
-    }
-    
-    private func getLuma(_ color: UIColor) -> CGFloat {
-        let red = CIColor(color: color).red
-        let green = CIColor(color: color).green
-        let blue = CIColor(color: color).blue
-        let luma = ((0.2126 * red) + (0.7152 * green) + (0.0722 * blue))
-        return luma
+        iconLabel.textColor = Luma.blackOrWhite(color.uiColor)
     }
     
     private func configureNameLabel() {

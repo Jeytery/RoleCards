@@ -20,11 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
-        let rootVC = RolesViewController()
+        let rootVC = MultiplayerViewController()
         let nvc = UINavigationController(rootViewController: rootVC)
         window?.rootViewController = nvc
         window?.makeKeyAndVisible()
         return true
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        application.beginBackgroundTask(expirationHandler: {})
     }
 }
 

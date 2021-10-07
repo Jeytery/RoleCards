@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct Event {
+    let token: String
+    let userId: String?
+    let status: String
+    let message: String?
+}
