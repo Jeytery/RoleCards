@@ -8,14 +8,12 @@
 import Foundation
 import FirebaseDatabase
 
-class RoomViewViewModel {
+class RoomViewModel {
     
     private let roles: Roles
     
     private var playersObserv = Observable<Users>()
-    
-    private var serviceSession: ServiceSession!
-    
+        
     var players: Users {
         get { playersObserv.value ?? [] }
         set { playersObserv.value = newValue }
