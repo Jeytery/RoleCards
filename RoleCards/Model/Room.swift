@@ -5,19 +5,37 @@
 //  Created by Jeytery on 30.09.2021.
 //
 
-struct Room {
+struct Room: Codable {
     let name: String
     let token: String
-    let users: Users
+    var users: Users
     let creator: User
     let password: String?
+    
+    func getUsers() -> [String: Any] {
+        var dict = [String: Any]()
+        for user in users {
+            dict[user.token] = user.dictionary
+        }
+        return dict
+    }
     
     var dictionary: [String: Any] {
         return [
             "name": name,
-            "users": users,
+            "users": getUsers(),
             "token": token,
-            "creator": creator,
+            "creator": creator.dictionary,
+            "password": password ?? "",
+        ]
+    }
+    
+    func dictionary(token: String) -> [String: Any] {
+        return [
+            "name": name,
+            "users": getUsers(),
+            "token": token,
+            "creator": creator.dictionary,
             "password": password ?? "",
         ]
     }
@@ -26,8 +44,10 @@ struct Room {
         name = json["name"] as? String ?? ""
         token = json["token"] as? String ?? ""
         
-        if let userDict = json["creator"] as? [String: Any] {
-            creator = parseJsonToUsers(userDict)[0]
+        if let userDict = json["creator"] as? [String: Any],
+           let user = parseJsonToUsers(userDict).first
+        {
+            creator = user
         }
         else {
             creator = User(username: "", password: "", token: "")

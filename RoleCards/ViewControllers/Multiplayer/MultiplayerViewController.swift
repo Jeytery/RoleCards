@@ -9,37 +9,19 @@ import UIKit
 import FirebaseDatabase
 
 class MultiplayerViewController: UIViewController {
-    
-    private let database = Database.database().reference().child("rooms")
+
+    private var presenter: MultiplayerViewControllerPresenter!
     
     private var autorizationVC: AutorizationViewContoller!
     private let addRoomButton = UIButton()
     private let list = StateCollectionView()
 
-    private var rooms: [Room] = [] {
-        didSet {
-            DispatchQueue.main.async { [list] in list.reloadData() }
-        }
-    }
-    
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        presenter = MultiplayerViewControllerPresenter(with: self)
         configureUI()
-        configureUserManager()
         configureList()
         configureAddRoomButton()
-        configureObserver()
-        getRooms(completion: {
-            [weak self] result in
-            switch result {
-            case .success(let rooms):
-                self?.rooms = rooms
-                break
-            case .failure(let error):
-                print("getRooms: \(error)")
-                break
-            }
-        })
     }
 }
 
@@ -76,61 +58,31 @@ extension MultiplayerViewController {
     }
     
     @objc func addRoomButtonAction() {        
-        let deckNC = DeckNavigationController()
-        deckNC.deckDelegate = self
-        present(deckNC, animated: true, completion: nil)
+        presenter.addRoomButtonAction()
     }
 }
 
-//MARK: - [d] deckNC
-extension MultiplayerViewController: DeckNavigationControllerDelegate {
-    func deckNavigationContoller(_ viewController: UIViewController, roles: Roles, room: Room) {
-        viewController.dismiss(animated: true, completion: nil)
-        present(RoomViewController(room: room, roles: roles), animated: true, completion: nil)
-    }
-}
-
-//MARK: - internal functions
-extension MultiplayerViewController {
-    private func configureUserManager() {
+//MARK: - [d] presenter
+extension MultiplayerViewController: MultiplayerViewControllerPresenterDelegate {
+    func startLoading() {
         LoadingState.start()
-        UserManager.shared.delegate = self
-        UserManager.shared.configure()
     }
     
-    private func configureObserver() {
-        database.observe(.value, with: {
-            [weak self] datasnapshot in
-            print("rooms changed")
-            guard let dict = datasnapshot.value as? [String: Any] else { return }
-            let rooms = parseJsonToRooms(dict)
-            self?.rooms = rooms
-        })
-    }
-}
-
-//MARK: - [D] UserManager
-extension MultiplayerViewController: UserManagerDelegate {
-    func userManager(didGet user: User) {}
-    
-    func userManagerDidNotGetUser() {
-        DispatchQueue.main.async {
-            [unowned self] in 
-            autorizationVC = AutorizationViewContoller()
-            autorizationVC.delegate = self
-            let nvc = BaseNavigationController(rootViewController: autorizationVC)
-            nvc.modalPresentationStyle = .overCurrentContext
-            present(nvc, animated: false, completion: nil)
-        }
+    func stopLoading() {
+        LoadingState.stop()
     }
     
-    func userManagerDidAutorize() { LoadingState.stop() }
-}
-
-//MARK: - [d] AutorizationVC
-extension MultiplayerViewController: AutorizationViewControllerDelegate {
-    func autorizationViewControllerDidAutorized() {
-        autorizationVC.dismiss(animated: true, completion: nil)
+    
+    func present(_ viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    func push(_ viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func presenter(didUpdate rooms: Rooms) {
+        list.reloadData()
     }
 }
 
@@ -143,7 +95,7 @@ extension MultiplayerViewController:
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int
     {
-        return rooms.count
+        return presenter.rooms.count
     }
     
     func collectionView(
@@ -153,7 +105,7 @@ extension MultiplayerViewController:
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell",
                                                       for: indexPath) as! RoomCell
         cell.backgroundColor = Colors.lightGray
-        cell.room = rooms[indexPath.row]
+        cell.room = presenter.rooms[indexPath.row]
         cell.layer.cornerRadius = 15
         return cell
     }
@@ -173,26 +125,8 @@ extension MultiplayerViewController:
     {
         return 20
     }
-}
-
-class RoomCell: UICollectionViewCell {
     
-    var room: Room {
-        get { roomView.room }
-        set { roomView.room = newValue }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.didTapOnRoomCell(index: indexPath.row)
     }
-    
-    private let roomView = RoomView()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(roomView)
-        roomView.translatesAutoresizingMaskIntoConstraints = false
-        roomView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        roomView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        roomView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        roomView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-    }
-    
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }

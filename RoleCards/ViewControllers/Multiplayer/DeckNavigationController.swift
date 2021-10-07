@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 protocol DeckNavigationControllerDelegate: AnyObject {
     func deckNavigationContoller(_ viewController: UIViewController,
@@ -62,12 +63,14 @@ extension DeckNavigationController: PlayersCountViewControllerDelegate {
 //MARK: - [d] deckVC
 extension DeckNavigationController: DeckViewControllerDelegate {
     func deckViewController(_ viewController: UIViewController, didChoose roles: Roles) {
+        let database = Database.database().reference().child("rooms")
+        guard let key = database.childByAutoId().key else { return }
         let room = Room(name: roomName,
-                        token: UUID().uuidString,
+                        token: key,
                         users: [],
-                        creator: UserManager.shared.user!,
+                        creator: UserManager.shared.user ?? User(username: "", password: "", token: ""),
                         password: roomPassword)
-        pushRoom(room)
+        database.child(key).setValue(room.dictionary)
         deckDelegate?.deckNavigationContoller(self, roles: roles, room: room)
     }
 }

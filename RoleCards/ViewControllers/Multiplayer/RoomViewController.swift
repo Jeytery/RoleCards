@@ -9,19 +9,16 @@
 import UIKit
 
 class RoomViewController: UIViewController {
-    
-    private let room: Room
-    
-    private let roles: Roles
+
+    private var viewModel: RoomViewModel!
     
     private let titleStackView = UIStackView()
-    
-    private var ss: ServiceSession!
+    private var list: UICollectionView!
+    private let playersCountLabel = UILabel()
     
     init(room: Room, roles: Roles) {
-        self.room = room
-        self.roles = roles
         super.init(nibName: nil, bundle: nil)
+        configureViewModel(room: room, roles: roles)
         configureUI()
         configureTitles(room)
         configureList()
@@ -33,6 +30,15 @@ class RoomViewController: UIViewController {
 
 //MARK: - ui
 extension RoomViewController {
+    private func configureViewModel(room: Room, roles: Roles) {
+        viewModel = RoomViewModel(room: room, roles: roles)
+        viewModel.observeUsers(onUpdate: {
+            [unowned self] users in
+            list?.reloadData()
+            playersCountLabel.text = viewModel.playersCount
+        })
+    }
+    
     private func Title(first: String, second: String) -> UIView {
         let titleView = UIView()
         
@@ -87,10 +93,9 @@ extension RoomViewController {
     }
     
     private func configureList() {
-        let playersCountLabel = UILabel()
         playersCountLabel.font = .systemFont(ofSize: 20, weight: .semibold)
         playersCountLabel.textColor = .gray
-        playersCountLabel.text = "Players: 3/10"
+        playersCountLabel.text = viewModel.playersCount
     
         view.addSubview(playersCountLabel)
         playersCountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -98,15 +103,16 @@ extension RoomViewController {
         playersCountLabel.topAnchor.constraint(equalTo: titleStackView.bottomAnchor, constant: 20).isActive = true
         
         let layout = UICollectionViewFlowLayout()
-        let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         view.addSubview(list)
         list.translatesAutoresizingMaskIntoConstraints = false
-        list.topAnchor.constraint(equalTo: playersCountLabel.bottomAnchor).isActive = true
+        list.topAnchor.constraint(equalTo: playersCountLabel.bottomAnchor, constant: 20).isActive = true
         list.setSideConstraints(self, constant: 20)
-        list.setBottomConstraint(self)
+        
         list.delegate = self
         list.dataSource = self
+        list.register(UserCell.self, forCellWithReuseIdentifier: "cell")
     }
     
     private func configureBottomButtons() {
@@ -117,6 +123,7 @@ extension RoomViewController {
         
         view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.topAnchor.constraint(equalTo: list.bottomAnchor, constant: 20).isActive = true
         stackView.setBottomConstraint(self, constant: -20)
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.widthAnchor.constraint(equalToConstant: 130).isActive = true
@@ -139,13 +146,26 @@ extension RoomViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int
     {
-        return 0
+        return viewModel.users.count
     }
     
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell",
+                                                      for: indexPath)
+                                                      as! UserCell
+        let user = viewModel.users[indexPath.row]
+        cell.setUser(user, index: indexPath.row)
+        return cell
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        return CGSize(width: view.frame.width - 40, height: 100)
     }
 }

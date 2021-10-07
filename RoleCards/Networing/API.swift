@@ -104,6 +104,13 @@ func findUser(username: String, completion: @escaping (Result<User, Error>) -> V
     })
 }
 
+func addUser(_ user: User) {
+    let database = Database.database().reference().child("users")
+    guard let token = database.childByAutoId().key else { return }
+    database.child(token).setValue(user.dictionary)
+    UserManager.shared.saveUser(user)
+}
+
 //MARK: - room
 
 typealias Rooms = Array<Room>
@@ -124,17 +131,6 @@ func getRooms(completion: @escaping (Result<Rooms, Error>) -> Void) {
         var rooms: Rooms = []
         
         for (_, _value) in dict {
-//            guard   let value = _value as? [String: Any],
-//                    let name = value["name"] as? String,
-//                    let token = value["token"] as? String,
-//                    let _users = value["users"] as? [String: Any]
-//            else { return }
-//            let password = value["password"] as? String ?? ""
-//            let users = parseJsonToUsers(_users)
-//            let room = Room(name: name,
-//                            token: token,
-//                            users: users,
-//                            password: password)
             guard let value = _value as? [String: Any] else { return }
             let room = Room(json: value)
             rooms.append(room)
@@ -143,17 +139,20 @@ func getRooms(completion: @escaping (Result<Rooms, Error>) -> Void) {
     })
 }
 
-func pushRoom(_ room: Room) {
-    let database = Database.database().reference()
-    database.child("rooms").childByAutoId().setValue(room.dictionary)
+func addRoom(_ room: Room) {
+    let database = Database.database().reference().child("rooms")
+    guard let key = database.childByAutoId().key else { return }
+    database.child(key).setValue(room.dictionary(token: key))
 }
 
 func updateRoom(_ room: Room) {
-    
+    let database = Database.database().reference().child("rooms")
+    database.child(room.token).setValue(room.dictionary)
 }
 
 func deleteRoom(_ room: Room) {
-    //let database = Database.database().reference()
+    let database = Database.database().reference().child("rooms")
+    database.child(room.token).removeValue()
 }
 
 func parseJsonToRooms(_ json: [String: Any]) -> Rooms {
@@ -166,3 +165,54 @@ func parseJsonToRooms(_ json: [String: Any]) -> Rooms {
         return Room(json: value)
     }
 }
+
+//MARK: - event
+
+typealias Events = Array<Event>
+
+enum EventsError: Error {
+    case dictionaryCast
+    case eventNotFound
+}
+
+func parseJsonToEvents(_ json: [String: Any]) -> Events {
+    return json.map {
+        id, _value in
+        guard let value = _value as? [String: Any] else {
+            return Event(token: "", status: .undefined, userId: nil, message: nil, userInfo: nil)
+        }
+        return Event(json: value)
+    }
+}
+
+func getEvents(completion: @escaping (Result<Events, EventsError>) -> Void) {
+    let database = Database.database().reference().child("events")
+    database.getData(completion: {
+        error, dataSnapshot in
+        guard error == nil else { return }
+        guard let dict = dataSnapshot.value as? [String: Any] else {
+            completion(.failure(EventsError.dictionaryCast))
+            return
+        }
+        let events = parseJsonToEvents(dict)
+        completion(.success(events))
+    })
+}
+
+func addEvent(_ event: Event) {
+    let database = Database.database().reference()
+    guard let key = database.child("events").childByAutoId().key else { return }
+    database.child("events").child(key).setValue(event.dictionary(token: key))
+}
+
+func updateEvent(_ event: Event) {
+    let database = Database.database().reference()
+    database.child("events").child(event.token).setValue(event)
+}
+
+func removeEvent(_ event: Event) {
+    let database = Database.database().reference()
+    database.child("events").child(event.token).removeValue()
+}
+
+

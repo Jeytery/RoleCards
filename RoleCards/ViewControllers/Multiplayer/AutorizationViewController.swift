@@ -9,7 +9,7 @@ import UIKit
 import FirebaseDatabase
 
 protocol AutorizationViewControllerDelegate: AnyObject {
-    func autorizationViewControllerDidAutorized()
+    func autorizationViewController(_ viewController: UIViewController, didAutorized user: User)
 }
 
 class AutorizationViewContoller: UIViewController {
@@ -120,14 +120,9 @@ extension AutorizationViewContoller {
 
 //MARK: - autorization
 extension AutorizationViewContoller {
-    private func addUser(username: String, password: String, token: String) {
+    private func addUserToDatabase(_ user: User) {
         DispatchQueue.main.async {
-            [weak self] in
-            let user = User(username: username,
-            password: password,
-            token: token)
-            self?.database.child("users").childByAutoId().setValue(user.dictionary)
-            UserManager.shared.saveUser(user)
+            addUser(user)
         }
     }
 
@@ -144,7 +139,7 @@ extension AutorizationViewContoller {
             if user.password == passwordTextField.text {
                 print("Success!")
                 if UserManager.shared.getUser() == nil { UserManager.shared.saveUser(user) }
-                delegate?.autorizationViewControllerDidAutorized()
+                delegate?.autorizationViewController(self, didAutorized: user)
             }
             else {
                 passwordTextField.setError(text: "Password for this use is incorrect, try again")
@@ -167,10 +162,9 @@ extension AutorizationViewContoller {
                 break
             case .failure(let error):
                 print("findUserByUsername: \(error)")
-                addUser(username: username,
-                        password: password,
-                        token: UUID().uuidString)
-                delegate?.autorizationViewControllerDidAutorized()
+                let user = User(username: username, password: password, token: UUID().uuidString)
+                addUserToDatabase(user)
+                delegate?.autorizationViewController(self, didAutorized: user)
                 break
             }
         })

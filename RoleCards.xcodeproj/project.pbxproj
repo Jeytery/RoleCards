@@ -16,7 +16,7 @@
 		3E1742E5270DABBF0051DE24 /* Luma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1742E4270DABBF0051DE24 /* Luma.swift */; };
 		3E1742E7270DC87B0051DE24 /* DeckNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1742E6270DC87A0051DE24 /* DeckNavigationController.swift */; };
 		3E1742E9270DE8FC0051DE24 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1742E8270DE8FC0051DE24 /* RoomViewController.swift */; };
-		3E1742EB270DE96B0051DE24 /* RoomViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1742EA270DE96B0051DE24 /* RoomViewViewModel.swift */; };
+		3E1742EB270DE96B0051DE24 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1742EA270DE96B0051DE24 /* RoomViewModel.swift */; };
 		3E1742ED270DEA0B0051DE24 /* DeckInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1742EC270DEA0B0051DE24 /* DeckInfoViewController.swift */; };
 		3E1742F1270E1D2A0051DE24 /* ServiceSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1742F0270E1D2A0051DE24 /* ServiceSession.swift */; };
 		3E329893270A2331002DD185 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E329892270A2330002DD185 /* Role.swift */; };
@@ -43,8 +43,10 @@
 		3E8356192705CBE90046AE83 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8356182705CBE90046AE83 /* Colors.swift */; };
 		3E83561C2705CD1C0046AE83 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E83561B2705CD1C0046AE83 /* Extension.swift */; };
 		3E83561E2705CE9F0046AE83 /* StateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E83561D2705CE9F0046AE83 /* StateTextField.swift */; };
-		3EE005DB270EE2BC0038C1EA /* EventSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE005DA270EE2BB0038C1EA /* EventSession.swift */; };
+		3ED2E916270F268A0040DD33 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2E915270F268A0040DD33 /* UserCell.swift */; };
 		3EE005DD270EEC570038C1EA /* MultiplayerViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE005DC270EEC570038C1EA /* MultiplayerViewControllerPresenter.swift */; };
+		3EE005E0270EF5E70038C1EA /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE005DF270EF5E70038C1EA /* RoomCell.swift */; };
+		3EE005E2270EF9F90038C1EA /* RoomCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE005E1270EF9F90038C1EA /* RoomCache.swift */; };
 		AAFBB2552AC390B8452CD252 /* Pods_RoleCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACFE689B6BE5778D6E1057A /* Pods_RoleCards.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +62,7 @@
 		3E1742E4270DABBF0051DE24 /* Luma.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luma.swift; sourceTree = "<group>"; };
 		3E1742E6270DC87A0051DE24 /* DeckNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckNavigationController.swift; sourceTree = "<group>"; };
 		3E1742E8270DE8FC0051DE24 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
-		3E1742EA270DE96B0051DE24 /* RoomViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewViewModel.swift; sourceTree = "<group>"; };
+		3E1742EA270DE96B0051DE24 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
 		3E1742EC270DEA0B0051DE24 /* DeckInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckInfoViewController.swift; sourceTree = "<group>"; };
 		3E1742F0270E1D2A0051DE24 /* ServiceSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSession.swift; sourceTree = "<group>"; };
 		3E329892270A2330002DD185 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
@@ -87,8 +89,10 @@
 		3E8356182705CBE90046AE83 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3E83561B2705CD1C0046AE83 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		3E83561D2705CE9F0046AE83 /* StateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTextField.swift; sourceTree = "<group>"; };
-		3EE005DA270EE2BB0038C1EA /* EventSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSession.swift; sourceTree = "<group>"; };
+		3ED2E915270F268A0040DD33 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		3EE005DC270EEC570038C1EA /* MultiplayerViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerViewControllerPresenter.swift; sourceTree = "<group>"; };
+		3EE005DF270EF5E70038C1EA /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
+		3EE005E1270EF9F90038C1EA /* RoomCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCache.swift; sourceTree = "<group>"; };
 		AACFE689B6BE5778D6E1057A /* Pods_RoleCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoleCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD12698998361BB982F6E4E3 /* Pods-RoleCards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoleCards.release.xcconfig"; path = "Target Support Files/Pods-RoleCards/Pods-RoleCards.release.xcconfig"; sourceTree = "<group>"; };
 		F680F93E18B308DB67611330 /* Pods-RoleCards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoleCards.debug.xcconfig"; path = "Target Support Files/Pods-RoleCards/Pods-RoleCards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,7 +172,6 @@
 				3E8355FF2705A3100046AE83 /* MultiplayerViewController.swift */,
 				3EE005DC270EEC570038C1EA /* MultiplayerViewControllerPresenter.swift */,
 				3E1742E8270DE8FC0051DE24 /* RoomViewController.swift */,
-				3E1742EA270DE96B0051DE24 /* RoomViewViewModel.swift */,
 				3E83560D2705B9EA0046AE83 /* AutorizationViewController.swift */,
 				3E1742E2270DA4C90051DE24 /* DeckViewController.swift */,
 				3E1742E6270DC87A0051DE24 /* DeckNavigationController.swift */,
@@ -182,7 +185,6 @@
 			children = (
 				3E4CCF56270596670062943C /* API.swift */,
 				3E1742F0270E1D2A0051DE24 /* ServiceSession.swift */,
-				3EE005DA270EE2BB0038C1EA /* EventSession.swift */,
 			);
 			path = Networing;
 			sourceTree = "<group>";
@@ -200,6 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				3E5B087327072FA800265422 /* UserManager.swift */,
+				3EE005E1270EF9F90038C1EA /* RoomCache.swift */,
+				3E1742EA270DE96B0051DE24 /* RoomViewModel.swift */,
 				3E496AD4270C856B003D915C /* RolesViewModel.swift */,
 				3E8356052705A9BB0046AE83 /* User.swift */,
 				3E83560F2705C1F20046AE83 /* Room.swift */,
@@ -212,6 +216,7 @@
 		3E8356072705ABCC0046AE83 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				3EE005DE270EF5B60038C1EA /* Cell */,
 				3E8356132705C67B0046AE83 /* View */,
 				3E83561D2705CE9F0046AE83 /* StateTextField.swift */,
 				3E8356082705ABDC0046AE83 /* Design.swift */,
@@ -249,6 +254,15 @@
 				3E1742E4270DABBF0051DE24 /* Luma.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		3EE005DE270EF5B60038C1EA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3EE005DF270EF5E70038C1EA /* RoomCell.swift */,
+				3ED2E915270F268A0040DD33 /* UserCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		8D457196B1605BFEF9EA4EDD /* Frameworks */ = {
@@ -381,9 +395,10 @@
 				3E8356192705CBE90046AE83 /* Colors.swift in Sources */,
 				3E5B087427072FA900265422 /* UserManager.swift in Sources */,
 				3E8356122705C2050046AE83 /* Event.swift in Sources */,
-				3E1742EB270DE96B0051DE24 /* RoomViewViewModel.swift in Sources */,
+				3E1742EB270DE96B0051DE24 /* RoomViewModel.swift in Sources */,
 				3E1742E7270DC87B0051DE24 /* DeckNavigationController.swift in Sources */,
 				3E5B087A2709A1A500265422 /* Icons.swift in Sources */,
+				3EE005E2270EF9F90038C1EA /* RoomCache.swift in Sources */,
 				3E83561E2705CE9F0046AE83 /* StateTextField.swift in Sources */,
 				3E83561C2705CD1C0046AE83 /* Extension.swift in Sources */,
 				3E83560E2705B9EA0046AE83 /* AutorizationViewController.swift in Sources */,
@@ -399,14 +414,15 @@
 				3E1742E1270D97EB0051DE24 /* PlayersCountViewController.swift in Sources */,
 				3E8356172705CACE0046AE83 /* StackListView.swift in Sources */,
 				3E5B087E2709E0B000265422 /* StateCollectionView.swift in Sources */,
-				3EE005DB270EE2BC0038C1EA /* EventSession.swift in Sources */,
 				3E1742ED270DEA0B0051DE24 /* DeckInfoViewController.swift in Sources */,
 				3E5B0876270731FB00265422 /* LoadingState.swift in Sources */,
 				3E496AD3270B4917003D915C /* RoleViewController.swift in Sources */,
 				3E496AD5270C856B003D915C /* RolesViewModel.swift in Sources */,
 				3E0491FE26F20182000F725D /* AppDelegate.swift in Sources */,
+				3ED2E916270F268A0040DD33 /* UserCell.swift in Sources */,
 				3E8356092705ABDC0046AE83 /* Design.swift in Sources */,
 				3E329893270A2331002DD185 /* Role.swift in Sources */,
+				3EE005E0270EF5E70038C1EA /* RoomCell.swift in Sources */,
 				3E1742F1270E1D2A0051DE24 /* ServiceSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,7 +571,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Epsillent.RoleCards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -577,7 +593,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Epsillent.RoleCards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
