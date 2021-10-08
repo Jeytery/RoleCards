@@ -113,6 +113,7 @@ extension RoomViewController {
         list.delegate = self
         list.dataSource = self
         list.register(UserCell.self, forCellWithReuseIdentifier: "cell")
+        list.backgroundColor = Colors.background
     }
     
     private func configureBottomButtons() {
