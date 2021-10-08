@@ -39,6 +39,7 @@ extension UserManager {
             print("saveUser: unavailable to encode user")
             return
         }
+        self.user = user
         userDefaults.set(data, forKey: id)
     }
     
@@ -46,6 +47,7 @@ extension UserManager {
         guard let data = userDefaults.data(forKey: id),
               let user = try? JSONDecoder().decode(User.self, from: data)
         else { return nil }
+        self.user = user
         return user
     }
     
