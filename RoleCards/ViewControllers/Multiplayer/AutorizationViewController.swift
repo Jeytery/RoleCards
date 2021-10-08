@@ -75,7 +75,7 @@ extension AutorizationViewContoller {
         
         view.addSubview(list)
         list.translatesAutoresizingMaskIntoConstraints = false
-        list.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        list.setTopConstraint(self, constant: 20)
         listBottomConstraint = list.getBottomConstraint(self)
         listBottomConstraint.isActive = true
         list.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
@@ -142,7 +142,7 @@ extension AutorizationViewContoller {
                 delegate?.autorizationViewController(self, didAutorized: user)
             }
             else {
-                passwordTextField.setError(text: "Password for this use is incorrect, try again")
+                passwordTextField.setError(text: "Password for this user is incorrect, try again")
             }
         }
     }

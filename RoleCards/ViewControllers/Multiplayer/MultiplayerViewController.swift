@@ -12,7 +12,6 @@ class MultiplayerViewController: UIViewController {
 
     private var presenter: MultiplayerViewControllerPresenter!
     
-    private var autorizationVC: AutorizationViewContoller!
     private let addRoomButton = UIButton()
     private let list = StateCollectionView()
 
