@@ -38,7 +38,7 @@ extension MultiplayerViewController {
                       forCellWithReuseIdentifier: "cell")
         view.addSubview(list)
         list.translatesAutoresizingMaskIntoConstraints = false
-        list.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        list.setTopConstraint(self, constant: 20)
         list.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         list.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
