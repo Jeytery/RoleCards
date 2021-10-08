@@ -50,6 +50,11 @@ class AutorizationViewContoller: UIViewController {
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.endEditing(true)
+    }
 }
 
 //MARK: - ui
@@ -120,12 +125,6 @@ extension AutorizationViewContoller {
 
 //MARK: - autorization
 extension AutorizationViewContoller {
-    private func addUserToDatabase(_ user: User) {
-        DispatchQueue.main.async {
-            addUser(user)
-        }
-    }
-
     private func setNickExistingError() {
         DispatchQueue.main.async {
             [nameTextField] in
@@ -147,6 +146,15 @@ extension AutorizationViewContoller {
         }
     }
     
+    private func conifigureUser(username: String, password: String) {
+        let database = Database.database().reference().child("users")
+        guard let token = database.childByAutoId().key else { return }
+        let user = User(username: username, password: password, token: token)
+        database.child(token).setValue(user.dictionary)
+        UserManager.shared.saveUser(user)
+        delegate?.autorizationViewController(self, didAutorized: user)
+    }
+    
     @objc func nextButtonAction() {
         guard isTextFieldsReady else { return }
         nextButton.isEnabled = false
@@ -162,9 +170,7 @@ extension AutorizationViewContoller {
                 break
             case .failure(let error):
                 print("findUserByUsername: \(error)")
-                let user = User(username: username, password: password, token: UUID().uuidString)
-                addUserToDatabase(user)
-                delegate?.autorizationViewController(self, didAutorized: user)
+                conifigureUser(username: username, password: password)
                 break
             }
         })

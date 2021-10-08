@@ -35,6 +35,7 @@ func getUsers(completion: @escaping (Result<Users, Error>) -> Void) {
     let database = Database.database().reference()
     database.child("users").getData(completion: {
         error, dataSnapshot in
+        print(dataSnapshot.value)
         guard let dict = dataSnapshot.value as? [String: Any] else {
             completion(.failure(UsersError.dictionaryCast))
             return
@@ -99,16 +100,10 @@ func findUser(username: String, completion: @escaping (Result<User, Error>) -> V
             break
         case .failure(let error):
             print("findUser: error \(error)")
+            completion(.failure(error))
             break
         }
     })
-}
-
-func addUser(_ user: User) {
-    let database = Database.database().reference().child("users")
-    guard let token = database.childByAutoId().key else { return }
-    database.child(token).setValue(user.dictionary)
-    UserManager.shared.saveUser(user)
 }
 
 //MARK: - room
