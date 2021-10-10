@@ -77,7 +77,6 @@ extension DeckViewController {
         nextButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
         nextButton.setPrimaryStyle(icon: Icons.vector, color: Colors.primary)
-        
         nextButton.addTarget(self, action: #selector(nextButtonAction), for: .touchDown)
     }
     

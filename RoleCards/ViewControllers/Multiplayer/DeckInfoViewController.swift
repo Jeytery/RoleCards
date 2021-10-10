@@ -77,6 +77,10 @@ extension DeckInfoViewController {
     }
     
     @objc func nextButtonAction() {
+        guard nameTextField.text != "" else {
+            nameTextField.setError(text: "Enter name, please")
+            return
+        }
         delegate?.deckInfoViewController(self, didDismissWith: nameTextField.text, password: passwordTextField.text)
     }
 }

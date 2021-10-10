@@ -49,9 +49,9 @@ extension PlayersCountViewController {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nextButton.setBottomConstraint(self, constant: -30)
-        nextButton.widthAnchor.constraint(equalToConstant: 55).isActive = true
-        nextButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
-        nextButton.setPrimaryStyle(icon: Icons.vector, color: Colors.primary, constant: 15)
+        nextButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        nextButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        nextButton.setPrimaryStyle(icon: Icons.vector, color: Colors.primary)
         nextButton.addTarget(self, action: #selector(nextButtonAction), for: .touchDown)
     }
     
@@ -72,7 +72,7 @@ extension PlayersCountViewController {
 
 fileprivate class PlayerCountView: UIView {
     
-    private(set) var value: Int = 0 {
+    private(set) var value: Int = 1 {
         didSet { countLabel.text = String(value) }
     }
     
@@ -88,7 +88,7 @@ fileprivate class PlayerCountView: UIView {
         countLabel.translatesAutoresizingMaskIntoConstraints = false
         countLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         countLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        countLabel.text = "0"
+        countLabel.text = "1"
         
         addSubview(minusButton)
         minusButton.translatesAutoresizingMaskIntoConstraints = false
@@ -122,7 +122,7 @@ fileprivate class PlayerCountView: UIView {
     }
     
     @objc func minusButtonAction() {
-        guard value > 0 else { return }
+        guard value > 1 else { return }
         value -= 1
     }
     
