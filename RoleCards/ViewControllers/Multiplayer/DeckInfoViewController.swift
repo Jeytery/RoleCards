@@ -70,6 +70,8 @@ extension DeckInfoViewController {
         list.addView(passwordTextField, size: 100)
         list.addView(nextButton, size: 50)
         
+        list.stackView.spacing = 20
+        
         nextButton.setPrimaryStyle(icon: Icons.tick, color: Colors.primary)
         nextButton.addTarget(self, action: #selector(nextButtonAction), for: .touchDown)
     }

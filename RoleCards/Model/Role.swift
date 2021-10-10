@@ -14,11 +14,51 @@ struct RoleColor: Codable {
     let green: CGFloat
     
     var uiColor: UIColor { return UIColor(red: red, green: green, blue: blue, alpha: 1) }
+    
+    var dictionary: [String: Any] {
+        return [
+            "red": red,
+            "blue": blue,
+            "green": green
+        ]
+    }
+    
+    init(red: CGFloat, green: CGFloat, blue: CGFloat) {
+        self.red = red
+        self.green = green
+        self.blue = blue
+    }
+    
+    init(json: [String: Any]) {
+        self.red = json["red"] as! CGFloat
+        self.green = json["green"] as! CGFloat
+        self.blue = json["blue"] as! CGFloat
+    }
 }
 
 struct Role: Codable {
     var name: String
     var color: RoleColor
     var description: String
+    
+    var dictionary: [String: Any] {
+        return [
+            "name": name,
+            "color": color.dictionary,
+            "description": description
+        ]
+    }
+    
+    init(name: String, color: RoleColor, description: String) {
+        self.name = name
+        self.color = color
+        self.description = description
+    }
+    
+    init(json: [String: Any]) {
+        self.name = json["name"] as! String
+        self.color = RoleColor(json: json["color"] as! [String: Any])
+        self.description = json["description"] as! String
+    }
 }
 

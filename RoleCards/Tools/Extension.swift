@@ -120,8 +120,8 @@ extension UICollectionView {
 extension UIColor {
     var roleColor: RoleColor {
         return RoleColor(red: CIColor(color: self).red,
-                         blue: CIColor(color: self).blue,
-                         green:  CIColor(color: self).green)
+                         green:  CIColor(color: self).green,
+                         blue: CIColor(color: self).blue)
     }
 }
 

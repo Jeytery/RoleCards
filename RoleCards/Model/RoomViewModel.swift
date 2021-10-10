@@ -12,7 +12,7 @@ class RoomViewModel {
     
     private let roles: Roles
     
-    private let room: Room
+    private(set) var room: Room
     
     private var usersObserv = Observable<Users>()
     
@@ -53,5 +53,21 @@ extension RoomViewModel {
     
     func observeUsers(onUpdate: @escaping (Users) -> Void) {
         usersObserv.subscribe(onUpdate: onUpdate)
+    }
+    
+    func sendEvents() {
+        let deck = roles.shuffled()
+        for i in 0..<users.count {
+            let user = users[i]
+            addEvent(status: .hasCome,
+                     name: .cardDidCome,
+                     userId: user.token,
+                     message: nil,
+                     userInfo: deck[i].dictionary)
+        }
+    }
+    
+    func removeRoom() {
+        deleteRoom(room)
     }
 }

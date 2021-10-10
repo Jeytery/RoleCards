@@ -12,7 +12,7 @@ class RoomView: UIView {
     var room: Room! {
         didSet {
             nameLabel.text = room.name
-            countLabel.text = String(room.users.count) + "/10"
+            countLabel.text = String(room.users.count) + "/\(room.maxUserCount)"
             if room.password == "" { lockImageView.isHidden = true }
             else { lockImageView.isHidden = false }
         }

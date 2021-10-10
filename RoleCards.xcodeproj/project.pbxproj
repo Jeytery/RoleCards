@@ -31,6 +31,9 @@
 		3E5B087A2709A1A500265422 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B08792709A1A500265422 /* Icons.swift */; };
 		3E5B087C2709D95C00265422 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B087B2709D95C00265422 /* RoomView.swift */; };
 		3E5B087E2709E0B000265422 /* StateCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B087D2709E0B000265422 /* StateCollectionView.swift */; };
+		3E7E336E27102DDD00EBC684 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E336D27102DDD00EBC684 /* CardViewController.swift */; };
+		3E7E33702710730000EBC684 /* BigTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E336F2710730000EBC684 /* BigTitleView.swift */; };
+		3E7E337227107B3100EBC684 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E337127107B3100EBC684 /* CardView.swift */; };
 		3E8356002705A3100046AE83 /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8355FF2705A3100046AE83 /* MultiplayerViewController.swift */; };
 		3E8356022705A7A30046AE83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E8356012705A7A30046AE83 /* GoogleService-Info.plist */; };
 		3E8356062705A9BB0046AE83 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8356052705A9BB0046AE83 /* User.swift */; };
@@ -77,6 +80,9 @@
 		3E5B08792709A1A500265422 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		3E5B087B2709D95C00265422 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		3E5B087D2709E0B000265422 /* StateCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCollectionView.swift; sourceTree = "<group>"; };
+		3E7E336D27102DDD00EBC684 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		3E7E336F2710730000EBC684 /* BigTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTitleView.swift; sourceTree = "<group>"; };
+		3E7E337127107B3100EBC684 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3E8355FF2705A3100046AE83 /* MultiplayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
 		3E8356012705A7A30046AE83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E8356052705A9BB0046AE83 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -176,6 +182,7 @@
 				3E1742E2270DA4C90051DE24 /* DeckViewController.swift */,
 				3E1742E6270DC87A0051DE24 /* DeckNavigationController.swift */,
 				3E1742EC270DEA0B0051DE24 /* DeckInfoViewController.swift */,
+				3E7E336D27102DDD00EBC684 /* CardViewController.swift */,
 			);
 			path = Multiplayer;
 			sourceTree = "<group>";
@@ -223,6 +230,8 @@
 				3E8356182705CBE90046AE83 /* Colors.swift */,
 				3E5B08792709A1A500265422 /* Icons.swift */,
 				3E5B087D2709E0B000265422 /* StateCollectionView.swift */,
+				3E7E336F2710730000EBC684 /* BigTitleView.swift */,
+				3E7E337127107B3100EBC684 /* CardView.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -401,6 +410,7 @@
 				3EE005E2270EF9F90038C1EA /* RoomCache.swift in Sources */,
 				3E83561E2705CE9F0046AE83 /* StateTextField.swift in Sources */,
 				3E83561C2705CD1C0046AE83 /* Extension.swift in Sources */,
+				3E7E337227107B3100EBC684 /* CardView.swift in Sources */,
 				3E83560E2705B9EA0046AE83 /* AutorizationViewController.swift in Sources */,
 				3E5B087C2709D95C00265422 /* RoomView.swift in Sources */,
 				3E8356062705A9BB0046AE83 /* User.swift in Sources */,
@@ -409,6 +419,7 @@
 				3E329897270A2E0D002DD185 /* RolesViewControllers.swift in Sources */,
 				3E4CCF57270596670062943C /* API.swift in Sources */,
 				3EE005DD270EEC570038C1EA /* MultiplayerViewControllerPresenter.swift in Sources */,
+				3E7E336E27102DDD00EBC684 /* CardViewController.swift in Sources */,
 				3E8356002705A3100046AE83 /* MultiplayerViewController.swift in Sources */,
 				3E1742E3270DA4C90051DE24 /* DeckViewController.swift in Sources */,
 				3E1742E1270D97EB0051DE24 /* PlayersCountViewController.swift in Sources */,
@@ -422,6 +433,7 @@
 				3ED2E916270F268A0040DD33 /* UserCell.swift in Sources */,
 				3E8356092705ABDC0046AE83 /* Design.swift in Sources */,
 				3E329893270A2331002DD185 /* Role.swift in Sources */,
+				3E7E33702710730000EBC684 /* BigTitleView.swift in Sources */,
 				3EE005E0270EF5E70038C1EA /* RoomCell.swift in Sources */,
 				3E1742F1270E1D2A0051DE24 /* ServiceSession.swift in Sources */,
 			);

@@ -63,6 +63,26 @@ extension MultiplayerViewController {
 
 //MARK: - [d] presenter
 extension MultiplayerViewController: MultiplayerViewControllerPresenterDelegate {
+    func showTextFieldAlert(onDone: @escaping (String) -> Void) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: {
+            textField in
+            textField.placeholder = "Enter room's password, please"
+        })
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {
+            _ in
+            let textField = alert.textFields![0]
+            onDone(textField.text ?? "")
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func showInfoAlert(title: String) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: {_ in }))
+        present(alert, animated: true, completion: nil)
+    }
+    
     func startLoading() {
         LoadingState.start()
     }

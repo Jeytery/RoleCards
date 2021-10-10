@@ -69,7 +69,9 @@ extension DeckNavigationController: DeckViewControllerDelegate {
                         token: key,
                         users: [],
                         creator: UserManager.shared.user ?? User(username: "", password: "", token: ""),
+                        maxUserCount: roles.count,
                         password: roomPassword)
+        
         database.child(key).setValue(room.dictionary)
         deckDelegate?.deckNavigationContoller(self, roles: roles, room: room)
     }

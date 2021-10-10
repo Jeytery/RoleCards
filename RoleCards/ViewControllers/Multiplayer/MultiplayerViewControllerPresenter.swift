@@ -17,6 +17,9 @@ protocol MultiplayerViewControllerPresenterDelegate: AnyObject {
     func stopLoading()
     
     func presenter(didUpdate rooms: Rooms)
+    
+    func showInfoAlert(title: String)
+    func showTextFieldAlert(onDone: @escaping (String) -> Void)
 }
 
 class MultiplayerViewControllerPresenter {
@@ -41,10 +44,12 @@ extension MultiplayerViewControllerPresenter {
         database.observe(.value, with: {
             [weak self] datasnapshot in
             guard let dict = datasnapshot.value as? [String: Any] else { return }
+            print("db updated")
+            print(dict)
             let rooms = parseJsonToRooms(dict)
             self?.rooms = rooms
         })
-        
+   
         roomsObserver.subscribe(onUpdate: {
             [weak self] rooms in
             self?.ui { self?.delegate.presenter(didUpdate: rooms) }
@@ -82,19 +87,42 @@ extension MultiplayerViewControllerPresenter {
             }
         })
     }
+
+    private func checkRoomOverflow(_ room: Room) -> Bool {
+        if room.users.count == room.maxUserCount {
+            return true
+        }
+        return false
+    }
     
-    private func add(user: User, to room: Room) {
-        
+    private func addUserToRoom(_ user: User, _ room: Room) {
+        var _room = room
+        _room.users.append(user)
+        updateRoom(_room)
+        let cardVC = CardViewController(room: room)
+        cardVC.modalPresentationStyle = .overCurrentContext
+        cardVC.delegate = self
+        delegate.present(cardVC)
+    }
+    
+    private func checkPassword(_ password: String, user: User, room: Room) {
+        delegate.showTextFieldAlert(onDone: {
+            [unowned self] text in
+            if text == password {
+                addUserToRoom(user, room)
+            }
+            else {
+                delegate.showInfoAlert(title: "Room's password is incorrect, try again")
+            }
+        })
     }
 }
+
 
 //MARK: - [d] userManager
 extension MultiplayerViewControllerPresenter: UserManagerDelegate {
     func userManagerDidNotGetUser() {
-        ui {
-            [unowned self] in
-            showAutorize()
-        }
+        ui { [weak self] in self?.showAutorize() }
     }
     
     func userManagerDidAutorize() { LoadingState.stop() }
@@ -104,7 +132,7 @@ extension MultiplayerViewControllerPresenter: UserManagerDelegate {
 //MARK: - [d] autorizationVC
 extension MultiplayerViewControllerPresenter: AutorizationViewControllerDelegate {
     func autorizationViewController(_ viewController: UIViewController, didAutorized user: User) {
-        viewController.dismiss(animated: true, completion: nil)
+        ui { viewController.dismiss(animated: true, completion: nil) }
     }
 }
 
@@ -112,10 +140,32 @@ extension MultiplayerViewControllerPresenter: AutorizationViewControllerDelegate
 extension MultiplayerViewControllerPresenter: DeckNavigationControllerDelegate {
     func deckNavigationContoller(_ viewController: UIViewController, roles: Roles, room: Room) {
         viewController.dismiss(animated: true, completion: {
-            print(room.token)
             let roomVC = RoomViewController(room: room, roles: roles)
+            roomVC.delegate = self
             self.delegate.present(roomVC)
         })
+    }
+}
+
+//MARK: - [d] cardVC
+extension MultiplayerViewControllerPresenter: CardViewControllerDelegate {
+    func cardViewController(_ viewController: UIViewController, didEndedWith room: Room, role: Role) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func cardViewController(_ viewController: UIViewController, didDismiss room: Room) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+//MARK: - [d] roomVC
+extension MultiplayerViewControllerPresenter: RoomViewControllerDelegate {
+    func roomViewController(_ viewController: UIViewController, didSendEventsFor room: Room) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func roomViewController(_ viewController: UIViewController, didDelete room: Room) {
+        viewController.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -134,10 +184,15 @@ extension MultiplayerViewControllerPresenter {
     
     func didTapOnRoomCell(index: Int) {
         guard let user = UserManager.shared.user else { return }
-        var room = rooms[index]
-        room.users.append(user)
-        updateRoom(room)
-        
-        //TODO: - show cardViewController
+        let room = rooms[index]
+        guard !checkRoomOverflow(room) else {
+            delegate.showInfoAlert(title: "Sorry, but this room is full")
+            return
+        }
+        if let password = room.password, password != "" {
+            checkPassword(password, user: user, room: room)
+            return
+        }
+        addUserToRoom(user, room)
     }
 }

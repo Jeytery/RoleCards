@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol RoomViewControllerDelegate: AnyObject {
+    func roomViewController(_ viewController: UIViewController, didSendEventsFor room: Room)
+    func roomViewController(_ viewController: UIViewController, didDelete room: Room)
+}
+
 class RoomViewController: UIViewController {
 
+    var delegate: RoomViewControllerDelegate?
+    
     private var viewModel: RoomViewModel!
     
     private let titleStackView = UIStackView()
@@ -73,8 +80,8 @@ extension RoomViewController {
     }
     
     private func configureTitles(_ room: Room) {
-        let nameTitle = Title(first: "Name", second: room.name)
-        let passwordTitle = Title(first: "Password", second: room.password ?? "")
+        let nameTitle = BigTitleView(firstTitle: "Name", secondTitle: room.name)
+        let passwordTitle = BigTitleView(firstTitle: "Password", secondTitle: room.password ?? "")
         
         let isPass = room.password == "" || room.password == nil ? false : true
         
@@ -138,6 +145,19 @@ extension RoomViewController {
         
         stackView.addArrangedSubview(dismissButton)
         stackView.addArrangedSubview(confirmButton)
+        
+        confirmButton.addTarget(self, action: #selector(confirmButtonAction), for: .touchDown)
+        dismissButton.addTarget(self, action: #selector(dismissButtonAction), for: .touchDown)
+    }
+    
+    @objc func confirmButtonAction() {
+        viewModel.sendEvents()
+        delegate?.roomViewController(self, didDelete: viewModel.room)
+    }
+    
+    @objc func dismissButtonAction() {
+        viewModel.removeRoom()
+        delegate?.roomViewController(self, didSendEventsFor: viewModel.room)
     }
 }
 

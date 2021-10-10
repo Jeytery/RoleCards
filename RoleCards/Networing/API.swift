@@ -35,7 +35,6 @@ func getUsers(completion: @escaping (Result<Users, Error>) -> Void) {
     let database = Database.database().reference()
     database.child("users").getData(completion: {
         error, dataSnapshot in
-        print(dataSnapshot.value)
         guard let dict = dataSnapshot.value as? [String: Any] else {
             completion(.failure(UsersError.dictionaryCast))
             return
@@ -155,7 +154,7 @@ func parseJsonToRooms(_ json: [String: Any]) -> Rooms {
         id, _value in
         guard let value = _value as? [String: Any] else {
             let user = User(username: "", password: "", token: "")
-            return Room(name: "", token: "", users: [], creator: user, password: "")
+            return Room(name: "", token: "", users: [], creator: user, maxUserCount: 0, password: "")
         }
         return Room(json: value)
     }
@@ -174,7 +173,7 @@ func parseJsonToEvents(_ json: [String: Any]) -> Events {
     return json.map {
         id, _value in
         guard let value = _value as? [String: Any] else {
-            return Event(token: "", status: .undefined, userId: nil, message: nil, userInfo: nil)
+            return Event(token: "", status: .undefined, name: .cardDidCome, userId: nil, message: nil, userInfo: nil)
         }
         return Event(json: value)
     }
@@ -194,10 +193,17 @@ func getEvents(completion: @escaping (Result<Events, EventsError>) -> Void) {
     })
 }
 
-func addEvent(_ event: Event) {
+func addEvent(
+    status: Event.Status,
+    name: Event.Name,
+    userId: String?,
+    message: String?,
+    userInfo: Any?
+) {
     let database = Database.database().reference()
     guard let key = database.child("events").childByAutoId().key else { return }
-    database.child("events").child(key).setValue(event.dictionary(token: key))
+    let event = Event(token: key, status: status, name: name, userId: userId, message: message, userInfo: userInfo)
+    database.child("events").child(key).setValue(event.dictionary)
 }
 
 func updateEvent(_ event: Event) {
@@ -205,9 +211,9 @@ func updateEvent(_ event: Event) {
     database.child("events").child(event.token).setValue(event)
 }
 
-func removeEvent(_ event: Event) {
+func removeEvent(token: String) {
     let database = Database.database().reference()
-    database.child("events").child(event.token).removeValue()
+    database.child("events").child(token).removeValue()
 }
 
 

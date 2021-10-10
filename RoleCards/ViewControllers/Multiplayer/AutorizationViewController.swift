@@ -136,7 +136,6 @@ extension AutorizationViewContoller {
         DispatchQueue.main.async {
             [unowned self] in
             if user.password == passwordTextField.text {
-                print("Success!")
                 if UserManager.shared.getUser() == nil { UserManager.shared.saveUser(user) }
                 delegate?.autorizationViewController(self, didAutorized: user)
             }
