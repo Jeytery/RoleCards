@@ -17,6 +17,7 @@ struct Event {
     
     enum Name: String {
         case cardDidCome = "cardDidCome"
+        case roomWasRemoved = "roomWasRemoved"
         case noName = ""
     }
     

@@ -63,17 +63,16 @@ extension CardViewController {
                     updateEvent(event)
                     removeEvent(token: value["token"] as! String)
                 }
+                
+                if  let value = _value as? [String: Any],
+                    value["userId"] as! String == user.token,
+                    Int(value["status"] as! String) ?? 0 == 1,
+                    value["name"] as! String == "roomWasRemoved"
+                {
+                    removeEvent(token: value["token"] as! String)
+                    self?.dismiss(animated: true, completion: nil)
+                }
             }
-        })
-        
-        database.child("rooms").observe(.childRemoved, with: {
-            _ in
-            self.dismiss(animated: true, completion: nil)
-        })
-        
-        database.child("rooms").child(room.token).observe(.childRemoved, with: {
-            _ in
-            self.dismiss(animated: true, completion: nil)
         })
     }
 }

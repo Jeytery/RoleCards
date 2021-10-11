@@ -169,6 +169,7 @@ extension RoomViewController {
     
     @objc func dismissButtonAction() {
         viewModel.removeRoom()
+        viewModel.sendRoomRemoveEvents()
         delegate?.roomViewController(self, didSendEventsFor: viewModel.room)
     }
 }

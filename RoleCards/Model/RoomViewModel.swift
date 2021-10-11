@@ -67,6 +67,16 @@ extension RoomViewModel {
         }
     }
     
+    func sendRoomRemoveEvents() {
+        for user in users {
+            addEvent(status: .hasCome,
+                     name: .roomWasRemoved,
+                     userId: user.token,
+                     message: nil,
+                     userInfo: nil)
+        }
+    }
+    
     func removeRoom() {
         deleteRoom(room)
         UserManager.shared.removeActiveRoom()
