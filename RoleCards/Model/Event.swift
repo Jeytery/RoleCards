@@ -21,7 +21,7 @@ struct Event {
     }
     
     let token: String
-    let status: Status
+    var status: Status
     let name: Name
     let userId: String?
     let message: String?

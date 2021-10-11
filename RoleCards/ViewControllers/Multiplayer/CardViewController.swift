@@ -29,15 +29,10 @@ class CardViewController: UIViewController {
         self.room = room
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = Colors.background
-        
         configureTitles()
         configureWaitLabel()
         configureDismissButton()
-        
         configureObserver()
-//        let role = Role(name: "Mafia", color: Colors.primary.roleColor, description: "iLoveAnal)")
-//        guard let user = UserManager.shared.user else { return }
-//        addEvent(status: .hasCome, name: .cardDidCome, userId: user.token, message: nil, userInfo: role.dictionary)
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -57,12 +52,16 @@ extension CardViewController {
                     value["userId"] as! String == user.token,
                     Int(value["status"] as! String) ?? 0 == 1,
                     value["name"] as! String == "cardDidCome"
-                        
                 {
+                    print(value)
                     guard let roleJson = value["userInfo"] as? [String: Any] else { return }
                     let role = Role(json: roleJson)
                     self?.showCard(role)
                     self?.role = role
+                    var event = Event(json: value)
+                    event.status = .notifed
+                    updateEvent(event)
+                    
                     removeEvent(token: value["token"] as! String)
                 }
             }

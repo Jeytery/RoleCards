@@ -1,4 +1,3 @@
-
 //
 //  RoomViewController.swift
 //  RoleCards
@@ -23,6 +22,10 @@ class RoomViewController: UIViewController {
     private var list: UICollectionView!
     private let playersCountLabel = UILabel()
     
+    private let buttonsStackView = UIStackView()
+    private let dismissButton = UIButton()
+    private let confirmButton = UIButton()
+    
     init(room: Room, roles: Roles) {
         super.init(nibName: nil, bundle: nil)
         configureViewModel(room: room, roles: roles)
@@ -30,6 +33,7 @@ class RoomViewController: UIViewController {
         configureTitles(room)
         configureList()
         configureBottomButtons()
+        hideConfirmButton()
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -37,12 +41,21 @@ class RoomViewController: UIViewController {
 
 //MARK: - ui
 extension RoomViewController {
+    private func showConfirmButton() {
+        buttonsStackView.addArrangedSubview(confirmButton)
+    }
+    
+    private func hideConfirmButton() {
+        confirmButton.removeFromSuperview()
+    }
+    
     private func configureViewModel(room: Room, roles: Roles) {
         viewModel = RoomViewModel(room: room, roles: roles)
         viewModel.observeUsers(onUpdate: {
             [unowned self] users in
             list?.reloadData()
             playersCountLabel.text = viewModel.playersCount
+            roles.count == users.count ? showConfirmButton() : hideConfirmButton()
         })
     }
     
@@ -124,27 +137,23 @@ extension RoomViewController {
     }
     
     private func configureBottomButtons() {
-        let stackView = UIStackView()
-        stackView.distribution = .fillEqually
-        stackView.axis = .horizontal
-        stackView.spacing = 10
+        buttonsStackView.distribution = .fillEqually
+        buttonsStackView.axis = .horizontal
+        buttonsStackView.spacing = 10
         
-        view.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topAnchor.constraint(equalTo: list.bottomAnchor, constant: 20).isActive = true
-        stackView.setBottomConstraint(self, constant: -20)
-        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stackView.widthAnchor.constraint(equalToConstant: 130).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
-        let confirmButton = UIButton()
-        let dismissButton = UIButton()
+        view.addSubview(buttonsStackView)
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsStackView.topAnchor.constraint(equalTo: list.bottomAnchor, constant: 20).isActive = true
+        buttonsStackView.setBottomConstraint(self, constant: -20)
+        buttonsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        buttonsStackView.widthAnchor.constraint(equalToConstant: 130).isActive = true
+        buttonsStackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         confirmButton.setPrimaryStyle(icon: Icons.vector, color: Colors.primary, constant: 19)
         dismissButton.setPrimaryStyle(icon: Icons.cross, color: Colors.red, constant: 15)
         
-        stackView.addArrangedSubview(dismissButton)
-        stackView.addArrangedSubview(confirmButton)
+        buttonsStackView.addArrangedSubview(dismissButton)
+        buttonsStackView.addArrangedSubview(confirmButton)
         
         confirmButton.addTarget(self, action: #selector(confirmButtonAction), for: .touchDown)
         dismissButton.addTarget(self, action: #selector(dismissButtonAction), for: .touchDown)
@@ -152,6 +161,7 @@ extension RoomViewController {
     
     @objc func confirmButtonAction() {
         viewModel.sendEvents()
+        viewModel.removeRoom()
         delegate?.roomViewController(self, didDelete: viewModel.room)
     }
     

@@ -16,8 +16,6 @@ class RoomViewModel {
     
     private var usersObserv = Observable<Users>()
     
-    private lazy var database = Database.database().reference().child("rooms").child(room.token)
-        
     var users: Users {
         get { usersObserv.value ?? [] }
         set { usersObserv.value = newValue }
@@ -41,6 +39,11 @@ extension RoomViewModel {
             else { return }
             let users = parseJsonToUsers(usersDict)
             self.users = users
+        })
+        
+        database.child(room.token).observe(.childRemoved, with: {
+            value in
+            self.users = []
         })
     }
 }

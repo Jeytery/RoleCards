@@ -30,9 +30,13 @@ class UserManager {
     private let userDefaults = UserDefaults.standard
     
     private init() {}
+    
+    private func clearUser() {
+        userDefaults.removePersistentDomain(forName: id)
+    }
 }
 
-//MARK: - internal funcs
+//MARK: - public user funcs
 extension UserManager {
     func saveUser(_ user: User) {
         guard let data = try? JSONEncoder().encode(user) else {
@@ -51,8 +55,11 @@ extension UserManager {
         return user
     }
     
-    private func clearUser() {
-        userDefaults.removePersistentDomain(forName: id)
+    func addActiveRoom(_ room: Room) {
+        guard var _user = user else { return }
+        _user.activeRoomToken = room.token
+        updateUser(_user)
+        saveUser(_user)
     }
 }
 

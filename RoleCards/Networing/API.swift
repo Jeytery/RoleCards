@@ -25,7 +25,8 @@ func parseJsonToUsers(_ json: [String: Any]) -> Users {
         else { return [] }
         let user = User(username: name,
                         password: password,
-                        token: token)
+                        token: token,
+                        activeRoomToken: value["activeRoomToken"] as? String)
         users.append(user)
     }
     return users
@@ -105,6 +106,11 @@ func findUser(username: String, completion: @escaping (Result<User, Error>) -> V
     })
 }
 
+func updateUser(_ user: User) {
+    let database = Database.database().reference()
+    database.child("users").child(user.token).setValue(user)
+}
+
 //MARK: - room
 
 typealias Rooms = Array<Room>
@@ -153,7 +159,7 @@ func parseJsonToRooms(_ json: [String: Any]) -> Rooms {
     return json.map {
         id, _value in
         guard let value = _value as? [String: Any] else {
-            let user = User(username: "", password: "", token: "")
+            let user = User(username: "", password: "", token: "", activeRoomToken: nil)
             return Room(name: "", token: "", users: [], creator: user, maxUserCount: 0, password: "")
         }
         return Room(json: value)

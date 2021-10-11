@@ -44,10 +44,13 @@ extension MultiplayerViewControllerPresenter {
         database.observe(.value, with: {
             [weak self] datasnapshot in
             guard let dict = datasnapshot.value as? [String: Any] else { return }
-            print("db updated")
-            print(dict)
             let rooms = parseJsonToRooms(dict)
             self?.rooms = rooms
+        })
+        
+        database.observe(.childRemoved, with: {
+            [weak self] _ in
+            self?.rooms = []
         })
    
         roomsObserver.subscribe(onUpdate: {
@@ -125,7 +128,10 @@ extension MultiplayerViewControllerPresenter: UserManagerDelegate {
         ui { [weak self] in self?.showAutorize() }
     }
     
-    func userManagerDidAutorize() { LoadingState.stop() }
+    func userManagerDidAutorize() {
+        LoadingState.stop()
+    }
+    
     func userManager(didGet user: User) {}
 }
 

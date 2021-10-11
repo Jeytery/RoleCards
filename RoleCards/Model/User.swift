@@ -11,12 +11,14 @@ struct User: Codable {
     let username: String
     let password: String
     let token: String
+    var activeRoomToken: String?
     
     var dictionary: [String: Any] {
         return [
             "username": username,
             "password": password,
-            "token": token
+            "token": token,
+            "activeRoomToken": activeRoomToken ?? ""
         ]
     }
 }

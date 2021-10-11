@@ -18,6 +18,12 @@ class AutorizationViewContoller: UIViewController {
     
     var isTextFieldsReady: Bool {
         setErrors()
+        for char in nameTextField.text {
+            if char == " " { return false }
+        }
+        for char in passwordTextField.text {
+            if char == " " { return false }
+        }
         if nameTextField.text == "" || passwordTextField.text == "" { return false }
         return true
     }
@@ -118,6 +124,17 @@ extension AutorizationViewContoller {
             
             if passwordTextField.text == "" {
                 passwordTextField.textField.setErrorState()
+            }
+            
+            for char in nameTextField.text {
+                if char == " " {
+                    nameTextField.setError(text: "Don't use spaces in nickname, please")
+                }
+            }
+            for char in passwordTextField.text {
+                if char == " " {
+                    passwordTextField.setError(text: "Don't use spaces in nickname, please")
+                }
             }
         }
     }
