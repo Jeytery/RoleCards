@@ -46,22 +46,22 @@ extension CardViewController {
         database.child("events").observe(.value, with: {
             [weak self] snapshot in
             guard let json = snapshot.value as? [String: Any] else { return }
-                            
+            
             for (_, _value) in json {
                 if  let value = _value as? [String: Any],
                     value["userId"] as! String == user.token,
                     Int(value["status"] as! String) ?? 0 == 1,
                     value["name"] as! String == "cardDidCome"
                 {
+                    guard let roleJson = value["userInfo"] as? [String: Any] else { continue }
                     print(value)
-                    guard let roleJson = value["userInfo"] as? [String: Any] else { return }
                     let role = Role(json: roleJson)
                     self?.showCard(role)
                     self?.role = role
                     var event = Event(json: value)
                     event.status = .notifed
-                    updateEvent(event)
                     
+                    updateEvent(event)
                     removeEvent(token: value["token"] as! String)
                 }
             }

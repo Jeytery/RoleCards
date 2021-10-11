@@ -108,7 +108,7 @@ func findUser(username: String, completion: @escaping (Result<User, Error>) -> V
 
 func updateUser(_ user: User) {
     let database = Database.database().reference()
-    database.child("users").child(user.token).setValue(user)
+    database.child("users").child(user.token).setValue(user.dictionary)
 }
 
 //MARK: - room
@@ -214,7 +214,7 @@ func addEvent(
 
 func updateEvent(_ event: Event) {
     let database = Database.database().reference()
-    database.child("events").child(event.token).setValue(event)
+    database.child("events").child(event.token).setValue(event.dictionary)
 }
 
 func removeEvent(token: String) {

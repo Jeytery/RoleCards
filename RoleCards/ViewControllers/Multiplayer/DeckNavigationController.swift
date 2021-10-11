@@ -73,6 +73,7 @@ extension DeckNavigationController: DeckViewControllerDelegate {
                         password: roomPassword)
         
         database.child(key).setValue(room.dictionary)
+        UserManager.shared.addActiveRoom(room)
         deckDelegate?.deckNavigationContoller(self, roles: roles, room: room)
     }
 }
