@@ -10,8 +10,6 @@ import FirebaseDatabase
 
 class RoomViewModel {
     
-    private let roles: Roles
-    
     private(set) var room: Room
     
     private var usersObserv = Observable<Users>()
@@ -21,8 +19,7 @@ class RoomViewModel {
         set { usersObserv.value = newValue }
     }
 
-    init(room: Room, roles: Roles) {
-        self.roles = roles
+    init(room: Room) {
         self.room = room
         configureObservers()
     }
@@ -51,7 +48,7 @@ extension RoomViewModel {
 //MARK: - public
 extension RoomViewModel {
     var playersCount: String {
-        return "Players count: \(users.count)/\(String(roles.count))"
+        return "Players count: \(users.count)/\(String(room.roles.count))"
     }
     
     func observeUsers(onUpdate: @escaping (Users) -> Void) {
@@ -59,7 +56,7 @@ extension RoomViewModel {
     }
     
     func sendEvents() {
-        let deck = roles.shuffled()
+        let deck = room.roles.shuffled()
         for i in 0..<users.count {
             let user = users[i]
             addEvent(status: .hasCome,
@@ -72,5 +69,6 @@ extension RoomViewModel {
     
     func removeRoom() {
         deleteRoom(room)
+        UserManager.shared.removeActiveRoom()
     }
 }

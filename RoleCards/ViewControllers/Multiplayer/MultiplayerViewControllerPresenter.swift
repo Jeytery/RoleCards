@@ -119,6 +119,12 @@ extension MultiplayerViewControllerPresenter {
             }
         })
     }
+    
+    private func showRoomVC(room: Room) {
+        let roomVC = RoomViewController(room: room)
+        roomVC.delegate = self
+        delegate.present(roomVC)
+    }
 }
 
 
@@ -132,7 +138,17 @@ extension MultiplayerViewControllerPresenter: UserManagerDelegate {
         LoadingState.stop()
     }
     
-    func userManager(didGet user: User) {}
+    func userManager(didGet user: User) {
+        guard let activeRoomToken = user.activeRoomToken else { return }
+        let database = Database.database().reference().child("rooms")
+        database.child(activeRoomToken).getData(completion: {
+            [unowned self] error, snapshot in
+            guard error == nil else { return }
+            guard let value = snapshot.value as? [String: Any] else { return }
+            let room = Room(json: value[activeRoomToken] as! [String: Any])
+            ui { showRoomVC(room: room) }
+        })
+    }
 }
 
 //MARK: - [d] autorizationVC
@@ -146,7 +162,7 @@ extension MultiplayerViewControllerPresenter: AutorizationViewControllerDelegate
 extension MultiplayerViewControllerPresenter: DeckNavigationControllerDelegate {
     func deckNavigationContoller(_ viewController: UIViewController, roles: Roles, room: Room) {
         viewController.dismiss(animated: true, completion: {
-            let roomVC = RoomViewController(room: room, roles: roles)
+            let roomVC = RoomViewController(room: room)
             roomVC.delegate = self
             self.delegate.present(roomVC)
         })

@@ -54,7 +54,6 @@ extension CardViewController {
                     value["name"] as! String == "cardDidCome"
                 {
                     guard let roleJson = value["userInfo"] as? [String: Any] else { continue }
-                    print(value)
                     let role = Role(json: roleJson)
                     self?.showCard(role)
                     self?.role = role
@@ -65,6 +64,16 @@ extension CardViewController {
                     removeEvent(token: value["token"] as! String)
                 }
             }
+        })
+        
+        database.child("rooms").observe(.childRemoved, with: {
+            _ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        database.child("rooms").child(room.token).observe(.childRemoved, with: {
+            _ in
+            self.dismiss(animated: true, completion: nil)
         })
     }
 }

@@ -62,3 +62,12 @@ struct Role: Codable {
     }
 }
 
+func parseJsonToRoles(_ json: [String: Any]) -> Roles {
+    var roles = Roles()
+    for (_, _value) in json {
+        guard let value = _value as? [String: Any] else { continue }
+        let role = Role(json: value)
+        roles.append(role)
+    }
+    return roles
+}

@@ -61,6 +61,13 @@ extension UserManager {
         updateUser(_user)
         saveUser(_user)
     }
+    
+    func removeActiveRoom() {
+        guard var _user = user else { return }
+        _user.activeRoomToken = nil
+        updateUser(_user)
+        saveUser(_user)
+    }
 }
 
 //MARK: - public

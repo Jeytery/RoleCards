@@ -91,7 +91,6 @@ extension MultiplayerViewController: MultiplayerViewControllerPresenterDelegate 
         LoadingState.stop()
     }
     
-    
     func present(_ viewController: UIViewController) {
         present(viewController, animated: true, completion: nil)
     }

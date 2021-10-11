@@ -156,14 +156,13 @@ func deleteRoom(_ room: Room) {
 }
 
 func parseJsonToRooms(_ json: [String: Any]) -> Rooms {
-    return json.map {
-        id, _value in
-        guard let value = _value as? [String: Any] else {
-            let user = User(username: "", password: "", token: "", activeRoomToken: nil)
-            return Room(name: "", token: "", users: [], creator: user, maxUserCount: 0, password: "")
-        }
-        return Room(json: value)
+    var rooms = Rooms()
+    for (_, _value) in json {
+        guard let value = _value as? [String: Any] else { continue }
+        let room = Room(json: value)
+        rooms.append(room)
     }
+    return rooms
 }
 
 //MARK: - event

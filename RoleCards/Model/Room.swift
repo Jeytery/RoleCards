@@ -11,12 +11,20 @@ struct Room: Codable {
     var users: Users
     let creator: User
     let maxUserCount: Int
+    let roles: Roles
     let password: String?
     
     func getUsers() -> [String: Any] {
         var dict = [String: Any]()
-        for user in users {
-            dict[user.token] = user.dictionary
+        for user in users { dict[user.token] = user.dictionary }
+        return dict
+    }
+    
+    func getRoles() -> [String: Any] {
+        var dict = [String: Any]()
+        for i in 0..<roles.count {
+            let role = roles[i]
+            dict["id\(i)"] = role.dictionary
         }
         return dict
     }
@@ -28,6 +36,7 @@ struct Room: Codable {
             "token": token,
             "creator": creator.dictionary,
             "maxUserCount": maxUserCount,
+            "roles": getRoles(),
             "password": password ?? ""
         ]
     }
@@ -38,6 +47,7 @@ struct Room: Codable {
             "users": getUsers(),
             "token": token,
             "creator": creator.dictionary,
+            "roles": getRoles(),
             "maxUserCount": maxUserCount,
             "password": password ?? ""
         ]
@@ -64,14 +74,22 @@ struct Room: Codable {
         }
         maxUserCount = json["maxUserCount"] as? Int ?? 0
         password = json["password"] as? String ?? ""
+        
+        if let value = json["roles"] as? [String: Any] {
+            self.roles = parseJsonToRoles(value)
+        }
+        else {
+            self.roles = []
+        }
     }
     
-    init(name: String, token: String, users: Users, creator: User, maxUserCount: Int, password: String) {
+    init(name: String, token: String, users: Users, creator: User, maxUserCount: Int, roles: Roles, password: String) {
         self.name = name
         self.token = token
         self.users = users
         self.password = password
         self.creator = creator
         self.maxUserCount = maxUserCount
+        self.roles = roles
     }
 }

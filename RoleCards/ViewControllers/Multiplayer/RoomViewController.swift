@@ -17,6 +17,7 @@ class RoomViewController: UIViewController {
     var delegate: RoomViewControllerDelegate?
     
     private var viewModel: RoomViewModel!
+    private let room: Room
     
     private let titleStackView = UIStackView()
     private var list: UICollectionView!
@@ -26,9 +27,10 @@ class RoomViewController: UIViewController {
     private let dismissButton = UIButton()
     private let confirmButton = UIButton()
     
-    init(room: Room, roles: Roles) {
+    init(room: Room) {
+        self.room = room
         super.init(nibName: nil, bundle: nil)
-        configureViewModel(room: room, roles: roles)
+        configureViewModel(room: room)
         configureUI()
         configureTitles(room)
         configureList()
@@ -49,13 +51,13 @@ extension RoomViewController {
         confirmButton.removeFromSuperview()
     }
     
-    private func configureViewModel(room: Room, roles: Roles) {
-        viewModel = RoomViewModel(room: room, roles: roles)
+    private func configureViewModel(room: Room) {
+        viewModel = RoomViewModel(room: room)
         viewModel.observeUsers(onUpdate: {
             [unowned self] users in
             list?.reloadData()
             playersCountLabel.text = viewModel.playersCount
-            roles.count == users.count ? showConfirmButton() : hideConfirmButton()
+            room.roles.count == users.count ? showConfirmButton() : hideConfirmButton()
         })
     }
     
