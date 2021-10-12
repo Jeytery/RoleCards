@@ -21,9 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         FirebaseApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
-        let rootVC = MultiplayerViewController()
-        let nvc = UINavigationController(rootViewController: rootVC)
-        window?.rootViewController = nvc
+        window?.rootViewController = TabViewController()
         window?.makeKeyAndVisible()
         return true
     }

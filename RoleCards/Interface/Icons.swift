@@ -16,5 +16,7 @@ class Icons {
     static let tick = UIImage(named: "tick")!.withRenderingMode(.alwaysTemplate)
     static let edit = UIImage(named: "edit")!.withRenderingMode(.alwaysTemplate)
     static let cross = UIImage(named: "cross")!.withRenderingMode(.alwaysTemplate)
+    static let social = UIImage(named: "social")!.withRenderingMode(.alwaysTemplate)
+    static let play = UIImage(named: "play")!.withRenderingMode(.alwaysTemplate)
 }
 

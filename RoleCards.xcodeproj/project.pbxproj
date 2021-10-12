@@ -46,6 +46,9 @@
 		3E8356192705CBE90046AE83 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8356182705CBE90046AE83 /* Colors.swift */; };
 		3E83561C2705CD1C0046AE83 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E83561B2705CD1C0046AE83 /* Extension.swift */; };
 		3E83561E2705CE9F0046AE83 /* StateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E83561D2705CE9F0046AE83 /* StateTextField.swift */; };
+		3ECF57582715A5C1000856BA /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF57572715A5C1000856BA /* CardsViewController.swift */; };
+		3ECF57602715DE6F000856BA /* SingleplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF575F2715DE6F000856BA /* SingleplayerViewController.swift */; };
+		3ECF57622715E12E000856BA /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF57612715E12E000856BA /* TabViewController.swift */; };
 		3ED2E916270F268A0040DD33 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2E915270F268A0040DD33 /* UserCell.swift */; };
 		3EE005DD270EEC570038C1EA /* MultiplayerViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE005DC270EEC570038C1EA /* MultiplayerViewControllerPresenter.swift */; };
 		3EE005E0270EF5E70038C1EA /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE005DF270EF5E70038C1EA /* RoomCell.swift */; };
@@ -95,6 +98,9 @@
 		3E8356182705CBE90046AE83 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3E83561B2705CD1C0046AE83 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		3E83561D2705CE9F0046AE83 /* StateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTextField.swift; sourceTree = "<group>"; };
+		3ECF57572715A5C1000856BA /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		3ECF575F2715DE6F000856BA /* SingleplayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleplayerViewController.swift; sourceTree = "<group>"; };
+		3ECF57612715E12E000856BA /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		3ED2E915270F268A0040DD33 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		3EE005DC270EEC570038C1EA /* MultiplayerViewControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerViewControllerPresenter.swift; sourceTree = "<group>"; };
 		3EE005DF270EF5E70038C1EA /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
@@ -164,10 +170,12 @@
 		3E1742EE270DEA260051DE24 /* HandOut */ = {
 			isa = PBXGroup;
 			children = (
+				3ECF575F2715DE6F000856BA /* SingleplayerViewController.swift */,
 				3E329896270A2E0D002DD185 /* RolesViewControllers.swift */,
 				3E496AD2270B4917003D915C /* RoleViewController.swift */,
 				3E1742E0270D97EB0051DE24 /* PlayersCountViewController.swift */,
 				3E1742DE270CACDD0051DE24 /* ColorPickerViewController.swift */,
+				3ECF57572715A5C1000856BA /* CardsViewController.swift */,
 			);
 			path = HandOut;
 			sourceTree = "<group>";
@@ -199,6 +207,7 @@
 		3E4CCF55270596410062943C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3ECF57612715E12E000856BA /* TabViewController.swift */,
 				3E1742EF270DEA5E0051DE24 /* Multiplayer */,
 				3E1742EE270DEA260051DE24 /* HandOut */,
 			);
@@ -408,6 +417,7 @@
 				3E1742E7270DC87B0051DE24 /* DeckNavigationController.swift in Sources */,
 				3E5B087A2709A1A500265422 /* Icons.swift in Sources */,
 				3EE005E2270EF9F90038C1EA /* RoomCache.swift in Sources */,
+				3ECF57602715DE6F000856BA /* SingleplayerViewController.swift in Sources */,
 				3E83561E2705CE9F0046AE83 /* StateTextField.swift in Sources */,
 				3E83561C2705CD1C0046AE83 /* Extension.swift in Sources */,
 				3E7E337227107B3100EBC684 /* CardView.swift in Sources */,
@@ -420,10 +430,12 @@
 				3E4CCF57270596670062943C /* API.swift in Sources */,
 				3EE005DD270EEC570038C1EA /* MultiplayerViewControllerPresenter.swift in Sources */,
 				3E7E336E27102DDD00EBC684 /* CardViewController.swift in Sources */,
+				3ECF57622715E12E000856BA /* TabViewController.swift in Sources */,
 				3E8356002705A3100046AE83 /* MultiplayerViewController.swift in Sources */,
 				3E1742E3270DA4C90051DE24 /* DeckViewController.swift in Sources */,
 				3E1742E1270D97EB0051DE24 /* PlayersCountViewController.swift in Sources */,
 				3E8356172705CACE0046AE83 /* StackListView.swift in Sources */,
+				3ECF57582715A5C1000856BA /* CardsViewController.swift in Sources */,
 				3E5B087E2709E0B000265422 /* StateCollectionView.swift in Sources */,
 				3E1742ED270DEA0B0051DE24 /* DeckInfoViewController.swift in Sources */,
 				3E5B0876270731FB00265422 /* LoadingState.swift in Sources */,

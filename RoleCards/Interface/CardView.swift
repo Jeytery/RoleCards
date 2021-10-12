@@ -9,18 +9,21 @@ import UIKit
 
 class CardView: UIView {
     
-    private var isFliped: Bool = false
-    private let role: Role
+    var isFliped: Bool = false {
+        didSet {
+            backgroundColor = isFliped ? role.color.uiColor : Colors.green
+            nameLabel.isHidden = !isFliped
+            imageView.isHidden = isFliped
+        }
+    }
+    
+    private var role: Role
     private let nameLabel = UILabel()
     private let imageView = UIImageView()
-    
-    
-    private let flipColor = Colors.lightGray
-    
+
     init(role: Role) {
         self.role = role
         super.init(frame: .zero)
-        backgroundColor = Colors.green
         configureUI()
         configureImage()
         addTapGesture()
@@ -67,8 +70,11 @@ extension CardView {
                           options: .transitionFlipFromLeft,
                           animations: nil,
                           completion: nil)
-        backgroundColor = isFliped ? role.color.uiColor : Colors.green
-        nameLabel.isHidden = !isFliped
-        imageView.isHidden = isFliped
+    }
+    
+    func updateRole(_ role: Role) {
+        self.role = role
+        nameLabel.text = role.name
+        nameLabel.textColor = Luma.blackOrWhite(role.color.uiColor)
     }
 }
