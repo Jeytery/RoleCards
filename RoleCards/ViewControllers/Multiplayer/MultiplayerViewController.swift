@@ -15,20 +15,25 @@ class MultiplayerViewController: UIViewController {
     private let addRoomButton = UIButton()
     private let list = StateCollectionView()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        presenter = MultiplayerViewControllerPresenter(with: self)
+    init() {
+        super.init(nibName: nil, bundle: nil)
         configureUI()
+        presenter = MultiplayerViewControllerPresenter(with: self)
         configureList()
         configureAddRoomButton()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
 //MARK: - ui
 extension MultiplayerViewController {
     private func configureUI() {
-        view.backgroundColor = Colors.background
         title = "Rooms"
+        tabBarItem.title = ""
+        view.backgroundColor = Colors.background
     }
     
     private func configureList() {
@@ -92,6 +97,12 @@ extension MultiplayerViewController: MultiplayerViewControllerPresenterDelegate 
     }
     
     func present(_ viewController: UIViewController) {
+        if #available(iOS 13.0, *) {
+            viewController.modalPresentationStyle = .automatic
+        }
+        else {
+            viewController.modalPresentationStyle = .overFullScreen
+        }
         present(viewController, animated: true, completion: nil)
     }
     

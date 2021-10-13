@@ -47,7 +47,7 @@ class BaseNavigationController: UINavigationController {
     
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        let doneButton = UIBarButtonItem(image: Icons.exit,
+        let doneButton = UIBarButtonItem(image: Icons.cross,
                                          style: .plain,
                                          target: self,
                                          action: #selector(action))

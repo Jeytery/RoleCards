@@ -24,8 +24,12 @@ class TabViewController: UITabBarController {
             let item = items[i]
             item.title = ""
             item.image = images[i]
-            item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -10, right: 0)
         }
+        
+        UITabBar.appearance().layer.borderWidth = 0.0
+        UITabBar.appearance().clipsToBounds = true
+        tabBar.barTintColor = Colors.lightGray
     }
     
     required init?(coder: NSCoder) {
