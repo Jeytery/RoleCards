@@ -1,0 +1,6 @@
+UserInterfaceState.xcuserstate
+*.xcuserstate
+.DS_Store
+xcuserdata/
+*.plist
+RoleCards.xcodeproj/xcshareddata/
