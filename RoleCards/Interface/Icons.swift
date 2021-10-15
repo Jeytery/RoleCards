@@ -18,5 +18,6 @@ class Icons {
     static let cross = UIImage(named: "cross")!.withRenderingMode(.alwaysTemplate)
     static let social = UIImage(named: "social")!.withRenderingMode(.alwaysTemplate)
     static let play = UIImage(named: "play")!.withRenderingMode(.alwaysTemplate)
+    static let cardBack = UIImage(named: "cardback")!.withRenderingMode(.alwaysOriginal)
 }
 

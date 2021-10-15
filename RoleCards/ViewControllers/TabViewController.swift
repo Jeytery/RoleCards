@@ -31,7 +31,8 @@ class TabViewController: UITabBarController {
         }
         UITabBar.appearance().layer.borderWidth = 0.0
         UITabBar.appearance().clipsToBounds = true
-        tabBar.barTintColor = Colors.lightGray
+        tabBar.barTintColor = Colors.interface
+        tabBar.tintColor = Colors.tabBar
     }
     
     required init?(coder: NSCoder) {
