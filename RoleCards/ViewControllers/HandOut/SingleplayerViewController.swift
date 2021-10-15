@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SingleplayerNavigationController: UINavigationController {
+class SingleplayerNavigationController: BigTitleNavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

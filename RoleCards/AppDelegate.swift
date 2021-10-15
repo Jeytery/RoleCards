@@ -35,7 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 class BigTitleNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 11.0, *) { navigationBar.prefersLargeTitles = true }
+        if #available(iOS 11.0, *) {
+            navigationBar.prefersLargeTitles = true
+        }
     }
 }
 

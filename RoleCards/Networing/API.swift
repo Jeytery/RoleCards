@@ -65,26 +65,6 @@ func checkIsUserValid(token: String, completion: @escaping (Result<Bool, Error>)
     })
 }
 
-func findUser(token: String, completion: @escaping (Result<User, Error>) -> Void) {
-    getUsers(completion: {
-        result in
-        switch result {
-        case .success(let users):
-            for user in users {
-                if user.token == token {
-                    completion(.success(user))
-                    return
-                }
-            }
-            completion(.failure(UsersError.userNotFound))
-            break
-        case .failure(let error):
-            print("findUser: error \(error)")
-            break
-        }
-    })
-}
-
 func findUser(username: String, completion: @escaping (Result<User, Error>) -> Void) {
     getUsers(completion: {
         result in
@@ -120,6 +100,16 @@ enum RoomError: Error {
     case roomNotFound
 }
 
+func parseJsonToRooms(_ json: [String: Any]) -> Rooms {
+    var rooms = Rooms()
+    for (_, _value) in json {
+        guard let value = _value as? [String: Any] else { continue }
+        let room = Room(json: value)
+        rooms.append(room)
+    }
+    return rooms
+}
+
 func getRooms(completion: @escaping (Result<Rooms, Error>) -> Void) {
     let database = Database.database().reference()
     database.child("rooms").getData(completion: {
@@ -153,16 +143,6 @@ func updateRoom(_ room: Room) {
 func deleteRoom(_ room: Room) {
     let database = Database.database().reference().child("rooms")
     database.child(room.token).removeValue()
-}
-
-func parseJsonToRooms(_ json: [String: Any]) -> Rooms {
-    var rooms = Rooms()
-    for (_, _value) in json {
-        guard let value = _value as? [String: Any] else { continue }
-        let room = Room(json: value)
-        rooms.append(room)
-    }
-    return rooms
 }
 
 //MARK: - event
@@ -220,5 +200,3 @@ func removeEvent(token: String) {
     let database = Database.database().reference()
     database.child("events").child(token).removeValue()
 }
-
-

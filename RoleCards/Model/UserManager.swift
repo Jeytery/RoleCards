@@ -32,6 +32,7 @@ class UserManager {
     private init() {}
     
     private func clearUser() {
+        user = nil
         userDefaults.removePersistentDomain(forName: id)
     }
 }
@@ -98,6 +99,7 @@ extension UserManager {
                 user = _user
                 break
             case .failure(let error):
+                clearUser()
                 delegate?.userManagerDidNotGetUser()
                 print(error)
                 break

@@ -11,6 +11,7 @@ import FirebaseDatabase
 
 protocol MultiplayerViewControllerPresenterDelegate: AnyObject {
     func present(_ viewController: UIViewController)
+    func presentOverCurrentContetext(_ viewController: UIViewController)
     func push(_ viewController: UIViewController)
     
     func startLoading()
@@ -69,8 +70,7 @@ extension MultiplayerViewControllerPresenter {
         let autorizationVC = AutorizationViewContoller()
         autorizationVC.delegate = self
         let nvc = BigTitleNavigationController(rootViewController: autorizationVC)
-        nvc.modalPresentationStyle = .overCurrentContext
-        delegate.present(nvc)
+        delegate.presentOverCurrentContetext(nvc)
     }
     
     private func ui(action: @escaping () -> Void) {
@@ -123,7 +123,7 @@ extension MultiplayerViewControllerPresenter {
     private func showRoomVC(room: Room) {
         let roomVC = RoomViewController(room: room)
         roomVC.delegate = self
-        delegate.present(roomVC)
+        delegate.presentOverCurrentContetext(roomVC)
     }
 }
 
@@ -139,11 +139,11 @@ extension MultiplayerViewControllerPresenter: UserManagerDelegate {
     }
     
     func userManager(didGet user: User) {
-        guard let activeRoomToken = user.activeRoomToken else { return }
+        guard let activeRoomToken = user.activeRoomToken, activeRoomToken != "" else { return }
         let database = Database.database().reference().child("rooms")
         database.child(activeRoomToken).getData(completion: {
             [unowned self] error, snapshot in
-            guard error == nil else { return }
+            guard error == nil, snapshot.hasChildren() else { return }
             guard let value = snapshot.value as? [String: Any] else { return }
             let room = Room(json: value[activeRoomToken] as! [String: Any])
             ui { showRoomVC(room: room) }
@@ -154,18 +154,15 @@ extension MultiplayerViewControllerPresenter: UserManagerDelegate {
 //MARK: - [d] autorizationVC
 extension MultiplayerViewControllerPresenter: AutorizationViewControllerDelegate {
     func autorizationViewController(_ viewController: UIViewController, didAutorized user: User) {
-        ui { viewController.dismiss(animated: true, completion: nil) }
+        ui { viewController.navigationController?.dismiss(animated: true, completion: nil) }
     }
 }
 
 //MARK: - [d] deckNC
 extension MultiplayerViewControllerPresenter: DeckNavigationControllerDelegate {
     func deckNavigationContoller(_ viewController: UIViewController, roles: Roles, room: Room) {
-        viewController.dismiss(animated: true, completion: {
-            let roomVC = RoomViewController(room: room)
-            roomVC.delegate = self
-            self.delegate.present(roomVC)
-        })
+        viewController.dismiss(animated: true, completion: nil)
+        showRoomVC(room: room)
     }
 }
 

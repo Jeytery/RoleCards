@@ -18,7 +18,16 @@ class MultiplayerViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard presenter == nil else { return }
         presenter = MultiplayerViewControllerPresenter(with: self)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         configureList()
         configureAddRoomButton()
     }
@@ -103,6 +112,11 @@ extension MultiplayerViewController: MultiplayerViewControllerPresenterDelegate 
         else {
             viewController.modalPresentationStyle = .overFullScreen
         }
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    func presentOverCurrentContetext(_ viewController: UIViewController) {
+        viewController.modalPresentationStyle = .overFullScreen
         present(viewController, animated: true, completion: nil)
     }
     

@@ -30,8 +30,8 @@ class AutorizationViewContoller: UIViewController {
 
     private let database = Database.database().reference()
     
-    private let nameTextField = DescTextFieldView(title: "Name", placeholder: "For Example: Jeytery")
-    private let passwordTextField = DescTextFieldView(title: "Password", placeholder: "No 12345, please")
+    private let nameTextField = DescTextFieldView(title: "Name", placeholder: "For Example: Mustafa")
+    private let passwordTextField = DescTextFieldView(title: "Password", placeholder: "12345 is bad choice")
     private let nextButton = UIButton()
     private let list = StackListView(axis: .vertical)
     private var listBottomConstraint: NSLayoutConstraint!
@@ -94,6 +94,7 @@ extension AutorizationViewContoller {
         
         list.addView(nameTextField, size: 110)
         list.addView(passwordTextField, size: 110)
+        passwordTextField.textField.isSecureTextEntry = true
         
         list.stackView.spacing = 20
 
@@ -119,11 +120,11 @@ extension AutorizationViewContoller {
         DispatchQueue.main.async {
             [unowned self] in 
             if nameTextField.text == "" {
-                nameTextField.textField.setErrorState()
+                nameTextField.setError(text: "Enter nickname, please")
             }
             
             if passwordTextField.text == "" {
-                passwordTextField.textField.setErrorState()
+                passwordTextField.setError(text: "Enter password, please")
             }
             
             for char in nameTextField.text {
