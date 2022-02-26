@@ -33,10 +33,6 @@ class CardsStackViewController: UIViewController {
         configureCard()
         configureIndexLabel()
         configureGoodGameLabel()
-        
-        roles.forEach() {
-            print($0.name)
-        }
     }
 
     required init?(coder: NSCoder) { fatalError() }

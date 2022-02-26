@@ -116,8 +116,8 @@ extension MultiplayerViewController: MultiplayerViewControllerPresenterDelegate 
     }
     
     func presentOverCurrentContetext(_ viewController: UIViewController) {
-        viewController.modalPresentationStyle = .overFullScreen
-        present(viewController, animated: true, completion: nil)
+        viewController.modalPresentationStyle = .overCurrentContext
+        present(viewController, animated: false, completion: nil)
     }
     
     func push(_ viewController: UIViewController) {
