@@ -42,12 +42,10 @@ class StateCollectionView: UICollectionView {
     }
     
     private func setState() {
-        imageView.isHidden = false
         titleLabel.isHidden = false
     }
     
     private func popState() {
-        imageView.isHidden = true
         titleLabel.isHidden = true
     }
 }
