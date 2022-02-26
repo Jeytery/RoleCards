@@ -13,7 +13,7 @@ class MultiplayerViewController: UIViewController {
     private var presenter: MultiplayerViewControllerPresenter!
     
     private let addRoomButton = UIButton()
-    private let list = StateCollectionView()
+    private let list = StateCollectionView(title: "No rooms...")
 
     init() {
         super.init(nibName: nil, bundle: nil)
