@@ -40,7 +40,7 @@ extension SingleplayerNavigationController: PlayersCountViewControllerDelegate {
 //MARK: - deckVC
 extension SingleplayerNavigationController: DeckViewControllerDelegate {
     func deckViewController(_ viewController: UIViewController, didChoose roles: Roles) {
-        let cardsVC = CardsViewController(roles: roles.shuffled())
+        let cardsVC = CardsStackViewController(roles: roles.shuffled())
         let nvc = BaseNavigationController(rootViewController: cardsVC)
         present(nvc, animated: true, completion: nil)
     }

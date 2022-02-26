@@ -129,7 +129,7 @@ fileprivate class CardCell: UICollectionViewCell {
         indexLabel.translatesAutoresizingMaskIntoConstraints = false
         indexLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
         indexLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        indexLabel.topAnchor.constraint(equalTo: topAnchor, constant: 40).isActive = true
+        indexLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
         indexLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         indexLabel.font = .systemFont(ofSize: 25, weight: .semibold)
         

@@ -163,7 +163,7 @@ extension AutorizationViewContoller {
         }
     }
     
-    private func conifigureUser(username: String, password: String) {
+    private func configureUser(username: String, password: String) {
         let database = Database.database().reference().child("users")
         guard let token = database.childByAutoId().key else { return }
         let user = User(username: username, password: password, token: token)
@@ -187,7 +187,7 @@ extension AutorizationViewContoller {
                 break
             case .failure(let error):
                 print("findUserByUsername: \(error)")
-                conifigureUser(username: username, password: password)
+                configureUser(username: username, password: password)
                 break
             }
         })

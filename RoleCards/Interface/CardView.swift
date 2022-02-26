@@ -9,24 +9,28 @@ import UIKit
 
 class CardView: UIView {
     
+    private let mainColor: UIColor!
+    
     var isFliped: Bool = false {
         didSet {
-            backgroundColor = isFliped ? role.color.uiColor : Colors.green
+            backgroundColor = isFliped ? role.color.uiColor : mainColor
             nameLabel.isHidden = !isFliped
             imageView.isHidden = isFliped
         }
     }
     
-    private var role: Role
+    var role: Role
     private let nameLabel = UILabel()
     private let imageView = UIImageView()
 
-    init(role: Role) {
+    init(role: Role, mainColor: UIColor = .red) {
         self.role = role
+        self.mainColor = mainColor
         super.init(frame: .zero)
         configureUI()
         configureImage()
         addTapGesture()
+        backgroundColor = mainColor
     }
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -37,7 +41,6 @@ extension CardView {
     private func configureImage() {
         addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = Icons.cardBack
         imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         imageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true

@@ -61,6 +61,4 @@ extension StateTextField: UITextFieldDelegate {
         popState()
         didTap?()
     }
-    
-    
 }

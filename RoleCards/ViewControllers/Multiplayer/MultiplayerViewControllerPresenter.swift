@@ -25,7 +25,7 @@ protocol MultiplayerViewControllerPresenterDelegate: AnyObject {
 
 class MultiplayerViewControllerPresenter {
     
-    unowned let delegate: MultiplayerViewControllerPresenterDelegate
+    private unowned let delegate: MultiplayerViewControllerPresenterDelegate
 
     private var roomsObserver = Observable<Rooms>()
     
@@ -103,9 +103,8 @@ extension MultiplayerViewControllerPresenter {
         _room.users.append(user)
         updateRoom(_room)
         let cardVC = CardViewController(room: room)
-        cardVC.modalPresentationStyle = .overCurrentContext
         cardVC.delegate = self
-        delegate.present(cardVC)
+        delegate.presentOverCurrentContetext(cardVC)
     }
     
     private func checkPassword(_ password: String, user: User, room: Room) {

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//MARK: - UIViewController
 extension UIViewController {
     func setLargeTitle() {
         if #available(iOS 11.0, *) {
@@ -17,6 +18,8 @@ extension UIViewController {
     }
 }
 
+
+//MARK: - UIView
 extension UIView {
     var bottomIndentValue: CGFloat {
         let window = UIApplication.shared.windows.first
@@ -101,6 +104,37 @@ extension UIView {
     func setSideConstraints(_ viewController: UIViewController, constant: CGFloat = 0) {
         setLeftConstraint(viewController, constant: constant)
         setRightConstraint(viewController, constant: -constant)
+    }
+    
+    func addGesture(_ gesture: Gesture) {
+        let gestureRecognizer = UIPanGestureRecognizer(target: gesture,
+                                                       action: #selector(gesture.getGesture))
+        addGestureRecognizer(gestureRecognizer)
+    }
+    
+    static func animate(duration: CGFloat = 0.5, _ animation: @escaping () -> Void, completion: (() -> Void)? = nil) {
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            usingSpringWithDamping: 1.0,
+            initialSpringVelocity: 1.0,
+            options: .curveEaseIn,
+            animations: {
+                animation()
+            },
+            completion: { _ in completion?() }
+        )
+    }
+    
+    static func animate(_ animation: @escaping () -> Void) {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 1.0,
+            initialSpringVelocity: 1.0,
+            options: .curveEaseIn,
+            animations: animation
+        )
     }
 }
 
