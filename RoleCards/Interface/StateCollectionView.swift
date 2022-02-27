@@ -8,8 +8,6 @@
 import UIKit
 
 class StateCollectionView: UICollectionView {
-
-    private let imageView = UIImageView()
     
     private let titleLabel = UILabel()
     
@@ -23,38 +21,31 @@ class StateCollectionView: UICollectionView {
         }
     }
     
-    init() {
+    init(title: String) {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         backgroundColor = Colors.background
-        
-        addSubview(imageView)
-        imageView.image = Icons.noResults
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -bottomIndentValue - 20).isActive = true
-        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 240).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 145).isActive = true
-        imageView.contentMode = .scaleAspectFit
-        
-        addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textColor = .gray
-        titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        titleLabel.text = "No results..."
-        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
+        setTitleLabel(title: title)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setTitleLabel(title: String) {
+        addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.textColor = .gray
+        titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        titleLabel.text = title
+        titleLabel.font = .systemFont(ofSize: 25, weight: .semibold)
+    }
+    
     private func setState() {
-        imageView.isHidden = false
         titleLabel.isHidden = false
     }
     
     private func popState() {
-        imageView.isHidden = true
         titleLabel.isHidden = true
     }
 }

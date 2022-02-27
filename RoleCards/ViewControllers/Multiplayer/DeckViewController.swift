@@ -15,7 +15,7 @@ class DeckViewController: UIViewController {
     
     weak var delegate: DeckViewControllerDelegate?
     
-    private let list = StateCollectionView()
+    private let list = StateCollectionView(title: "")
     
     private var standartRole: Role!
     private var currentIndex: Int = 0

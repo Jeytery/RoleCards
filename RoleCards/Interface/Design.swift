@@ -25,6 +25,7 @@ extension UIButton {
         backgroundColor = Colors.primary
         layer.cornerRadius = DesignProperties.cornerRadius
         setTitle(title, for: .normal)
+        self.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
     }
     
     func setPrimaryStyle(icon: UIImage, color: UIColor, constant: CGFloat = 25) {
@@ -44,6 +45,6 @@ extension UIButton {
 }
 
 class DesignProperties {
-    static let cornerRadius: CGFloat = 10
+    static let cornerRadius: CGFloat = 13
 }
 

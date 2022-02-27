@@ -25,7 +25,7 @@ class RolesViewController: UIViewController {
     private var isListEditing = false
     private var currentEditingCell: Int = 0
     
-    private let list = StateCollectionView()
+    private let list = StateCollectionView(title: "No roles...")
     private let addRoleButton = UIButton()
     
     init() {

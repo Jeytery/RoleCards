@@ -8,11 +8,7 @@
 import UIKit
 
 class SingleplayerNavigationController: BigTitleNavigationController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+
     init() {
         super.init(nibName: nil, bundle: nil)
         let playersCountVC = PlayersCountViewController()
@@ -24,8 +20,6 @@ class SingleplayerNavigationController: BigTitleNavigationController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }
 
 //MARK: - playersCountVC
