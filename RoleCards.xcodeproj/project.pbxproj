@@ -27,6 +27,7 @@
 		3E23768A271F24B4004E3D93 /* RolePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E237689271F24B4004E3D93 /* RolePickerViewController.swift */; };
 		3E329893270A2331002DD185 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E329892270A2330002DD185 /* Role.swift */; };
 		3E329897270A2E0D002DD185 /* RolesViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E329896270A2E0D002DD185 /* RolesViewControllers.swift */; };
+		3E3F559727CB6E8800F34B4F /* DecksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F559627CB6E8800F34B4F /* DecksViewController.swift */; };
 		3E496AD1270AF7C3003D915C /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD0270AF7C3003D915C /* RoleView.swift */; };
 		3E496AD3270B4917003D915C /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD2270B4917003D915C /* RoleViewController.swift */; };
 		3E496AD5270C856B003D915C /* RolesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD4270C856B003D915C /* RolesViewModel.swift */; };
@@ -85,6 +86,7 @@
 		3E237689271F24B4004E3D93 /* RolePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolePickerViewController.swift; sourceTree = "<group>"; };
 		3E329892270A2330002DD185 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		3E329896270A2E0D002DD185 /* RolesViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesViewControllers.swift; sourceTree = "<group>"; };
+		3E3F559627CB6E8800F34B4F /* DecksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksViewController.swift; sourceTree = "<group>"; };
 		3E496AD0270AF7C3003D915C /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		3E496AD2270B4917003D915C /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
 		3E496AD4270C856B003D915C /* RolesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesViewModel.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		3E1742EE270DEA260051DE24 /* HandOut */ = {
 			isa = PBXGroup;
 			children = (
+				3E3F559527CB6E7800F34B4F /* Decks */,
 				3ECF575F2715DE6F000856BA /* SingleplayerViewController.swift */,
 				3E329896270A2E0D002DD185 /* RolesViewControllers.swift */,
 				3E496AD2270B4917003D915C /* RoleViewController.swift */,
@@ -207,6 +210,14 @@
 				3E7E336D27102DDD00EBC684 /* CardViewController.swift */,
 			);
 			path = Multiplayer;
+			sourceTree = "<group>";
+		};
+		3E3F559527CB6E7800F34B4F /* Decks */ = {
+			isa = PBXGroup;
+			children = (
+				3E3F559627CB6E8800F34B4F /* DecksViewController.swift */,
+			);
+			path = Decks;
 			sourceTree = "<group>";
 		};
 		3E4CCF542705961F0062943C /* Networing */ = {
@@ -434,6 +445,7 @@
 				3E8356122705C2050046AE83 /* Event.swift in Sources */,
 				3E1742EB270DE96B0051DE24 /* RoomViewModel.swift in Sources */,
 				3E1742E7270DC87B0051DE24 /* DeckNavigationController.swift in Sources */,
+				3E3F559727CB6E8800F34B4F /* DecksViewController.swift in Sources */,
 				3E5B087A2709A1A500265422 /* Icons.swift in Sources */,
 				3E1979F427B670DA002A33A5 /* Gesture.swift in Sources */,
 				3EE005E2270EF9F90038C1EA /* RoomCache.swift in Sources */,
