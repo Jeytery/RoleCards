@@ -15,7 +15,7 @@ protocol RoleViewControllerDelegate: AnyObject {
 }
 
 extension RoleViewControllerDelegate {
-    func roleViewControllerShouldIconForRedButton() -> UIImage { return Icons.exit }
+    func roleViewControllerShouldIconForRedButton() -> UIImage { return Icons.cross }
     func roleViewControllerRedButtonDidTap() {}
 }
 

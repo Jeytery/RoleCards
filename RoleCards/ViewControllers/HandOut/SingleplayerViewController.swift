@@ -14,7 +14,9 @@ class SingleplayerNavigationController: BigTitleNavigationController {
         let playersCountVC = PlayersCountViewController()
         title = "Player count"
         playersCountVC.delegate = self
-        setViewControllers([playersCountVC], animated: false)
+        
+        let mixerVC = MixerViewController()
+        setViewControllers([mixerVC], animated: false)
     }
     
     required init?(coder aDecoder: NSCoder) {

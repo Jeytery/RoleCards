@@ -70,7 +70,7 @@ extension PlayersCountViewController {
     }
 }
 
-fileprivate class PlayerCountView: UIView {
+class PlayerCountView: UIView {
     
     private(set) var value: Int = 1 {
         didSet { countLabel.text = String(value) }

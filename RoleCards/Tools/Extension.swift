@@ -151,6 +151,12 @@ extension UICollectionView {
     }
 }
 
+extension UITableView {
+    func registerView<T: UIView>(_ view: T.Type, id: String = "cell") {
+        register(TableCell<T>.self, forCellReuseIdentifier: id)
+    }
+}
+
 extension UIColor {
     var roleColor: RoleColor {
         return RoleColor(red: CIColor(color: self).red,

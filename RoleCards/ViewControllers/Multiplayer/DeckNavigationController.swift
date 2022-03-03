@@ -27,7 +27,7 @@ class DeckNavigationController: BaseNavigationController {
         deckInfoVC.delegate = self
         setViewControllers([deckInfoVC], animated: false)
         
-        let doneButton = UIBarButtonItem(image: Icons.exit,
+        let doneButton = UIBarButtonItem(image: Icons.cross,
                                          style: .plain,
                                          target: self,
                                          action: #selector(action))

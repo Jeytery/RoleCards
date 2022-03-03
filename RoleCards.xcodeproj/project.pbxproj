@@ -28,6 +28,19 @@
 		3E329893270A2331002DD185 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E329892270A2330002DD185 /* Role.swift */; };
 		3E329897270A2E0D002DD185 /* RolesViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E329896270A2E0D002DD185 /* RolesViewControllers.swift */; };
 		3E3F559727CB6E8800F34B4F /* DecksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F559627CB6E8800F34B4F /* DecksViewController.swift */; };
+		3E3F559B27CB8F7B00F34B4F /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F559A27CB8F7B00F34B4F /* DataStorage.swift */; };
+		3E3F559D27CBA26500F34B4F /* StateTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F559C27CBA26500F34B4F /* StateTableView.swift */; };
+		3E3F559F27CE38E600F34B4F /* _DeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F559E27CE38E600F34B4F /* _DeckViewController.swift */; };
+		3E3F55A127CE686900F34B4F /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55A027CE686900F34B4F /* TableCell.swift */; };
+		3E3F55A327CE68EA00F34B4F /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55A227CE68EA00F34B4F /* DeckView.swift */; };
+		3E3F55A627CEA5F200F34B4F /* CircleRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55A527CEA5F200F34B4F /* CircleRoleView.swift */; };
+		3E3F55A827CEA61100F34B4F /* CircleRolesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55A727CEA61100F34B4F /* CircleRolesView.swift */; };
+		3E3F55AB27CF432D00F34B4F /* BaseNavigationControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55AA27CF432D00F34B4F /* BaseNavigationControlller.swift */; };
+		3E3F55AE27CFAF7400F34B4F /* InsetsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55AD27CFAF7400F34B4F /* InsetsTextField.swift */; };
+		3E3F55B027D008FD00F34B4F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55AF27D008FD00F34B4F /* Deck.swift */; };
+		3E3F55B427D0ADD300F34B4F /* MixerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55B327D0ADD300F34B4F /* MixerViewController.swift */; };
+		3E3F55B627D0D1B600F34B4F /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55B527D0D1B600F34B4F /* Stepper.swift */; };
+		3E3F55B827D107D100F34B4F /* MixerBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55B727D107D100F34B4F /* MixerBarView.swift */; };
 		3E496AD1270AF7C3003D915C /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD0270AF7C3003D915C /* RoleView.swift */; };
 		3E496AD3270B4917003D915C /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD2270B4917003D915C /* RoleViewController.swift */; };
 		3E496AD5270C856B003D915C /* RolesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD4270C856B003D915C /* RolesViewModel.swift */; };
@@ -87,6 +100,19 @@
 		3E329892270A2330002DD185 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		3E329896270A2E0D002DD185 /* RolesViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesViewControllers.swift; sourceTree = "<group>"; };
 		3E3F559627CB6E8800F34B4F /* DecksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksViewController.swift; sourceTree = "<group>"; };
+		3E3F559A27CB8F7B00F34B4F /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
+		3E3F559C27CBA26500F34B4F /* StateTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTableView.swift; sourceTree = "<group>"; };
+		3E3F559E27CE38E600F34B4F /* _DeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _DeckViewController.swift; sourceTree = "<group>"; };
+		3E3F55A027CE686900F34B4F /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
+		3E3F55A227CE68EA00F34B4F /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
+		3E3F55A527CEA5F200F34B4F /* CircleRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRoleView.swift; sourceTree = "<group>"; };
+		3E3F55A727CEA61100F34B4F /* CircleRolesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRolesView.swift; sourceTree = "<group>"; };
+		3E3F55AA27CF432D00F34B4F /* BaseNavigationControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationControlller.swift; sourceTree = "<group>"; };
+		3E3F55AD27CFAF7400F34B4F /* InsetsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetsTextField.swift; sourceTree = "<group>"; };
+		3E3F55AF27D008FD00F34B4F /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		3E3F55B327D0ADD300F34B4F /* MixerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerViewController.swift; sourceTree = "<group>"; };
+		3E3F55B527D0D1B600F34B4F /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
+		3E3F55B727D107D100F34B4F /* MixerBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerBarView.swift; sourceTree = "<group>"; };
 		3E496AD0270AF7C3003D915C /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		3E496AD2270B4917003D915C /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
 		3E496AD4270C856B003D915C /* RolesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesViewModel.swift; sourceTree = "<group>"; };
@@ -184,6 +210,7 @@
 		3E1742EE270DEA260051DE24 /* HandOut */ = {
 			isa = PBXGroup;
 			children = (
+				3E3F55B227D0ADBC00F34B4F /* Mixer */,
 				3E3F559527CB6E7800F34B4F /* Decks */,
 				3ECF575F2715DE6F000856BA /* SingleplayerViewController.swift */,
 				3E329896270A2E0D002DD185 /* RolesViewControllers.swift */,
@@ -216,8 +243,52 @@
 			isa = PBXGroup;
 			children = (
 				3E3F559627CB6E8800F34B4F /* DecksViewController.swift */,
+				3E3F559E27CE38E600F34B4F /* _DeckViewController.swift */,
 			);
 			path = Decks;
+			sourceTree = "<group>";
+		};
+		3E3F55A427CEA55F00F34B4F /* Deck */ = {
+			isa = PBXGroup;
+			children = (
+				3E3F55A227CE68EA00F34B4F /* DeckView.swift */,
+				3E3F55A527CEA5F200F34B4F /* CircleRoleView.swift */,
+				3E3F55A727CEA61100F34B4F /* CircleRolesView.swift */,
+			);
+			path = Deck;
+			sourceTree = "<group>";
+		};
+		3E3F55AC27CFAF5A00F34B4F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3E3F559C27CBA26500F34B4F /* StateTableView.swift */,
+				3E83561D2705CE9F0046AE83 /* StateTextField.swift */,
+				3E5B087D2709E0B000265422 /* StateCollectionView.swift */,
+				3E3F55AD27CFAF7400F34B4F /* InsetsTextField.swift */,
+				3E3F55B527D0D1B600F34B4F /* Stepper.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		3E3F55B127D0092700F34B4F /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				3E3F55AF27D008FD00F34B4F /* Deck.swift */,
+				3E8356052705A9BB0046AE83 /* User.swift */,
+				3E83560F2705C1F20046AE83 /* Room.swift */,
+				3E8356112705C2040046AE83 /* Event.swift */,
+				3E329892270A2330002DD185 /* Role.swift */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		3E3F55B227D0ADBC00F34B4F /* Mixer */ = {
+			isa = PBXGroup;
+			children = (
+				3E3F55B327D0ADD300F34B4F /* MixerViewController.swift */,
+				3E3F55B727D107D100F34B4F /* MixerBarView.swift */,
+			);
+			path = Mixer;
 			sourceTree = "<group>";
 		};
 		3E4CCF542705961F0062943C /* Networing */ = {
@@ -233,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				3ECF57612715E12E000856BA /* TabViewController.swift */,
+				3E3F55AA27CF432D00F34B4F /* BaseNavigationControlller.swift */,
 				3E1742EF270DEA5E0051DE24 /* Multiplayer */,
 				3E1742EE270DEA260051DE24 /* HandOut */,
 			);
@@ -242,14 +314,12 @@
 		3E8356042705A9A30046AE83 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3E3F55B127D0092700F34B4F /* Structs */,
+				3E3F559A27CB8F7B00F34B4F /* DataStorage.swift */,
 				3E5B087327072FA800265422 /* UserManager.swift */,
 				3EE005E1270EF9F90038C1EA /* RoomCache.swift */,
 				3E1742EA270DE96B0051DE24 /* RoomViewModel.swift */,
 				3E496AD4270C856B003D915C /* RolesViewModel.swift */,
-				3E8356052705A9BB0046AE83 /* User.swift */,
-				3E83560F2705C1F20046AE83 /* Room.swift */,
-				3E8356112705C2040046AE83 /* Event.swift */,
-				3E329892270A2330002DD185 /* Role.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,15 +327,12 @@
 		3E8356072705ABCC0046AE83 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				3E3F55AC27CFAF5A00F34B4F /* Components */,
 				3EE005DE270EF5B60038C1EA /* Cell */,
 				3E8356132705C67B0046AE83 /* View */,
-				3E83561D2705CE9F0046AE83 /* StateTextField.swift */,
 				3E8356082705ABDC0046AE83 /* Design.swift */,
 				3E8356182705CBE90046AE83 /* Colors.swift */,
 				3E5B08792709A1A500265422 /* Icons.swift */,
-				3E5B087D2709E0B000265422 /* StateCollectionView.swift */,
-				3E7E336F2710730000EBC684 /* BigTitleView.swift */,
-				3E7E337127107B3100EBC684 /* CardView.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -277,6 +344,7 @@
 				3E1979F927B682C7002A33A5 /* FloatingGesture.swift */,
 				3E5B0875270731FB00265422 /* LoadingState.swift */,
 				3E01179727C57A0E007DF604 /* Math.swift */,
+				3E3F55A027CE686900F34B4F /* TableCell.swift */,
 			);
 			path = AppUtils;
 			sourceTree = "<group>";
@@ -284,11 +352,14 @@
 		3E8356132705C67B0046AE83 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3E3F55A427CEA55F00F34B4F /* Deck */,
 				3E8356142705C69D0046AE83 /* DescTextFieldView.swift */,
 				3E8356162705CACE0046AE83 /* StackListView.swift */,
 				3E5B087B2709D95C00265422 /* RoomView.swift */,
 				3E496AD0270AF7C3003D915C /* RoleView.swift */,
 				3E1979F527B6725E002A33A5 /* CardsStackView.swift */,
+				3E7E336F2710730000EBC684 /* BigTitleView.swift */,
+				3E7E337127107B3100EBC684 /* CardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -437,6 +508,7 @@
 				3E23768A271F24B4004E3D93 /* RolePickerViewController.swift in Sources */,
 				3E1742DF270CACDD0051DE24 /* ColorPickerViewController.swift in Sources */,
 				3E5B0878270744BF00265422 /* Observable.swift in Sources */,
+				3E3F55A327CE68EA00F34B4F /* DeckView.swift in Sources */,
 				3E496AD1270AF7C3003D915C /* RoleView.swift in Sources */,
 				3E1742E9270DE8FC0051DE24 /* RoomViewController.swift in Sources */,
 				3E8356152705C69D0046AE83 /* DescTextFieldView.swift in Sources */,
@@ -445,15 +517,18 @@
 				3E8356122705C2050046AE83 /* Event.swift in Sources */,
 				3E1742EB270DE96B0051DE24 /* RoomViewModel.swift in Sources */,
 				3E1742E7270DC87B0051DE24 /* DeckNavigationController.swift in Sources */,
+				3E3F55B027D008FD00F34B4F /* Deck.swift in Sources */,
 				3E3F559727CB6E8800F34B4F /* DecksViewController.swift in Sources */,
 				3E5B087A2709A1A500265422 /* Icons.swift in Sources */,
 				3E1979F427B670DA002A33A5 /* Gesture.swift in Sources */,
 				3EE005E2270EF9F90038C1EA /* RoomCache.swift in Sources */,
 				3ECF57602715DE6F000856BA /* SingleplayerViewController.swift in Sources */,
 				3E1979F627B6725E002A33A5 /* CardsStackView.swift in Sources */,
+				3E3F55A827CEA61100F34B4F /* CircleRolesView.swift in Sources */,
 				3E83561E2705CE9F0046AE83 /* StateTextField.swift in Sources */,
 				3E01179827C57A0E007DF604 /* Math.swift in Sources */,
 				3E83561C2705CD1C0046AE83 /* Extension.swift in Sources */,
+				3E3F55B627D0D1B600F34B4F /* Stepper.swift in Sources */,
 				3E7E337227107B3100EBC684 /* CardView.swift in Sources */,
 				3E83560E2705B9EA0046AE83 /* AutorizationViewController.swift in Sources */,
 				3E5B087C2709D95C00265422 /* RoomView.swift in Sources */,
@@ -466,10 +541,17 @@
 				3E7E336E27102DDD00EBC684 /* CardViewController.swift in Sources */,
 				3ECF57622715E12E000856BA /* TabViewController.swift in Sources */,
 				3E8356002705A3100046AE83 /* MultiplayerViewController.swift in Sources */,
+				3E3F559F27CE38E600F34B4F /* _DeckViewController.swift in Sources */,
 				3E1742E3270DA4C90051DE24 /* DeckViewController.swift in Sources */,
+				3E3F559D27CBA26500F34B4F /* StateTableView.swift in Sources */,
+				3E3F559B27CB8F7B00F34B4F /* DataStorage.swift in Sources */,
+				3E3F55B427D0ADD300F34B4F /* MixerViewController.swift in Sources */,
+				3E3F55B827D107D100F34B4F /* MixerBarView.swift in Sources */,
+				3E3F55AB27CF432D00F34B4F /* BaseNavigationControlller.swift in Sources */,
 				3E1742E1270D97EB0051DE24 /* PlayersCountViewController.swift in Sources */,
 				3E8356172705CACE0046AE83 /* StackListView.swift in Sources */,
 				3ECF57582715A5C1000856BA /* CardsViewController.swift in Sources */,
+				3E3F55A127CE686900F34B4F /* TableCell.swift in Sources */,
 				3E5B087E2709E0B000265422 /* StateCollectionView.swift in Sources */,
 				3E1979FA27B682C7002A33A5 /* FloatingGesture.swift in Sources */,
 				3E1742ED270DEA0B0051DE24 /* DeckInfoViewController.swift in Sources */,
@@ -477,7 +559,9 @@
 				3E496AD3270B4917003D915C /* RoleViewController.swift in Sources */,
 				3E496AD5270C856B003D915C /* RolesViewModel.swift in Sources */,
 				3E0491FE26F20182000F725D /* AppDelegate.swift in Sources */,
+				3E3F55AE27CFAF7400F34B4F /* InsetsTextField.swift in Sources */,
 				3E1979F827B67994002A33A5 /* CardsStackViewController.swift in Sources */,
+				3E3F55A627CEA5F200F34B4F /* CircleRoleView.swift in Sources */,
 				3ED2E916270F268A0040DD33 /* UserCell.swift in Sources */,
 				3E8356092705ABDC0046AE83 /* Design.swift in Sources */,
 				3E329893270A2331002DD185 /* Role.swift in Sources */,

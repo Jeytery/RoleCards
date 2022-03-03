@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "tick25.png",
+      "filename" : "cards25.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "tick50.png",
+      "filename" : "cards50.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "tick75.png",
+      "filename" : "cards75.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

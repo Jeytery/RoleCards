@@ -10,6 +10,14 @@ import UIKit
 
 class TabViewController: UITabBarController {
     
+    private let icons = [Icons.play, Icons.decks, Icons.social]
+    
+    private let tabControllers = [
+        SingleplayerNavigationController(),
+        BigTitleNavigationController(rootViewController: DecksViewController()),
+        BigTitleNavigationController(rootViewController: MultiplayerViewController())
+    ]
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         configureViewControllers()
@@ -25,20 +33,15 @@ class TabViewController: UITabBarController {
 //MARK: - ui
 extension TabViewController {
     private func configureViewControllers() {
-        let singleplayerVC = SingleplayerNavigationController()
-        let multiplayerVC = BigTitleNavigationController(rootViewController: MultiplayerViewController())
-        
-        setViewControllers([singleplayerVC, multiplayerVC], animated: false)
+        setViewControllers(tabControllers, animated: false)
     }
 
     private func configureIcons() {
         guard let items = tabBar.items else { return }
-        
-        let images = [Icons.play, Icons.social]
         for i in 0..<items.count {
             let item = items[i]
             item.title = ""
-            item.image = images[i]
+            item.image = icons[i]
         }
         
         tabBar.items?.forEach() {
@@ -47,9 +50,6 @@ extension TabViewController {
     }
     
     private func configureColors() {
-        //UITabBar.appearance().layer.borderWidth = 0.0
-        //UITabBar.appearance().clipsToBounds = true
-        //tabBar.barTintColor = Colors.interface
         tabBar.tintColor = Colors.tabBar
     }
 }
