@@ -42,7 +42,7 @@ extension BaseNavigationController {
     private func configureCloseButton(side: ButtonSide) {
         let customButton = UIButton()
         customButton.setImage(Icons.cross, for: .normal)
-        customButton.addTarget(self, action: #selector(action), for: .touchDown)
+        customButton.addTarget(self, action: #selector(action), for: .touchUpInside)
         let barView = UIBarButtonItem(customView: customButton)
                                       
         barView.customView?.translatesAutoresizingMaskIntoConstraints = false

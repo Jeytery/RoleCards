@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias Decks = [Deck]
+
 struct Deck: Codable {
     let name: String
     let roles: Roles

@@ -41,6 +41,8 @@
 		3E3F55B427D0ADD300F34B4F /* MixerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55B327D0ADD300F34B4F /* MixerViewController.swift */; };
 		3E3F55B627D0D1B600F34B4F /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55B527D0D1B600F34B4F /* Stepper.swift */; };
 		3E3F55B827D107D100F34B4F /* MixerBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55B727D107D100F34B4F /* MixerBarView.swift */; };
+		3E3F55BA27D13F3700F34B4F /* RoleCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55B927D13F3700F34B4F /* RoleCountView.swift */; };
+		3E3F55BC27D2301D00F34B4F /* DeckDisplaerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F55BB27D2301D00F34B4F /* DeckDisplaerViewController.swift */; };
 		3E496AD1270AF7C3003D915C /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD0270AF7C3003D915C /* RoleView.swift */; };
 		3E496AD3270B4917003D915C /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD2270B4917003D915C /* RoleViewController.swift */; };
 		3E496AD5270C856B003D915C /* RolesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E496AD4270C856B003D915C /* RolesViewModel.swift */; };
@@ -113,6 +115,8 @@
 		3E3F55B327D0ADD300F34B4F /* MixerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerViewController.swift; sourceTree = "<group>"; };
 		3E3F55B527D0D1B600F34B4F /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
 		3E3F55B727D107D100F34B4F /* MixerBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerBarView.swift; sourceTree = "<group>"; };
+		3E3F55B927D13F3700F34B4F /* RoleCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleCountView.swift; sourceTree = "<group>"; };
+		3E3F55BB27D2301D00F34B4F /* DeckDisplaerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckDisplaerViewController.swift; sourceTree = "<group>"; };
 		3E496AD0270AF7C3003D915C /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		3E496AD2270B4917003D915C /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
 		3E496AD4270C856B003D915C /* RolesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesViewModel.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 			children = (
 				3E3F559627CB6E8800F34B4F /* DecksViewController.swift */,
 				3E3F559E27CE38E600F34B4F /* _DeckViewController.swift */,
+				3E3F55BB27D2301D00F34B4F /* DeckDisplaerViewController.swift */,
 			);
 			path = Decks;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				3E1979F527B6725E002A33A5 /* CardsStackView.swift */,
 				3E7E336F2710730000EBC684 /* BigTitleView.swift */,
 				3E7E337127107B3100EBC684 /* CardView.swift */,
+				3E3F55B927D13F3700F34B4F /* RoleCountView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -524,6 +530,7 @@
 				3EE005E2270EF9F90038C1EA /* RoomCache.swift in Sources */,
 				3ECF57602715DE6F000856BA /* SingleplayerViewController.swift in Sources */,
 				3E1979F627B6725E002A33A5 /* CardsStackView.swift in Sources */,
+				3E3F55BC27D2301D00F34B4F /* DeckDisplaerViewController.swift in Sources */,
 				3E3F55A827CEA61100F34B4F /* CircleRolesView.swift in Sources */,
 				3E83561E2705CE9F0046AE83 /* StateTextField.swift in Sources */,
 				3E01179827C57A0E007DF604 /* Math.swift in Sources */,
@@ -541,6 +548,7 @@
 				3E7E336E27102DDD00EBC684 /* CardViewController.swift in Sources */,
 				3ECF57622715E12E000856BA /* TabViewController.swift in Sources */,
 				3E8356002705A3100046AE83 /* MultiplayerViewController.swift in Sources */,
+				3E3F55BA27D13F3700F34B4F /* RoleCountView.swift in Sources */,
 				3E3F559F27CE38E600F34B4F /* _DeckViewController.swift in Sources */,
 				3E1742E3270DA4C90051DE24 /* DeckViewController.swift in Sources */,
 				3E3F559D27CBA26500F34B4F /* StateTableView.swift in Sources */,

@@ -18,7 +18,7 @@ class DecksViewController: UIViewController {
     typealias Decks = [Deck]
     
     private let tableView = StateTableView(title: "No decks...")
-    private let decksCenter = DataStorage<Deck>(id: "DecksViewController.DecksCenter.id")
+    private let decksCenter = DataStorage<Deck>(id: .deck)
     
     private var currentIndex: Int = 0
     

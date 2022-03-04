@@ -18,6 +18,11 @@ class DataStorage<ElementType: Codable> {
         self.id = id
         self.data = getData() ?? []
     }
+    
+    init(id: Identifier) {
+        self.id = id.rawValue
+        self.data = getData() ?? []
+    }
 }
 
 extension DataStorage {
@@ -56,5 +61,11 @@ extension DataStorage {
     func clear() {
         userDefaults.removePersistentDomain(forName: id)
         data.removeAll()
+    }
+}
+
+extension DataStorage {
+    enum Identifier: String {
+        case deck = "DataStorage.DecksCenter.id"
     }
 }

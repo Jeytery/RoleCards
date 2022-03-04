@@ -7,18 +7,67 @@
 
 import UIKit
 
+protocol RoleCountTableCellDelegate: AnyObject {
+    func roleCountTableCell(
+        _ cell: RoleCountTableCell,
+        didChange count: Int,
+        of role: Role,
+        for indexPath: IndexPath
+    )
+}
+
+class RoleCountTableCell: TableCell<RoleCountView>, RoleCountViewDelegate {
+    var delegate: RoleCountTableCellDelegate?
+    var indexPath: IndexPath!
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        baseView.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func roleCountView(_ view: RoleCountView, didChange count: Int, of role: Role) {
+        delegate?.roleCountTableCell(self, didChange: count, of: role, for: indexPath)
+    }
+}
+
 class MixerViewController: UIViewController {
     
     private let tableView = StateTableView(title: "No roles...")
     
+    private let cellHeight: CGFloat = 100
+    
     private var roles: Roles = []
+    private var roleCounts: [Int] = []
     
     init() {
         super.init(nibName: nil, bundle: nil)
         
-        view.backgroundColor = tableView.backgroundColor
-        title = "Player 0"
+        configureUI()
+        configureTableView()
+        configureMixerBarView()
+    }
+    
+    required init?(coder: NSCoder) { fatalError() }
+}
+
+//MARK: - ui
+extension MixerViewController {
+    private func configureMixerBarView() {
+        let mixerBarView = MixerBarView()
+        mixerBarView.delegate = self
         
+        view.addSubview(mixerBarView)
+        mixerBarView.translatesAutoresizingMaskIntoConstraints = false
+        mixerBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        mixerBarView.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        mixerBarView.setBottomConstraint(self, constant: -20)
+    }
+    
+    private func configureTableView() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.setTopConstraint(self)
@@ -28,24 +77,17 @@ class MixerViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(TableCell<RoleCountView>.self, forCellReuseIdentifier: "cell")
+        tableView.register(RoleCountTableCell.self, forCellReuseIdentifier: "cell")
         tableView.allowsSelection = false
-        
-        // mixer bar
-        
-        let mixerBarView = MixerBarView()
-        mixerBarView.delegate = self
-        
-        view.addSubview(mixerBarView)
-        mixerBarView.translatesAutoresizingMaskIntoConstraints = false
-        mixerBarView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        mixerBarView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        mixerBarView.setBottomConstraint(self, constant: -20)
     }
     
-    required init?(coder: NSCoder) { fatalError() }
+    private func configureUI() {
+        view.backgroundColor = tableView.backgroundColor
+        title = "Player 0"
+    }
 }
 
+//MARK: - [d] tableView
 extension MixerViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return roles.count
@@ -55,9 +97,16 @@ extension MixerViewController: UITableViewDataSource, UITableViewDelegate {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableCell<RoleCountView>
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "cell",
+            for: indexPath
+        ) as! RoleCountTableCell
+        
         let role = roles[indexPath.row]
         cell.baseView.setRole(role)
+        cell.delegate = self
+        cell.indexPath = indexPath
+        cell.baseView.setCount(roleCounts[indexPath.row])
         return cell
     }
     
@@ -65,7 +114,7 @@ extension MixerViewController: UITableViewDataSource, UITableViewDelegate {
         _ tableView: UITableView,
         heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 100
+        return cellHeight
     }
     
     func tableView(
@@ -79,6 +128,8 @@ extension MixerViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+
+//MARK: - [d] mixerBar
 extension MixerViewController: MixerBarViewDelegate {
     func mixerBarView(_ mixerBar: MixerBarView, didTapTrash view: UIView) {
         roles.removeAll()
@@ -99,13 +150,23 @@ extension MixerViewController: MixerBarViewDelegate {
         present(nvc, animated: true, completion: nil)
     }
     
+    private var allRoles: Roles {
+        var allRoles: Roles = []
+        for index in 0 ..< roles.count {
+            let arr = repeatElement(roles[index], count: roleCounts[index])
+            allRoles += arr
+        }
+        return allRoles
+    }
+    
     func mixerBarView(_ mixerBar: MixerBarView, didTapShuffle view: UIView) {
-        let cardStackVC = CardsStackViewController(roles: roles.shuffled())
+        let cardStackVC = CardsStackViewController(roles: allRoles.shuffled())
         let nvc = BaseNavigationController(rootViewController: cardStackVC)
         present(nvc, animated: true, completion: nil)
     }
 }
 
+//MARK: - [d] roleVC
 extension MixerViewController: RoleViewControllerDelegate {
     func roleViewController(didReturn role: Role) {
         roles.append(role)
@@ -113,52 +174,25 @@ extension MixerViewController: RoleViewControllerDelegate {
     }
 }
 
+//MARK: - [d] decksVC
 extension MixerViewController: DecksViewControllerDelegate {
     func decksViewController(_ viewController: DecksViewController, didChoose deck: Deck) {
         viewController.dismiss(animated: true, completion: nil)
         roles.append(contentsOf: deck.roles)
+        roleCounts.append(contentsOf: repeatElement(0, count: deck.roles.count))
         tableView.reloadData()
     }
 }
 
-fileprivate class RoleCountView: UIView {
-    
-    private let stepper = Stepper(style: .dark)
-    private let circleRoleView = CircleRoleView()
-    private let roleNameLabel = UILabel()
-    
-    init() {
-        super.init(frame: .zero)
-        addSubview(stepper)
-        stepper.translatesAutoresizingMaskIntoConstraints = false
-        
-        stepper.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        stepper.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        stepper.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        stepper.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        
-        addSubview(circleRoleView)
-        circleRoleView.translatesAutoresizingMaskIntoConstraints = false
-        circleRoleView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        circleRoleView.heightAnchor.constraint(equalToConstant: 39).isActive = true
-        circleRoleView.widthAnchor.constraint(equalToConstant: 39).isActive = true
-        circleRoleView.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        
-        roleNameLabel.font = .systemFont(ofSize: 17, weight: .semibold)
-        
-        addSubview(roleNameLabel)
-        roleNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        roleNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        roleNameLabel.leftAnchor.constraint(equalTo: circleRoleView.rightAnchor, constant: 15).isActive = true
-        roleNameLabel.rightAnchor.constraint(equalTo: stepper.leftAnchor, constant: -15).isActive = true
+//MARK: - [d] roleCountView
+extension MixerViewController: RoleCountTableCellDelegate {
+    var playersCount: Int {
+        return roleCounts.reduce(0, +)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
-    
-    func setRole(_ role: Role) {
-        circleRoleView.setRole(role)
-        roleNameLabel.text = role.name
+    func roleCountTableCell(_ cell: RoleCountTableCell, didChange count: Int, of role: Role, for indexPath: IndexPath) {
+        roleCounts[indexPath.row] = count
+        title = "Player " + String(playersCount)
     }
 }
+

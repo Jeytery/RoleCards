@@ -27,7 +27,7 @@ fileprivate class CircleIconView: UIView {
         
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.image = icon
-        iconImageView.tintColor = .black
+        iconImageView.tintColor = Colors.text
         
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
     }
@@ -73,7 +73,7 @@ class MixerBarView: UIView {
         
         let trashView = CircleIconView(icon: Icons.trash, color: Colors.background, constant: 20)
         trashView.translatesAutoresizingMaskIntoConstraints = false
-        trashView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        trashView.widthAnchor.constraint(equalToConstant: 65).isActive = true
         
         let addCardView = CircleIconView(icon: Icons.addCard, color: Colors.background, constant: 40)
         let addDeckView = CircleIconView(icon: Icons.addDeck, color: Colors.background, constant: 40)
