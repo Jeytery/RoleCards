@@ -37,15 +37,27 @@ class RoleCountTableCell: TableCell<RoleCountView>, RoleCountViewDelegate {
 class MixerViewController: UIViewController {
     
     private let tableView = StateTableView(title: "No roles...")
+    private let mixerBarView = MixerBarView()
     
     private let cellHeight: CGFloat = 100
     
+    private var playersCount: Int { return roleCounts.reduce(0, +) }
+    
+    private var allRoles: Roles {
+        var allRoles: Roles = []
+        for index in 0 ..< roles.count {
+            let arr = repeatElement(roles[index], count: roleCounts[index])
+            allRoles += arr
+        }
+        return allRoles
+    }
+    
+    //state
     private var roles: Roles = []
     private var roleCounts: [Int] = []
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        
         configureUI()
         configureTableView()
         configureMixerBarView()
@@ -57,7 +69,6 @@ class MixerViewController: UIViewController {
 //MARK: - ui
 extension MixerViewController {
     private func configureMixerBarView() {
-        let mixerBarView = MixerBarView()
         mixerBarView.delegate = self
         
         view.addSubview(mixerBarView)
@@ -81,15 +92,39 @@ extension MixerViewController {
         tableView.allowsSelection = false
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.contentInset = .init(
+            top: 0,
+            left: 0,
+            bottom: mixerBarView.frame.height,
+            right: 0
+        )
+    }
+    
     private func configureUI() {
         view.backgroundColor = tableView.backgroundColor
         title = "Player 0"
+    }
+    
+    private func showEmptyAlert() {
+        let alert = UIAlertController(title: "No roles picked!", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func setPlayerCount(_ count: Int) {
+        title = "Player " + String(playersCount)
+        tabBarController?.tabBar.items?[0].title = ""
     }
 }
 
 //MARK: - [d] tableView
 extension MixerViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
         return roles.count
     }
     
@@ -124,21 +159,24 @@ extension MixerViewController: UITableViewDataSource, UITableViewDelegate {
     ) {
         if editingStyle != .delete { return }
         roles.remove(at: indexPath.row)
+        roleCounts.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        setPlayerCount(playersCount)
     }
 }
-
 
 //MARK: - [d] mixerBar
 extension MixerViewController: MixerBarViewDelegate {
     func mixerBarView(_ mixerBar: MixerBarView, didTapTrash view: UIView) {
         roles.removeAll()
+        roleCounts.removeAll()
         tableView.reloadData()
+        setPlayerCount(0)
     }
     
     func mixerBarView(_ mixerBar: MixerBarView, didTapAddCard view: UIView) {
         let roleVC = RoleViewController()
-        let baseNC = BaseNavigationController(rootViewController: roleVC)
+        let baseNC = BaseNavigationController(rootViewController: roleVC, withBigTitle: false)
         roleVC.delegate = self
         present(baseNC, animated: true, completion: nil)
     }
@@ -150,16 +188,8 @@ extension MixerViewController: MixerBarViewDelegate {
         present(nvc, animated: true, completion: nil)
     }
     
-    private var allRoles: Roles {
-        var allRoles: Roles = []
-        for index in 0 ..< roles.count {
-            let arr = repeatElement(roles[index], count: roleCounts[index])
-            allRoles += arr
-        }
-        return allRoles
-    }
-    
     func mixerBarView(_ mixerBar: MixerBarView, didTapShuffle view: UIView) {
+        if playersCount == 0 { return showEmptyAlert() }
         let cardStackVC = CardsStackViewController(roles: allRoles.shuffled())
         let nvc = BaseNavigationController(rootViewController: cardStackVC)
         present(nvc, animated: true, completion: nil)
@@ -168,8 +198,10 @@ extension MixerViewController: MixerBarViewDelegate {
 
 //MARK: - [d] roleVC
 extension MixerViewController: RoleViewControllerDelegate {
-    func roleViewController(didReturn role: Role) {
+    func roleViewController(_ viewController: RoleViewController, didTapConfirmButtonWith role: Role) {
+        viewController.dismiss(animated: true, completion: nil)
         roles.append(role)
+        roleCounts.append(0)
         tableView.reloadData()
     }
 }
@@ -186,13 +218,14 @@ extension MixerViewController: DecksViewControllerDelegate {
 
 //MARK: - [d] roleCountView
 extension MixerViewController: RoleCountTableCellDelegate {
-    var playersCount: Int {
-        return roleCounts.reduce(0, +)
-    }
-    
-    func roleCountTableCell(_ cell: RoleCountTableCell, didChange count: Int, of role: Role, for indexPath: IndexPath) {
+    func roleCountTableCell(
+        _ cell: RoleCountTableCell,
+        didChange count: Int,
+        of role: Role,
+        for indexPath: IndexPath
+    ) {
         roleCounts[indexPath.row] = count
-        title = "Player " + String(playersCount)
+        setPlayerCount(playersCount)
     }
 }
 

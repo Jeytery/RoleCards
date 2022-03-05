@@ -75,8 +75,8 @@ class MixerBarView: UIView {
         trashView.translatesAutoresizingMaskIntoConstraints = false
         trashView.widthAnchor.constraint(equalToConstant: 65).isActive = true
         
-        let addCardView = CircleIconView(icon: Icons.addCard, color: Colors.background, constant: 40)
-        let addDeckView = CircleIconView(icon: Icons.addDeck, color: Colors.background, constant: 40)
+        let addCardView = CircleIconView(icon: Icons.addCard, color: Colors.background, constant: 35)
+        let addDeckView = CircleIconView(icon: Icons.addDeck, color: Colors.background, constant: 35)
         let shuffleView = CircleIconView(icon: Icons.shuffle, color: Colors.background, constant: 20)
         
         list.addArrangedSubview(trashView)

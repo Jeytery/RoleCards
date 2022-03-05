@@ -25,6 +25,7 @@
 		3E1979F827B67994002A33A5 /* CardsStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1979F727B67994002A33A5 /* CardsStackViewController.swift */; };
 		3E1979FA27B682C7002A33A5 /* FloatingGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1979F927B682C7002A33A5 /* FloatingGesture.swift */; };
 		3E23768A271F24B4004E3D93 /* RolePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E237689271F24B4004E3D93 /* RolePickerViewController.swift */; };
+		3E2A68D527D2AE2D00E86157 /* InsetsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2A68D427D2AE2D00E86157 /* InsetsTableCell.swift */; };
 		3E329893270A2331002DD185 /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E329892270A2330002DD185 /* Role.swift */; };
 		3E329897270A2E0D002DD185 /* RolesViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E329896270A2E0D002DD185 /* RolesViewControllers.swift */; };
 		3E3F559727CB6E8800F34B4F /* DecksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F559627CB6E8800F34B4F /* DecksViewController.swift */; };
@@ -99,6 +100,7 @@
 		3E1979F727B67994002A33A5 /* CardsStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsStackViewController.swift; sourceTree = "<group>"; };
 		3E1979F927B682C7002A33A5 /* FloatingGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingGesture.swift; sourceTree = "<group>"; };
 		3E237689271F24B4004E3D93 /* RolePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolePickerViewController.swift; sourceTree = "<group>"; };
+		3E2A68D427D2AE2D00E86157 /* InsetsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetsTableCell.swift; sourceTree = "<group>"; };
 		3E329892270A2330002DD185 /* Role.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Role.swift; sourceTree = "<group>"; };
 		3E329896270A2E0D002DD185 /* RolesViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolesViewControllers.swift; sourceTree = "<group>"; };
 		3E3F559627CB6E8800F34B4F /* DecksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksViewController.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				3E5B0875270731FB00265422 /* LoadingState.swift */,
 				3E01179727C57A0E007DF604 /* Math.swift */,
 				3E3F55A027CE686900F34B4F /* TableCell.swift */,
+				3E2A68D427D2AE2D00E86157 /* InsetsTableCell.swift */,
 			);
 			path = AppUtils;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				3E5B087C2709D95C00265422 /* RoomView.swift in Sources */,
 				3E8356062705A9BB0046AE83 /* User.swift in Sources */,
 				3E8356102705C1F20046AE83 /* Room.swift in Sources */,
+				3E2A68D527D2AE2D00E86157 /* InsetsTableCell.swift in Sources */,
 				3E1742E5270DABBF0051DE24 /* Luma.swift in Sources */,
 				3E329897270A2E0D002DD185 /* RolesViewControllers.swift in Sources */,
 				3E4CCF57270596670062943C /* API.swift in Sources */,

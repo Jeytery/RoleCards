@@ -7,16 +7,18 @@
 
 import UIKit
 
-class StateTextField: UITextField {
+class StateTextField: InsestsTextField {
     
     var didTap: (() -> Void)?
     
     var didEnter: (() -> Void)?
     
+    private let leftInset: CGFloat = 20
+    
     init() {
-        super.init(frame: .zero)
+        super.init(insests: .init(top: 0, left: leftInset, bottom: 0, right: 0))
         delegate = self
-        setStandsrtStyle()
+        setStandartStyle()
         addTarget(self, action: #selector(didEnterValue), for: .editingChanged)
     }
     
@@ -25,7 +27,7 @@ class StateTextField: UITextField {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     private func popState() {
-        setStandsrtStyle()
+        setStandartStyle()
     }
 }
 

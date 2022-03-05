@@ -20,7 +20,7 @@ class TableCell<T: UIView>: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setView(_ _view: T) {
+    func setView(_ _view: T) {
         self.baseView = _view
         contentView.addSubview(baseView)
         baseView.translatesAutoresizingMaskIntoConstraints = false

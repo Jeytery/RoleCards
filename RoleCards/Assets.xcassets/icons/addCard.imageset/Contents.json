@@ -1,12 +1,10 @@
 {
   "images" : [
     {
-      "filename" : "addCard25.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "addCard50.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

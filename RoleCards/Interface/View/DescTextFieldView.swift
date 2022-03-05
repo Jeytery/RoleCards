@@ -43,7 +43,7 @@ extension DescTextFieldView {
     
     private func configureTitleLabel(placeholder: String) {
         addSubview(textField)
-        textField.setStandsrtStyle()
+        textField.setStandartStyle()
         textField.placeholder = placeholder
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -57,7 +57,7 @@ extension DescTextFieldView {
     private func popErrorState() {
         titleLabel.textColor = Colors.text
         titleLabel.text = title
-        textField.setStandsrtStyle()
+        textField.setStandartStyle()
     }
     
     private func setErrorState() {

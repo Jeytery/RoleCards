@@ -39,6 +39,7 @@ extension DataStorage {
     
     func saveData(_ data: [ElementType]) {
         guard let _data = try? JSONEncoder().encode(data) else { return }
+        userDefaults.removePersistentDomain(forName: id)
         userDefaults.set(_data, forKey: id)
     }
     

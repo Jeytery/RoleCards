@@ -166,7 +166,9 @@ extension RolesViewController:
 
 //MARK: - [d] roleVC
 extension RolesViewController: RoleViewControllerDelegate {
-    func roleViewController(didReturn role: Role) {
+    func roleViewController(_ viewController: RoleViewController, didTapConfirmButtonWith role: Role) {
+        viewController.dismiss(animated: true, completion: nil)
+        
         if roleActionType == .add {
             viewModel.saveRole(role)
         }

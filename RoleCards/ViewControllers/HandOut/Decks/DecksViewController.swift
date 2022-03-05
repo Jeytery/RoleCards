@@ -105,7 +105,11 @@ extension DecksViewController: UITableViewDelegate, UITableViewDataSource {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableCell<DeckView>
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "cell",
+            for: indexPath
+        ) as! TableCell<DeckView>
+        
         cell.baseView.setDeck(decksCenter.data[indexPath.row])
         return cell
     }

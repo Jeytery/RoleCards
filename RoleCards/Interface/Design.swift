@@ -8,15 +8,17 @@
 import UIKit
 
 extension UITextField {
-    func setStandsrtStyle() {
+    func setStandartStyle() {
         layer.masksToBounds = true
-        backgroundColor = Colors.interface
         textColor = Colors.text
-        borderStyle = .roundedRect
         layer.cornerRadius = DesignProperties.cornerRadius
         clearButtonMode = .whileEditing
+        
+        backgroundColor = Colors.navigation
+        font = .systemFont(ofSize: 18, weight: .semibold)
+        
         layer.borderWidth = 1
-        layer.borderColor = Colors.interface.cgColor
+        layer.borderColor = Colors.background.cgColor
     }
 }
 

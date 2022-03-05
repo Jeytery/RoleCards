@@ -132,13 +132,14 @@ extension Stepper {
     
     private func configurePlusView() {
         plusButton.setPrimaryStyle(icon: Icons.plus, color: Colors.background, constant: 13)
+        plusButton.layer.cornerRadius = DesignProperties.cornerRadius - 2
+        
         addSubview(plusButton)
-        addShadow(_view: plusButton)
         
         plusButton.translatesAutoresizingMaskIntoConstraints = false
-        plusButton.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
-        plusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2).isActive = true
-        plusButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -2).isActive = true
+        plusButton.topAnchor.constraint(equalTo: topAnchor, constant: 3).isActive = true
+        plusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3).isActive = true
+        plusButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -3).isActive = true
         plusButton.widthAnchor.constraint(equalTo: heightAnchor).isActive = true
         
         plusButton.tintColor = Colors.text
@@ -150,14 +151,15 @@ extension Stepper {
     
     private func configureMinusView() {
         minusButton.setPrimaryStyle(icon: Icons.minus, color: Colors.background, constant: 13)
+        minusButton.layer.cornerRadius = DesignProperties.cornerRadius - 2
+        
         addSubview(minusButton)
-        addShadow(_view: minusButton)
         
         minusButton.translatesAutoresizingMaskIntoConstraints = false
-        minusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 2).isActive = true
+        minusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 3).isActive = true
         minusButton.widthAnchor.constraint(equalTo: heightAnchor).isActive = true
-        minusButton.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
-        minusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2).isActive = true
+        minusButton.topAnchor.constraint(equalTo: topAnchor, constant: 3).isActive = true
+        minusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3).isActive = true
 
         minusButton.tintColor = Colors.text
         minusButton.layer.masksToBounds = false
@@ -175,13 +177,5 @@ extension Stepper {
         else {
             countLabel.text = String(Int(value))
         }
-    }
-    
-    private func addShadow(_view: UIView) {
-        _view.layer.shadowColor = UIColor.black.cgColor
-        _view.layer.shadowOpacity = 0.08
-        _view.layer.shadowOffset = .init(width: 3, height: 0)
-        _view.layer.shadowRadius = 6
-        _view.layer.shouldRasterize = true
     }
 }

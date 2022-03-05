@@ -38,7 +38,7 @@ class _DeckViewController: UIViewController {
         configureUI()
         handleKeyboardNotifications()
         configureSaveButton()
-        configreNameTextField()
+        configureNameTextField()
     }
     
     required init?(coder: NSCoder) { fatalError() }
@@ -69,7 +69,7 @@ extension _DeckViewController {
     @objc func leftButtonAction() {
         let roleVC = RoleViewController()
         roleVC.delegate = self
-        let nvc = BaseNavigationController(rootViewController: roleVC)
+        let nvc = BaseNavigationController(rootViewController: roleVC, withBigTitle: false)
         present(nvc, animated: true, completion: nil)
     }
 }
@@ -84,12 +84,12 @@ extension _DeckViewController {
         nameTextField.text = deck.name
     }
     
-    private func configreNameTextField() {
+    private func configureNameTextField() {
         nameTextField.placeholder = "Deck name"
         nameTextField.font = .systemFont(ofSize: 18, weight: .semibold)
 
         nameTextField.layer.masksToBounds = true
-        nameTextField.backgroundColor = Colors.background
+        nameTextField.backgroundColor = Colors.background 
         nameTextField.clearButtonMode = .whileEditing
         nameTextField.layer.borderWidth = 1
         nameTextField.layer.cornerRadius = DesignProperties.cornerRadius
@@ -248,7 +248,8 @@ extension _DeckViewController {
 
 //MARK: - [d] roleVC
 extension _DeckViewController: RoleViewControllerDelegate {
-    func roleViewController(didReturn role: Role) {
+    func roleViewController(_ viewController: RoleViewController, didTapConfirmButtonWith role: Role) {
+        viewController.dismiss(animated: true, completion: nil)
         roles.append(role)
         tableView.reloadData()
     }
