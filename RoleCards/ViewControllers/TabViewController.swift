@@ -14,8 +14,8 @@ class TabViewController: UITabBarController {
     
     private let tabControllers = [
         SingleplayerNavigationController(),
-        BigTitleNavigationController(rootViewController: DecksViewController()),
-        BigTitleNavigationController(rootViewController: MultiplayerViewController())
+        BaseNavigationController(rootViewController: DecksViewController(), buttonSide: .dontShow, withBigTitle: true),
+        BaseNavigationController(rootViewController: MultiplayerViewController(), withBigTitle: true)
     ]
     
     init() {

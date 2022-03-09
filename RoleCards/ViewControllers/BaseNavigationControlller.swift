@@ -12,6 +12,7 @@ class BaseNavigationController: UINavigationController {
     enum ButtonSide {
         case left
         case right
+        case dontShow
     }
     
     @objc func action() { dismiss(animated: true, completion: nil) }
@@ -52,7 +53,7 @@ extension BaseNavigationController {
         if side == .right {
             topViewController?.navigationItem.rightBarButtonItem = barView
         }
-        else {
+        else if side == .left {
             topViewController?.navigationItem.leftBarButtonItem = barView
         }
     }

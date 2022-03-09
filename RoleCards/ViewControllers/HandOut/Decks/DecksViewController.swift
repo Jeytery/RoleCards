@@ -20,18 +20,18 @@ class DecksViewController: UIViewController {
     private let tableView = StateTableView(title: "No decks...")
     private let decksCenter = DataStorage<Deck>(id: .deck)
     
+    private let deckDisplayerVC = DecksDisplaerViewController(deletable: true)
+    
     private var currentIndex: Int = 0
     
     init() {
         super.init(nibName: nil, bundle: nil)
         configureUI()
-        configureList()
         configureAddButton()
+        configureDeckDisplayerVC()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
+
+    required init?(coder: NSCoder) { fatalError() }
 }
 
 extension DecksViewController {
@@ -39,35 +39,33 @@ extension DecksViewController {
         view.backgroundColor = tableView.backgroundColor
         title = "Decks"
     }
-    
-    private func configureList() {
-        tableView.delegate = self
-        tableView.dataSource = self
+
+    private func configureDeckDisplayerVC() {
+        addChild(deckDisplayerVC)
+        view.addSubview(deckDisplayerVC.view)
         
-        tableView.registerView(DeckView.self)
+        deckDisplayerVC.view.translatesAutoresizingMaskIntoConstraints = false
+        deckDisplayerVC.view.setTopConstraint(self)
+        deckDisplayerVC.view.setSideConstraints(self)
+        deckDisplayerVC.view.setBottomConstraint(self)
         
-        tableView.frame = view.bounds
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        tableView.setBottomConstraint(self)
-        tableView.setTopConstraint(self)
+        deckDisplayerVC.didMove(toParent: self)
+        deckDisplayerVC.delegate = self
     }
-    
+
     private func configureAddButton() {
         let button = UIBarButtonItem(barButtonSystemItem: .add,
                                      target: self,
                                      action: #selector(leftButtonAction))
         navigationItem.rightBarButtonItem = button
     }
-    
+
     private func addEmptyDeck(title: String) {
         let deck = Deck(name: title, roles: [])
         decksCenter.saveElement(deck)
-        tableView.reloadData()
+        deckDisplayerVC.reload()
     }
-    
+
     @objc func leftButtonAction() {
         let alert = UIAlertController(title: "Enter deck name", message: nil, preferredStyle: .alert)
 
@@ -84,76 +82,57 @@ extension DecksViewController {
             guard textField.text != "" else { return }
             self?.addEmptyDeck(title: textField.text ?? "Unnamed deck")
         }
-        
+
         alert.addAction(action)
         alert.addAction(UIAlertAction(title: "Close", style: .default))
-        
+
         self.present(alert, animated: true, completion: nil)
     }
 }
 
-//MARK: - [d] list
-extension DecksViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int
-    ) -> Int {
-        return decksCenter.data.count
+//MARK: - [d] deckDispalyerVC
+extension DecksViewController: DecksDisplayerViewControllerDelegate {
+    func decksDisplayerShouldDisplayDecks(
+        _ viewController: DecksDisplaerViewController
+    ) -> Decks {
+        return decksCenter.data
     }
-    
-    func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: "cell",
-            for: indexPath
-        ) as! TableCell<DeckView>
-        
-        cell.baseView.setDeck(decksCenter.data[indexPath.row])
-        return cell
-    }
-    
-    func tableView(
-        _ tableView: UITableView,
-        heightForRowAt indexPath: IndexPath
-    ) -> CGFloat {
-        return 100
-    }
-    
-    func tableView(
-        _ tableView: UITableView,
-        commit editingStyle: UITableViewCell.EditingStyle,
-        forRowAt indexPath: IndexPath
+
+    func decksDisplayerViewController(
+        _ viewController: DecksDisplaerViewController,
+        didSelectedAt indexPath: IndexPath
     ) {
-        if editingStyle != .delete { return }
-        decksCenter.removeElement(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)  {
-        if delegate != nil {
-            delegate?.decksViewController(self, didChoose: decksCenter.data[indexPath.row])
-            return
-        }
         let deck = decksCenter.data[indexPath.row]
         currentIndex = indexPath.row
-        
-        let deckVC = _DeckViewController(deck: deck)
+
+        let deckVC = DeckViewController(deck: deck)
         deckVC.delegate = self
+
+        let nvc = BaseNavigationController(
+            rootViewController: deckVC,
+            buttonSide: .left,
+            withBigTitle: false
+        )
         
-        let nvc = BaseNavigationController(rootViewController: deckVC,
-                                           buttonSide: .left,
-                                           withBigTitle: false)
         present(nvc, animated: true, completion: nil)
     }
+    
+    func decksDisplayerViewController(
+        _ viewController: DecksDisplaerViewController,
+        tableView: UITableView,
+        didDeletedAt indexPath: IndexPath
+    ) {
+        decksCenter.removeElement(at: indexPath.row)
+    }
+    
+    func decksDispalyerShouldAllowDelete(_ viewController: UIViewController) -> Bool { return true }
 }
 
 //MARK: - [d] deckVC
-extension DecksViewController: _DeckViewControllerDelegate {
+extension DecksViewController: DeckViewControllerDelegate {
     func deckViewController(_ viewController: UIViewController, didTapSaveButtonWith deck: Deck) {
         viewController.dismiss(animated: true, completion: nil)
         decksCenter.updateElement(deck, at: currentIndex)
-        tableView.reloadData()
+        deckDisplayerVC.reload()
     }
 }

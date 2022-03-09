@@ -43,6 +43,8 @@ class MixerViewController: UIViewController {
     
     private var playersCount: Int { return roleCounts.reduce(0, +) }
     
+    private var deckCenter: DataStorage<Deck>!
+    
     private var allRoles: Roles {
         var allRoles: Roles = []
         for index in 0 ..< roles.count {
@@ -182,8 +184,10 @@ extension MixerViewController: MixerBarViewDelegate {
     }
     
     func mixerBarView(_ mixerBar: MixerBarView, didTapAddDeck view: UIView) {
-        let decksVC = DecksViewController()
-        let nvc = BaseNavigationController(rootViewController: decksVC)
+        let decksVC = DecksDisplaerViewController()
+        deckCenter = DataStorage<Deck>(id: .deck)
+        decksVC.title = "Decks"
+        let nvc = BaseNavigationController(rootViewController: decksVC, withBigTitle: false)
         decksVC.delegate = self
         present(nvc, animated: true, completion: nil)
     }
@@ -224,8 +228,22 @@ extension MixerViewController: RoleCountTableCellDelegate {
         of role: Role,
         for indexPath: IndexPath
     ) {
+        if roleCounts.isEmpty { return setPlayerCount(playersCount) }
         roleCounts[indexPath.row] = count
         setPlayerCount(playersCount)
     }
 }
 
+extension MixerViewController: DecksDisplayerViewControllerDelegate {
+    func decksDisplayerViewController(_ viewController: DecksDisplaerViewController, didSelectedAt indexPath: IndexPath) {
+        viewController.dismiss(animated: true, completion: nil)
+        let deck = deckCenter.data[indexPath.row]
+        roles.append(contentsOf: deck.roles)
+        roleCounts.append(contentsOf: repeatElement(0, count: deck.roles.count))
+        tableView.reloadData()
+    }
+    
+    func decksDisplayerShouldDisplayDecks(_ viewController: DecksDisplaerViewController) -> Decks {
+        return deckCenter.data
+    }
+}

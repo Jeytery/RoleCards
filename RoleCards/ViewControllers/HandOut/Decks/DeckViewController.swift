@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol _DeckViewControllerDelegate: AnyObject {
+protocol DeckViewControllerDelegate: AnyObject {
     func deckViewController(_ viewController: UIViewController, didTapSaveButtonWith deck: Deck)
 }
 
-class _DeckViewController: UIViewController {
+class DeckViewController: UIViewController {
 
-    weak var delegate: _DeckViewControllerDelegate?
+    weak var delegate: DeckViewControllerDelegate?
     
     private let tableView = StateTableView(title: "No roles...")
     
@@ -45,7 +45,7 @@ class _DeckViewController: UIViewController {
 }
 
 //MARK: - @objc
-extension _DeckViewController {
+extension DeckViewController {
     @objc func viewDidTap() {
         view.endEditing(true)
     }
@@ -75,7 +75,7 @@ extension _DeckViewController {
 }
 
 //MARK: - ui configuration
-extension _DeckViewController {
+extension DeckViewController {
     private func configureUI() {
         view.backgroundColor = tableView.backgroundColor
         title = "Deck"
@@ -149,7 +149,7 @@ extension _DeckViewController {
 }
 
 //MARK: - tableView logic
-extension _DeckViewController: UITableViewDataSource, UITableViewDelegate {
+extension DeckViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int
@@ -190,7 +190,7 @@ extension _DeckViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 //MARK: - tableView header/footer
-extension _DeckViewController {
+extension DeckViewController {
     var headerHeight: CGFloat { return 100 }
     var footerHeight: CGFloat { return 70 }
     
@@ -247,7 +247,7 @@ extension _DeckViewController {
 }
 
 //MARK: - [d] roleVC
-extension _DeckViewController: RoleViewControllerDelegate {
+extension DeckViewController: RoleViewControllerDelegate {
     func roleViewController(_ viewController: RoleViewController, didTapConfirmButtonWith role: Role) {
         viewController.dismiss(animated: true, completion: nil)
         roles.append(role)

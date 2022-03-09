@@ -31,14 +31,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-// due new sdk glitch i can't make large title in ViewController, idk why
-class BigTitleNavigationController: UINavigationController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if #available(iOS 11.0, *) {
-            navigationBar.prefersLargeTitles = true
-        }
-    }
-}
-
 

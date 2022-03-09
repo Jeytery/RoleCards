@@ -308,7 +308,6 @@ extension RoleViewController {
 
     @objc func confirmButtonAction() {
         role.name = nameTextField.text! == "" ? "Unnamed role" : nameTextField.text!
-        
         role.description = ""
         delegate?.roleViewController(self, didTapConfirmButtonWith: role)
     }

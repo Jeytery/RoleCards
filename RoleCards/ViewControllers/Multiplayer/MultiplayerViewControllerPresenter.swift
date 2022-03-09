@@ -69,7 +69,7 @@ extension MultiplayerViewControllerPresenter {
     private func showAutorize() {
         let autorizationVC = AutorizationViewContoller()
         autorizationVC.delegate = self
-        let nvc = BigTitleNavigationController(rootViewController: autorizationVC)
+        let nvc = BaseNavigationController(rootViewController: autorizationVC, withBigTitle: true)
         delegate.presentOverCurrentContetext(nvc)
     }
     

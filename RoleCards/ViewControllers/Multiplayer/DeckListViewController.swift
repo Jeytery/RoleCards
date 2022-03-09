@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol DeckViewControllerDelegate: AnyObject {
+protocol DeckListViewControllerDelegate: AnyObject {
     func deckViewController(_ viewController: UIViewController, didChoose roles: Roles)
 }
 
-class DeckViewController: UIViewController {
+class DeckListViewController: UIViewController {
     
-    weak var delegate: DeckViewControllerDelegate?
+    weak var delegate: DeckListViewControllerDelegate?
     
     private let list = StateCollectionView(title: "")
     
@@ -39,7 +39,7 @@ class DeckViewController: UIViewController {
 }
 
 //MARK: - internal functions
-extension DeckViewController {
+extension DeckListViewController {
     private func getStandartRole() -> Role {
         if let role = RolesViewModel.getFirstRole() { return role }
         return Role(name: "?", color: Colors.red.roleColor, description: "???")
@@ -53,7 +53,7 @@ extension DeckViewController {
 }
 
 //MARK: - ui
-extension DeckViewController {
+extension DeckListViewController {
     private func configureUI() {
         view.backgroundColor = Colors.background
         title = "Roles"
@@ -86,7 +86,7 @@ extension DeckViewController {
 }
 
 //MARK: - [d] List
-extension DeckViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension DeckListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int
@@ -151,7 +151,7 @@ extension DeckViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
 }
 
 //MARK: - [d] roleVC
-extension DeckViewController: RolesViewControllerDelegate {
+extension DeckListViewController: RolesViewControllerDelegate {
     func rolesViewController(didSelect: Role) {
         roles.remove(at: currentIndex)
         roles.insert(didSelect, at: currentIndex)

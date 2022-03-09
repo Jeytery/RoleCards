@@ -54,14 +54,14 @@ extension DeckNavigationController: DeckInfoViewControllerDelegate {
 //MARK: - [d] playersCountVC
 extension DeckNavigationController: PlayersCountViewControllerDelegate {
     func playersCountViewController(didChoosePlayers count: Int) {
-        let deckVC = DeckViewController(playersCount: count)
+        let deckVC = DeckListViewController(playersCount: count)
         deckVC.delegate = self
         pushViewController(deckVC, animated: true)
     }
 }
 
 //MARK: - [d] deckVC
-extension DeckNavigationController: DeckViewControllerDelegate {
+extension DeckNavigationController: DeckListViewControllerDelegate {
     func deckViewController(_ viewController: UIViewController, didChoose roles: Roles) {
         let database = Database.database().reference().child("rooms")
         guard let key = database.childByAutoId().key else { return }

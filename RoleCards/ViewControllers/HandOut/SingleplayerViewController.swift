@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SingleplayerNavigationController: BigTitleNavigationController {
+class SingleplayerNavigationController: UINavigationController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -22,19 +22,26 @@ class SingleplayerNavigationController: BigTitleNavigationController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if #available(iOS 11.0, *) {
+            navigationBar.prefersLargeTitles = true
+        }
+    }
 }
 
 //MARK: - playersCountVC
 extension SingleplayerNavigationController: PlayersCountViewControllerDelegate {
     func playersCountViewController(didChoosePlayers count: Int) {
-        let deckVC = DeckViewController(playersCount: count)
+        let deckVC = DeckListViewController(playersCount: count)
         deckVC.delegate = self
         pushViewController(deckVC, animated: true)
     }
 }
 
 //MARK: - deckVC
-extension SingleplayerNavigationController: DeckViewControllerDelegate {
+extension SingleplayerNavigationController: DeckListViewControllerDelegate {
     func deckViewController(_ viewController: UIViewController, didChoose roles: Roles) {
         let cardsVC = CardsStackViewController(roles: roles.shuffled())
         let nvc = BaseNavigationController(rootViewController: cardsVC)
