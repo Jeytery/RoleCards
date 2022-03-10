@@ -69,7 +69,13 @@ extension MultiplayerViewControllerPresenter {
     private func showAutorize() {
         let autorizationVC = AutorizationViewContoller()
         autorizationVC.delegate = self
-        let nvc = BaseNavigationController(rootViewController: autorizationVC, withBigTitle: true)
+        
+        let nvc = BaseNavigationController(
+            rootViewController: autorizationVC,
+            buttonSide: .dontShow,
+            withBigTitle: true
+        )
+        
         delegate.presentOverCurrentContetext(nvc)
     }
     
@@ -214,3 +220,4 @@ extension MultiplayerViewControllerPresenter {
         addUserToRoom(user, room)
     }
 }
+
