@@ -22,17 +22,10 @@ class DeckNavigationController: BaseNavigationController {
     private var roomPassword: String = ""
     
     init() {
-        super.init(nibName: nil, bundle: nil)
         let deckInfoVC = DeckInfoViewController()
+        super.init(rootViewController: deckInfoVC, buttonSide: .right, withBigTitle: false)
         deckInfoVC.delegate = self
         setViewControllers([deckInfoVC], animated: false)
-        
-        let doneButton = UIBarButtonItem(image: Icons.cross,
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(action))
-        topViewController?.navigationItem.rightBarButtonItem = doneButton
-        doneButton.tintColor = .gray
     }
     
     required init?(coder aDecoder: NSCoder) {
