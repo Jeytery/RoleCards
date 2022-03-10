@@ -46,7 +46,12 @@ class CircleRolesView: UIView {
         stackView.addArrangedSubview(overflowNumber)
     }
     
+    private func clear() {
+        circleViews.forEach { $0.popRole() }
+    }
+    
     func setRoles(_ roles: Roles) {
+        clear()
         for i in 0 ..< circleViews.count {
             if i > roles.count - 1 {
                 break

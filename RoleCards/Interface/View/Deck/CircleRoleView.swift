@@ -36,4 +36,9 @@ class CircleRoleView: UIView {
         label.text = String(role.name[role.name.startIndex])
         label.textColor = Luma.blackOrWhite(color)
     }
+    
+    func popRole() {
+        backgroundColor = .clear
+        label.text = ""
+    }
 }

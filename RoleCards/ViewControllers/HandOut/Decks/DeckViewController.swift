@@ -62,7 +62,8 @@ extension DeckViewController {
     }
     
     @objc func saveButtonAction() {
-        let deck = Deck(name: nameTextField.text ?? "", roles: roles)
+        let deckName = nameTextField.text == "" ? "Unnamed deck" : nameTextField.text!
+        let deck = Deck(name: deckName, roles: roles)
         delegate?.deckViewController(self, didTapSaveButtonWith: deck)
     }
     
@@ -80,7 +81,6 @@ extension DeckViewController {
         view.backgroundColor = tableView.backgroundColor
         title = "Deck"
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(viewDidTap)))
-        
         nameTextField.text = deck.name
     }
     
