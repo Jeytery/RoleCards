@@ -14,6 +14,12 @@ class TableCell<T: UIView>: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setView(T())
+        
+        print("tableCell.init")
+    }
+    
+    deinit {
+        print("tableCell.deinit")
     }
     
     required init?(coder: NSCoder) {

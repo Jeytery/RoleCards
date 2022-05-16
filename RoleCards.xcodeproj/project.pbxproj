@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E01179827C57A0E007DF604 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E01179727C57A0E007DF604 /* Math.swift */; };
+		3E02FC1C27E35FD8006BBA89 /* _ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E02FC1B27E35FD8006BBA89 /* _ListView.swift */; };
 		3E0491FE26F20182000F725D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0491FD26F20182000F725D /* AppDelegate.swift */; };
 		3E04920726F20184000F725D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E04920626F20184000F725D /* Assets.xcassets */; };
 		3E04920A26F20184000F725D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E04920826F20184000F725D /* LaunchScreen.storyboard */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		3E01179727C57A0E007DF604 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		3E02FC1B27E35FD8006BBA89 /* _ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _ListView.swift; sourceTree = "<group>"; };
 		3E0491FA26F20182000F725D /* RoleCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoleCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E0491FD26F20182000F725D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E04920626F20184000F725D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				3E8356082705ABDC0046AE83 /* Design.swift */,
 				3E8356182705CBE90046AE83 /* Colors.swift */,
 				3E5B08792709A1A500265422 /* Icons.swift */,
+				3E02FC1B27E35FD8006BBA89 /* _ListView.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				3E1742ED270DEA0B0051DE24 /* DeckInfoViewController.swift in Sources */,
 				3E5B0876270731FB00265422 /* LoadingState.swift in Sources */,
 				3E496AD3270B4917003D915C /* RoleViewController.swift in Sources */,
+				3E02FC1C27E35FD8006BBA89 /* _ListView.swift in Sources */,
 				3E496AD5270C856B003D915C /* RolesViewModel.swift in Sources */,
 				3E0491FE26F20182000F725D /* AppDelegate.swift in Sources */,
 				3E3F55AE27CFAF7400F34B4F /* InsetsTextField.swift in Sources */,
@@ -720,8 +724,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = R24W57U338;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = RoleCards/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -743,8 +748,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = R24W57U338;
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = RoleCards/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
