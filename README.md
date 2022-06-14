@@ -13,5 +13,4 @@ App for shuffle roles for party games.
   - deck & role mixing
   - roles hand out with gesture 
   - remote roles hand out 
-  
-[Image Alt](https://github.com/Jeytery/RoleCards/blob/main/screenshot_big_1-3.png)
+ 
